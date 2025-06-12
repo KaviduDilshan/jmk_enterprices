@@ -10,6 +10,14 @@ include_once './conn.php';
 <!-- Mirrored from themesbrand.com/velzon/html/master/auth-signin-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 12 Aug 2024 06:11:16 GMT -->
 
 <head>
+<?php
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+} else {
+    $error = '';
+}
+?>
+<body>
 
     <meta charset="utf-8" />
     <title>JMK Enterprises</title>
@@ -75,6 +83,26 @@ include_once './conn.php';
                                 </div>
                                 <div class="p-2 mt-4">
                                     <form action="data/data_login.php" method="post">
+
+                                    <?php if ($error != '') { ?>
+                                            <div class="row">
+                                                <div id="error_display" class=" text-danger">
+                                                    <?php
+                                                    if ($error == '0') {
+
+                                                        echo "Please fill-in the Username and Password";
+                                                    } else if ($error == '1') {
+                                                        echo '<script>  swal("Invalid Username/Password", "Account not Active", "error");</script>';
+                                                        echo "Invalid Username /Password or Account not Active.";
+                                                    } else if ($error == '5') {
+                                                        echo '<script>  swal("Invalid Captha Code", "Please Try Agin", "warning");</script>';
+                                                        echo "Invalid Captha Code";
+                                                    } else if ($error == 6) {
+                                                        echo '<script>  swal("Security Alert", "Multiple Login", "warning");</script>';
+                                                        echo "Security Alert";
+                                                    }
+                                                }
+                                                    ?>
 
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Username</label>
