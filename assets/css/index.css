@@ -1,0 +1,12 @@
+
+@media (max-width: 991.98px) {
+    .heding h2 {
+        font-size: 70px;
+        margin-top: 30px;
+        color: rgb(255, 255, 255);
+    }
+
+    .login-card {
+        margin-top: 250px !important;
+    }
+}
