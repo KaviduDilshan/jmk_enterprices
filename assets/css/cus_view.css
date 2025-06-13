@@ -1,0 +1,10 @@
+.navbar{
+    height: 140px;
+    background-image: linear-gradient(to right, #1A2980 0%, #2955b4 51%, #298bdb 100%);
+}
+
+.hover-shadow:hover {
+     background-color: #d1e8ee;
+     cursor: pointer;
+}
+

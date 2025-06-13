@@ -1,0 +1,22 @@
+.navbar{
+    height: 140px;
+    background-image: linear-gradient(to right, #1A2980 0%, #2955b4 51%, #298bdb 100%);
+}
+
+.cardsmall{
+    background-image: #298bdb;
+}
+
+.btns{
+    font-size: 20px;
+    width: 150px;
+}
+
+.view{
+    font-size: 30px;
+    width: 200px;
+    background-color:rgb(36, 149, 201);
+    border: #298bdb;
+    border-radius: 10px;
+    color: rgb(252, 252, 252);
+}

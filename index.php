@@ -73,13 +73,13 @@ if (isset($_GET['error'])) {
                 </div>
                 <!-- end row -->
 
-                <div class="row justify-content-center">
+                <div class="row justify-content-center ">
                     <div class="col-md-9  col-lg-6 col-xl-5">
                         <div class="card login-card card-bg-fill ">
                             <div class="card-body p-4 ">
                                 <div class="text-center mt-2">
-                                    <h4 class="text-primary">JMK Enterprises</h4>
-                                    <p class="text-muted">Sign in to continue</p>
+                                    <h4 class="text-primary" style="font-size:40px">JMK Enterprises</h4>
+                                    <p class="text-muted" style="font-size:20px">Sign in to continue</p>
                                 </div>
                                 <div class="p-2 mt-4">
                                     <form action="data/data_login.php" method="post">
@@ -105,7 +105,7 @@ if (isset($_GET['error'])) {
                                                     ?>
 
                                         <div class="mb-3">
-                                            <label for="username" class="form-label">Username</label>
+                                            <label for="username" class="form-label" style="font-size:15px">Username</label>
                                             <input type="text" id="a_username" name="a_username" class="form-control"
                                                 placeholder="Enter username">
                                         </div>
@@ -114,7 +114,7 @@ if (isset($_GET['error'])) {
                                             <!-- <div class="float-end">
                                                 <a href="auth-pass-reset-basic.html" class="text-muted">Forgot password?</a>
                                             </div> -->
-                                            <label class="form-label" for="password-input">Password</label>
+                                            <label class="form-label" for="password-input"style="font-size:15px" >Password</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                 <input type="password" id="a_password" name="a_password"
                                                     class="form-control pe-5 password-input"

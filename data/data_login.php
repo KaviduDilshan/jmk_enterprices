@@ -16,13 +16,13 @@ if ($login_pass != '' && $login_user != '') {
     if (mysqli_num_rows($result) > 0) {
         $res = mysqli_fetch_assoc($result);
         if (password_verify($login_pass, $res['a_password'])) {
-            if ($_SESSION['SecKey'] == '') {
+            if ($res['a_type'] == 6) {
                 $_SESSION['login'] = $res['a_id'];
-
+                $_SESSION['type'] = $res['a_type'];
+                $_SESSION['username'] = $res['a_username'];
                 header('Location: ../dashboad.php');
             } else {
-
-                header('Location: ../index.php');
+                header('Location: ../index.php?error=1');
             }
         } else {
             header('Location: ../index.php?error=1');

@@ -17,7 +17,7 @@ include_once './conn.php';
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
 
-    <link rel="stylesheet" href="assets/css/dashboad.css">
+    <link rel="stylesheet" href="assets/css/order.css">
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
     <!-- Layout config Js -->
@@ -30,6 +30,8 @@ include_once './conn.php';
     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
 </head>
 
@@ -40,9 +42,10 @@ include_once './conn.php';
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav w-100">
                 <li class="nav-item px-4">
-                    <a class="nav-link" href="#" style="font-size:40px; color:white;">JMK Enterprises</a>
+                    <a class="nav-link" href="#" style="font-size:35px; color:white;">Items Oder</a>
                 </li>
-                <li class="nav-item ms-auto p-3">
+                <li class="nav-item ms-auto p-2">
+                    <a class="btn btn-danger" href="dashboad.php" style="font-size: 20px;">back</a>
                     <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
                 </li>
 
@@ -50,35 +53,58 @@ include_once './conn.php';
         </div>
     </nav>
 
-
-    <!-- ✅ Card with Buttons -->
-    <div class="container" style="margin-top: 230px;">
+    <div class="container" style="margin-top: 180px;">
         <div class="card shadow-lg p-4 rounded">
-            <h4 class="card-title text-center mb-4 " style="font-size: 50px;">Main menu</h4>
-            <div class="row text-center">
-                <div class="col-md-6 mb-4">
-                    <a class="btns btn-primary btn-block" href="cus_registration.php">Customer Ragistration</a>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <a class="btns btn-primary btn-block" href="cus_view.php">Customer<br>View</a>
-                </div>
+
+
+            <div class="input-group input-group-lg  mb-4">
+                <input type="text" class="form-control " placeholder="Search items ">
+                <button class="btn btn-primary p-3" type="submit"><i class="fa fa-search"></i></button>
             </div>
-+
-            <div class="row text-center">
-                <div class="col-md-6 mb-4">
-                    <a class="btns btn-primary btn-block" href="order.php">Order</a>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <a class="btns btn-primary btn-block" href="order_view.php">Oder view</a>
+
+            <div class="row card shadow-lg p-3 mb-4 rounded m-1 cardsmall">
+                <h2 class="mb-4">Items</h2>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="d-flex justify-content-end mt-5">
+                    <button type="submit"
+                        class="btns bg-gradient btn btn-primary waves-effect waves-light">Quntity</button>
                 </div>
             </div>
 
-        </div>
-    </div>
-    </div>
+            <div class="col-lg-6 mt-2 mt-3">
+                <h2>Customer select</h2>
+                <select name="customer_type" id="customer_status" class="form-select pt-3 pb-3 select"
+                    style="font-size: 20px;">
+                    <option>Credit Not Accept</option>
+                </select>
+            </div>
 
-    <!-- footer -->
-    <footer class="footer">
+            <div class=" mt-4">
+                <button type="submit" class="view bg-gradient p-3 waves-effect waves-light">view</button>
+            </div>
+
+            <div class="col-lg-6 mt-4">
+                <h2>Total</h2>
+                <input type="text" name="total" id="end_total" class="form-control pt-3 pb-3 bg-dark-subtle " readonly
+                    style="font-size: 20px;">
+                </input>
+            </div>
+
+            <div class="row justify-content-end mt-3 ">
+                <div class="col-md-3 mt-1 text-end">
+                    <button type="submit"
+                        class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100">save</button>
+                </div>
+                <div class="col-md-3 mt-1 text-end">
+                    <button type="reset"
+                        class="ml-1 btn btn-warning bg-gradient waves-effect waves-light w-100">cacel</button>
+                </div>
+                 <!-- footer -->
+    <footer class="footer mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -94,6 +120,13 @@ include_once './conn.php';
     </footer>
     <!-- end Footer -->
 
+            </div>
+ 
+
+        </div>
+    </div>
+
+   
 
 
 
