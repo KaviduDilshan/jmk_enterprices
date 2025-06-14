@@ -42,7 +42,7 @@ include_once './conn.php';
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav w-100">
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="#" style="font-size:35px; color:white;">Oder View</a>
+                        <a class="nav-link" href="#" style="font-size:35px; color:white;">Today Oders</a>
                     </li>
                     <li class="nav-item ms-auto p-2">
                         <a class="btn btn-danger" href="dashboad.php" style="font-size: 20px;">back</a>

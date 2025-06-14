@@ -36,23 +36,23 @@ include_once './conn.php';
 <body>
 
 
-    <nav class="navbar navbar-expand-md navbar-dark  fixed-top">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav w-100">
-                <li class="nav-item px-4">
-                    <a class="nav-link" href="#" style="font-size:40px; color:white;">JMK Enterprises</a>
-                </li>
-                <li class="nav-item ms-auto p-3">
-                    <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
-                </li>
+    <div class="">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav w-100">
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="#" style="font-size:35px; color:white;">Customer Ragistraion</a>
+                    </li>
+                    <li class="nav-item ms-auto p-2">
+                        <a class="btn btn-danger" href="dashboad.php" style="font-size: 20px;">back</a>
+                        <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-            </ul>
-        </div>
-    </nav>
-
-
-    <!-- ✅ Card with Buttons -->
-    <div class="container" style="margin-top: 230px;">
+        <!-- ✅ Card with Buttons -->
+        <div class="container mt-4" >
         <div class="card shadow-lg p-4 rounded">
             <h4 class="card-title text-center mb-4 " style="font-size: 50px;">Main menu</h4>
             <div class="row text-center">
@@ -75,7 +75,7 @@ include_once './conn.php';
 
         </div>
     </div>
-    </div>
+
 
     <!-- footer -->
     <footer class="footer">

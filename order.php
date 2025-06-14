@@ -38,95 +38,109 @@ include_once './conn.php';
 <body>
 
 
-    <nav class="navbar navbar-expand-md navbar-dark  fixed-top">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav w-100">
-                <li class="nav-item px-4">
-                    <a class="nav-link" href="#" style="font-size:35px; color:white;">Items Oder</a>
-                </li>
-                <li class="nav-item ms-auto p-2">
-                    <a class="btn btn-danger" href="dashboad.php" style="font-size: 20px;">back</a>
-                    <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
-                </li>
+    <div class="">
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav w-100">
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="#" style="font-size:35px; color:white;">Order</a>
+                    </li>
+                    <li class="nav-item ms-auto p-2">
+                        <a class="btn btn-danger" href="dashboad.php" style="font-size: 20px;">back</a>
+                        <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-            </ul>
-        </div>
-    </nav>
 
-    <div class="container" style="margin-top: 180px;">
         <div class="card shadow-lg p-4 rounded">
-
-
             <div class="input-group input-group-lg  mb-4">
                 <input type="text" class="form-control " placeholder="Search items ">
                 <button class="btn btn-primary p-3" type="submit"><i class="fa fa-search"></i></button>
             </div>
 
-            <div class="row card shadow-lg p-3 mb-4 rounded m-1 cardsmall">
-                <h2 class="mb-4">Items</h2>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <div class="d-flex justify-content-end mt-5">
-                    <button type="submit"
-                        class="btns bg-gradient btn btn-primary waves-effect waves-light">Quntity</button>
+
+            <div class=" card shadow-lg p-3 rounded m-1 cardsmall">
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <p>item</p>
+                        <p>item</p>
+                        <p>item</p>
+                        <p>item</p>
+                        <p>item</p>
+                        <input type="text" name="left_input" class="form-control bg-dark-subtle" placeholder="0.00"
+                            readonly>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <p>item</p>
+                        <p>item</p>
+                        <p>item</p>
+                        <p>item</p>
+                        <p>item</p>
+                        <button type="submit" class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100"
+                            style="background-color:green;">add</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-lg-6 mt-2 mt-3">
-                <h2>Customer select</h2>
+            <div class="col-lg-6  mt-4">
+                <h2>Customer type</h2>
                 <select name="customer_type" id="customer_status" class="form-select pt-3 pb-3 select"
                     style="font-size: 20px;">
                     <option>Credit Not Accept</option>
                 </select>
             </div>
 
-            <div class=" mt-4">
-                <button type="submit" class="view bg-gradient p-3 waves-effect waves-light">view</button>
-            </div>
+            <div class="card shadow-lg p-3 rounded m-1 cardsmall mt-4">
+                <div class="row">
+                    <div class="col-md-6 mb-2 text-center">
+                        <h2>Total Quantity</h2>
+                        <input type="text" name="left_input" class="form-control bg-dark-subtle" placeholder="0.00"
+                            readonly>
+                    </div>
+                    <div class="col-md-6 mb-2 text-center">
+                        <h2>View Today</h2>
+                        <a class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100" style="background-color:green;"
+                            href="today_oder.php">save</a>
 
-            <div class="col-lg-6 mt-4">
-                <h2>Total</h2>
-                <input type="text" name="total" id="end_total" class="form-control pt-3 pb-3 bg-dark-subtle " readonly
-                    style="font-size: 20px;">
-                </input>
-            </div>
 
-            <div class="row justify-content-end mt-3 ">
-                <div class="col-md-3 mt-1 text-end">
-                    <button type="submit"
-                        class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100">save</button>
-                </div>
-                <div class="col-md-3 mt-1 text-end">
-                    <button type="reset"
-                        class="ml-1 btn btn-warning bg-gradient waves-effect waves-light w-100">cacel</button>
-                </div>
-                 <!-- footer -->
-    <footer class="footer mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <p class="mb-0 text-muted">&copy;
-                            <script>document.write(new Date().getFullYear())</script> JMK Enterprises. Developed by
-                            <a href="www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
-                        </p>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!-- end Footer -->
+
+            <div class="row justify-content-end mt-5 mb-3 ">
+                <div class="col-md-6 mt-1 text-end">
+                    <button type="reset"
+                        class="ml-1 btn btn-warning bg-gradient waves-effect waves-light w-100">cacel</button>
+                </div>
+                <div class="col-md-6 mt-1 text-end">
+                    <button type="submit"
+                        class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100">save</button>
+                </div>
 
             </div>
- 
-
         </div>
+        <!-- footer -->
+        <footer class="footer ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <p class="mb-0 text-muted">&copy;
+                                <script>document.write(new Date().getFullYear())</script> JMK Enterprises.
+                                Developed by
+                                <a href="www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
+    <!-- end Footer -->
 
-   
+
 
 
 

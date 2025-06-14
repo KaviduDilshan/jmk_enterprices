@@ -37,13 +37,12 @@ include_once './conn.php';
 </head>
 
 <body>
-    <div class="">
-        
-        <nav class="navbar navbar-expand-md navbar-dark">
+    <div class="">  
+        <nav class="navbar navbar-expand-md navbar-dark ">
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav w-100">
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="#" style="font-size:35px; color:white;">Customer Ragistraion</a>
+                        <a class="nav-link" href="#" style="font-size:35px; color:white;">Customer View</a>
                     </li>
                     <li class="nav-item ms-auto p-2">
                         <a class="btn btn-danger" href="dashboad.php" style="font-size: 20px;">back</a>
@@ -61,6 +60,47 @@ include_once './conn.php';
 
 
             <div class="" style="font-size:20px;">
+                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
+                    <h3>
+                        John Doe
+                    </h3>
+                    <p>9858585858V | 03123456789<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
+                    <hr>
+                </a>
+
+                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
+                    <h3>
+                        John Doe
+                    </h3>
+                    <p>9858585858V | 03123456789<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
+                    <hr>
+                </a>
+                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
+                    <h3>
+                        John Doe
+                    </h3>
+                    <p>9858585858V | 03123456789<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
+                    <hr>
+                </a>
+                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
+                    <h3>
+                        John Doe
+                    </h3>
+                    <p>9858585858V | 03123456789<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
+                    <hr>
+                </a>
+                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
+                    <h3>
+                        John Doe
+                    </h3>
+                    <p>9858585858V | 03123456789<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
+                    <hr>
+                </a>
                 <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
                     <h3>
                         John Doe
