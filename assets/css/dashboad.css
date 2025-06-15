@@ -1,5 +1,5 @@
-.navbar{
-    height: 160px;
+.navbar {
+    height: 100px;
     background-image: linear-gradient(to right, #1A2980 0%, #2955b4 51%, #298bdb 100%);
 }
 
@@ -25,4 +25,3 @@
     box-shadow: 0 6px 15px rgba(161, 208, 230, 0.15);
     opacity: 0.95;
 }
-

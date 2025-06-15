@@ -6,9 +6,6 @@ include_once './conn.php';
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
     data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
 
-
-<!-- Mirrored from themesbrand.com/velzon/html/master/auth-signin-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 12 Aug 2024 06:11:16 GMT -->
-
 <head>
 
     <meta charset="utf-8" />
@@ -35,26 +32,22 @@ include_once './conn.php';
 
 <body>
 
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav w-100">
+                <li class="nav-item px-4">
+                    <a class="nav-link" href="#" style="font-size:35px; color:white;">JMK ENTERPRISES</a>
+                </li>
+                <li class="nav-item ms-auto p-2">
+                    <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="">
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav w-100">
-                    <li class="nav-item px-4">
-                        <a class="nav-link" href="#" style="font-size:35px; color:white;">Customer Ragistraion</a>
-                    </li>
-                    <li class="nav-item ms-auto p-2">
-                        <a class="btn btn-danger" href="dashboad.php" style="font-size: 20px;">back</a>
-                        <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- ✅ Card with Buttons -->
-        <div class="container mt-4" >
+    <!-- ✅ Card with Buttons -->
+    <div class="container mt-4">
         <div class="card shadow-lg p-4 rounded">
-            <h4 class="card-title text-center mb-4 " style="font-size: 50px;">Main menu</h4>
             <div class="row text-center">
                 <div class="col-md-6 mb-4">
                     <a class="btns btn-primary btn-block" href="cus_registration.php">Customer Ragistration</a>
@@ -63,10 +56,10 @@ include_once './conn.php';
                     <a class="btns btn-primary btn-block" href="cus_view.php">Customer<br>View</a>
                 </div>
             </div>
-+
+            +
             <div class="row text-center">
                 <div class="col-md-6 mb-4">
-                    <a class="btns btn-primary btn-block" href="order.php">Order</a>
+                    <a class="btns btn-primary btn-block" href="order.php"> Make Order</a>
                 </div>
                 <div class="col-md-6 mb-4">
                     <a class="btns btn-primary btn-block" href="order_view.php">Oder view</a>
@@ -84,7 +77,9 @@ include_once './conn.php';
                 <div class="col-lg-12">
                     <div class="text-center">
                         <p class="mb-0 text-muted">&copy;
-                            <script>document.write(new Date().getFullYear())</script> JMK Enterprises. Developed by
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> JMK Enterprises. Developed by
                             <a href="www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
                         </p>
                     </div>
