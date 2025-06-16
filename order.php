@@ -85,7 +85,7 @@ include_once './conn.php';
         </div>
     </div>
 
-    <div class="card  pt-3 mt-4">
+    <div class="card p-4 pt-3 mt-4">
         <div class="row">
             <div class="col-md-4 mb-2">
                 <button type="submit" class="ml-1 btn btn-danger bg-gradient waves-effect waves-light w-100"
