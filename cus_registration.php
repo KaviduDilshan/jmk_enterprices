@@ -46,7 +46,7 @@ include_once './conn.php';
             </div>
         </nav>
         <div class="card shadow-lg p-4 rounded">
-            <form action="#" class="form-horizontal" method="post" enctype="multipart/form-data" name="update_members">
+            <form action="data/data_customer.php" class="form-horizontal" method="post" enctype="multipart/form-data" name="update_members">
                 <div class="row">
                     <div class="col-lg-6 mb-3">
                         <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size: 17px;">NIC Number
@@ -86,6 +86,7 @@ include_once './conn.php';
                         <label for="inputName2" class="form-label m-0 fw-normal" style="font-size: 17px;">Gender</label>
                         <select name="customer_gender" id="customer_gender" style="height: 50px; font-size: 17px;" class="form-select pt-1 pb-1">
                             <option>Female</option>
+                            <option>Male</option>
                         </select>
                     </div>
 

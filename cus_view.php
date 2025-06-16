@@ -1,6 +1,7 @@
 <?php
 
 include_once './conn.php';
+
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
@@ -49,118 +50,73 @@ include_once './conn.php';
 
     <div class="card shadow-lg p-4 rounded">
         <div class="input-group input-group-lg  mb-4">
-            <input type="text" class="form-control " placeholder="Search customer by name ">
+            <input type="text" class="form-control " placeholder="Search customer by name" id="customerserach">
             <button class="btn btn-primary p-3" type="submit"><i class="fa fa-search"></i></button>
         </div>
 
 
         <div class="" style="font-size:20px;">
-            <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                <h3>
-                    John Doe
-                </h3>
-                <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
 
-            <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                <h3>
-                    John Doe
-                </h3>
-                <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-            <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                <h3>
-                    John Doe
-                </h3>
-                <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-            <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                <h3>
-                    John Doe
-                </h3>
-                <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-            <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                <h3>
-                    John Doe
-                </h3>
-                <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-            <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                <h3>
-                    John Doe
-                </h3>
-                <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-            <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                <h3>
-                    John Doe
-                </h3>
-                <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
+            <?php
+            $query = "SELECT * FROM customer ORDER BY c_id DESC";
+            $result = mysqli_query($con, $query);
 
-        </div>
-
-    </div>
-    </div>
-
-    <!-- footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <p class="mb-0 text-muted">&copy;
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> JMK Enterprises. Developed by
-                            <a href="www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
+            if (mysqli_num_rows($result) > 0):
+                while ($cus = mysqli_fetch_assoc($result)):
+                    ?>
+                    <a href="cus_details.php?id=<?= $cus['c_id'] ?>" class="customer_get text-decoration-none text-dark">
+                        <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
+                        <p><?= htmlspecialchars($cus['nic']) ?> | <?= htmlspecialchars($cus['customer_mobile']) ?><br>
+                            <small><?= htmlspecialchars($cus['customer_address']) ?></small>
                         </p>
-                    </div>
-                </div>
-            </div>
+                        <hr>
+                    </a>
+                <?php
+                endwhile;
+            else:
+                ?>
+                <p>No customers found.</p>
+            <?php endif; ?>
         </div>
-    </footer>
-    <!-- end Footer -->
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const searchInput = document.getElementById('customerserach');
+                const customerItems = document.querySelectorAll('.customer_get');
+
+                searchInput.addEventListener('keyup', function () {
+                    const searchTerm = searchInput.value.toLowerCase().trim();
+
+                    customerItems.forEach(function (item) {
+                        const name = item.querySelector('.customer_name').textContent.toLowerCase();
+                        if (name.includes(searchTerm)) {
+                            item.style.display = '';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        </script>
 
 
 
 
-    <!-- JAVASCRIPT -->
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
-    <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="assets/js/plugins.js"></script>
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+        <script src="assets/libs/feather-icons/feather.min.js"></script>
+        <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+        <script src="assets/js/plugins.js"></script>
 
-    <!-- particles js -->
-    <script src="assets/libs/particles.js/particles.js"></script>
-    <!-- particles app js -->
-    <script src="assets/js/pages/particles.app.js"></script>
-    <!-- password-addon init -->
-    <script src="assets/js/pages/password-addon.init.js"></script>
+        <!-- particles js -->
+        <script src="assets/libs/particles.js/particles.js"></script>
+        <!-- particles app js -->
+        <script src="assets/js/pages/particles.app.js"></script>
+        <!-- password-addon init -->
+        <script src="assets/js/pages/password-addon.init.js"></script>
 
 </body>
 

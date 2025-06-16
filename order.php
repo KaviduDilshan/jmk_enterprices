@@ -88,8 +88,8 @@ include_once './conn.php';
     <div class="card p-4 pt-3 mt-4">
         <div class="row">
             <div class="col-md-4 mb-2">
-                <button type="submit" class="ml-1 btn btn-danger bg-gradient waves-effect waves-light w-100"
-                    style="height: 50px; font-size: 17px;">View</button>
+                <a type="submit" class="ml-1 btn btn-danger bg-gradient waves-effect waves-light w-100"
+                    style="height: 50px; font-size: 17px;" href="today_oder.php">View</a>
             </div>
             <div class="col-md-8 mb-2">
                 <input type="text" name="left_input" class="form-control bg-dark-subtle" value="0.00" style="height: 50px; font-size: 17px;" readonly>

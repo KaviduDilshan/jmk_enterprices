@@ -56,96 +56,49 @@ include_once './conn.php';
 
 
             <div class="" style="font-size:20px;">
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                        <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                    </p>
-                    <hr>
-                </a>
+                   <?php  
+    $query = "SELECT * FROM products ORDER BY pro_id DESC";
+    $result = mysqli_query($con, $query);
 
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                        <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                    </p>
-                    <hr>
-                </a>
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                        <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                    </p>
-                    <hr>
-                </a>
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                        <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                    </p>
-                    <hr>
-                </a>
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                        <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                    </p>
-                    <hr>
-                </a>
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                        <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                    </p>
-                    <hr>
-                </a>
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                        <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                    </p>
-                    <hr>
-                </a>
-
-            </div>
-
-        </div>
-    </div>
-
-    <!-- footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <p class="mb-0 text-muted">&copy;
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> JMK Enterprises. Developed by
-                            <a href="www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- end Footer -->
+    if (mysqli_num_rows($result) > 0): 
+        while ($cus = mysqli_fetch_assoc($result)):
+    ?>
+        <a href="order_detils.php?id=<?= $cus['pro_id'] ?>" class="product_get text-decoration-none text-dark">
+            <h3 class="product_name"><?= htmlspecialchars($cus['product_name']) ?></h3>
+            <p><?= htmlspecialchars($cus['barcode']) ?> | <?= htmlspecialchars($cus['customer_mobile']) ?><br>
+                <small><?= htmlspecialchars($cus['customer_address']) ?></small>
+            </p>
+            <hr>
+        </a>
+    <?php 
+        endwhile;
+    else: 
+    ?>
+        <p>No customers found.</p>
+    <?php endif; ?>
+</div>
 
 
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('customerserach');
+            const customerItems = document.querySelectorAll('.customer_get');
+
+            searchInput.addEventListener('keyup', function () {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+
+                customerItems.forEach(function (item) {
+                    const name = item.querySelector('.customer_name').textContent.toLowerCase();
+                    if (name.includes(searchTerm)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+   
 
 
     <!-- JAVASCRIPT -->

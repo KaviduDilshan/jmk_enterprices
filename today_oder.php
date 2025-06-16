@@ -37,7 +37,7 @@ include_once './conn.php';
 </head>
 
 <body>
-    <div class="">  
+    <div class="">
         <nav class="navbar navbar-expand-md navbar-dark ">
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav w-100">
@@ -45,7 +45,6 @@ include_once './conn.php';
                         <a class="nav-link" href="#" style="font-size:35px; color:white;">Today Oders</a>
                     </li>
                     <li class="nav-item ms-auto p-2">
-                        <a class="btn btn-danger" href="dashboad.php" style="font-size: 20px;">back</a>
                         <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
                     </li>
                 </ul>
@@ -58,105 +57,139 @@ include_once './conn.php';
                 <button class="btn btn-primary p-3" type="submit"><i class="fa fa-search"></i></button>
             </div>
 
-
-            <div class="" style="font-size:20px;">
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
-                    <hr>
-                </a>
-
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
-                    <hr>
-                </a>
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
-                    <hr>
-                </a>
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
-                    <hr>
-                </a>
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
-                    <hr>
-                </a>
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
-                    <hr>
-                </a>
-                <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                    <h3>
-                        John Doe
-                    </h3>
-                    <p>9858585858V | 03123456789<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small></p>
-                    <hr>
-                </a>
-
+            <div class="row justify-content-end mt-2" style="font-size:20px;">
+                <div class="col-md-8">
+                    <a class="text-decoration-none text-dark">
+                        <h3>
+                            Product barcode
+                        </h3>
+                        <p>Product name<br>
+                            <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
+                        </p>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="left_input" class="form-control bg-dark-subtle mb-2" placeholder="0.00"
+                        style="height: 50px; font-size: 17px;">
+                    <button type="submit" class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100"
+                        style="background-color:green; height: 50px; font-size: 17px;">Delete</button>
+                </div>
+                <hr>
             </div>
 
-        </div>
-    </div>
+            <a class="text-decoration-none text-dark">
+                <h3>
+                    Product barcode
+                </h3>
+                <p>Product name<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
+                </p>
+                <hr>
+            </a>
 
-    <!-- footer -->
-    <footer class="footer">
-        <div class="container">
+            <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
+                <h3>
+                    Product barcode
+                </h3>
+                <p>Product name<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
+                </p>
+                <hr>
+            </a>
+            <a class="text-decoration-none text-dark">
+                <h3>
+                    Product barcode
+                </h3>
+                <p>Product name<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
+                </p>
+                <hr>
+            </a>
+            <a class="text-decoration-none text-dark">
+                <h3>
+                    Product barcode
+                </h3>
+                <p>Product name<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
+                </p>
+                <hr>
+            </a>
+            <a class="text-decoration-none text-dark">
+                <h3>
+                    Product barcode
+                </h3>
+                <p>Product name<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
+                </p>
+                <hr>
+            </a>
+            <a class="text-decoration-none text-dark">
+                <h3>
+                    Product barcode
+                </h3>
+                <p>Product name<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
+                </p>
+                <hr>
+            </a>
+            <a class="text-decoration-none text-dark">
+                <h3>
+                    Product barcode
+                </h3>
+                <p>Product name<br>
+                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
+                </p>
+                <hr>
+            </a>
+
+
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <p class="mb-0 text-muted">&copy;
-                            <script>document.write(new Date().getFullYear())</script> JMK Enterprises. Developed by
-                            <a href="www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
-                        </p>
+                <div class="col-md-6 mb-2">
+                    <input type="text" name="left_input" class="form-control bg-dark-subtle" placeholder="0.00"
+                        style="height: 50px; font-size: 17px;">
+                </div>
+                <div class="col-md-6 mb-2">
+                    <button type="submit" class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100"
+                        style="background-color:green; height: 50px; font-size: 17px;">Delete</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <p class="mb-0 text-muted">&copy;
+                                <script>document.write(new Date().getFullYear())</script> JMK Enterprises. Developed by
+                                <a href="www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!-- end Footer -->
+        </footer>
+        <!-- end Footer -->
 
 
 
 
-    <!-- JAVASCRIPT -->
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
-    <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="assets/js/plugins.js"></script>
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+        <script src="assets/libs/feather-icons/feather.min.js"></script>
+        <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+        <script src="assets/js/plugins.js"></script>
 
-    <!-- particles js -->
-    <script src="assets/libs/particles.js/particles.js"></script>
-    <!-- particles app js -->
-    <script src="assets/js/pages/particles.app.js"></script>
-    <!-- password-addon init -->
-    <script src="assets/js/pages/password-addon.init.js"></script>
+        <!-- particles js -->
+        <script src="assets/libs/particles.js/particles.js"></script>
+        <!-- particles app js -->
+        <script src="assets/js/pages/particles.app.js"></script>
+        <!-- password-addon init -->
+        <script src="assets/js/pages/password-addon.init.js"></script>
 
 </body>
 
