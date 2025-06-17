@@ -1,6 +1,10 @@
 <?php
 
 include_once './conn.php';
+$pro_id = $_GET["id"];
+$query = "SELECT * FROM products WHERE pro_id=$pro_id";
+$result = mysqli_query($con, $query);
+$row = mysqli_fetch_assoc($result);
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
@@ -51,96 +55,101 @@ include_once './conn.php';
 
             <form action="#" class="form-horizontal" method="post" enctype="multipart/form-data" name="update_members">
 
-                <div class="col-lg-6 mb-3">
-                    <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size:17px;">Product Barcode </label>
-                    <input type="text" name="nic" id="cus_image" class="form-control pt-1 pb-1 bg-dark-subtle "
-                        style="height: 50px; font-size: 17px;" readonly>
-                </div>
+                
 
                 <div class="row">
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_name" class="form-label m-0 fw-normal" style="font-size:17px;">Product
-                            Name </label>
-                        <input type="text" name="customer_name" id="customer_name"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
-                    </div>
-
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_city" class="form-label m-0 fw-normal" style="font-size:17px;">Product
-                            Discription</label>
-                        <input type="text" name="customer_city" id="customer_city"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Product Name</label>
+                        <input type="text" name="product_name" value="<?= $row["product_name"]; ?>" id="product_name"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
                     <div class="col-lg-12 mb-3">
-                        <label for="customer_address" class="form-label m-0 fw-normal"
-                            style="font-size:17px;">Quantity</label>
-                        <input type="text" name="customer_address" id="customer_address"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Product Description</label>
+                        <input type="text" name="description" value="<?= $row["product_description"]; ?>" id="description"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_mobile" class="form-label m-0 fw-normal" style="font-size:17px;">sale_method </label>
-                        <input type="number" name="customer_mobile" id="customer_mobile"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                    <div class="col-lg-12 mb-3">
+                    <label class="form-label m-0 fw-normal" style="font-size:17px;">Product Barcode</label>
+                    <input type="text" name="barcode" id="barcode" value="<?= $row["barcode"]; ?>"
+                        class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;" readonly>
+                </div>
+
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Quantity</label>
+                        <input type="text" name="quantity" value="<?= $row["quantity"]; ?>" id="quantity"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
-                        <label for="inputName2" class="form-label m-0 fw-normal" style="font-size:17px;">discount</label>
-                        <input name="customer_gender" id="customer_gender"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Sale Method</label>
+                        <input type="text" name="sale_method" value="<?= $row["product_method"]; ?>" id="sale_method"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_birthdate" class="form-label m-0 fw-normal" style="font-size:17px;">wallsall_price</label>
-                        <input type="text" name="customer_birthdate" id="customer_birthdate"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Discount</label>
+                        <input type="text" name="discount" value="<?= $row["discount"]; ?>" id="discount"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_status" class="form-label m-0 fw-normal"
-                            style="font-size:17px;">dealer_price</label>
-                        <input type="text" name="customer_status" id="customer_status"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Wholesale Price</label>
+                        <input type="text" name="wallsall_price" value="<?= $row["wallsall_price"]; ?>"
+                            id="wholesale_price" class="form-control pt-1 pb-1 bg-dark-subtle"
+                            style="height: 50px; font-size: 17px;" readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_status" class="form-label m-0 fw-normal"
-                            style="font-size:17px;">unit_price</label>
-                        <input type="text" name="customer_status" id="customer_status"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Dealer Price</label>
+                        <input type="text" name="dealer_price" value="<?= $row["dealer_price"]; ?>" id="dealer_price"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_status" class="form-label m-0 fw-normal"
-                            style="font-size:17px;">exp_date</label>
-                        <input type="text" name="customer_status" id="customer_status"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Unit Price</label>
+                        <input type="text" name="unit_price" value="<?= $row["unit_price"]; ?>" id="unit_price"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_status" class="form-label m-0 fw-normal"
-                            style="font-size:17px;">status</label>
-                        <input type="text" name="customer_status" id="customer_status"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Expiry Date</label>
+                        <input type="text" name="exp_date" value="<?= $row["exp_date"]; ?>" id="exp_date"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_status" class="form-label m-0 fw-normal"
-                            style="font-size:17px;">max_discount</label>
-                        <input type="text" name="customer_status" id="customer_status"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Status</label>
+                        <input type="text" name="status" value="<?= $row["status"]; ?>" id="exp_date"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
+                    </div>
+                    
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Max Discount</label>
+                        <input type="text" name="max_discount" value="<?= $row["max_discount"]; ?>" id="max_discount"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_status" class="form-label m-0 fw-normal"
-                            style="font-size:17px;">model</label>
-                        <input type="text" name="customer_status" id="customer_status"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                    <div class="col-lg-12 mb-3">
+                        <label class="form-label m-0 fw-normal" style="font-size:17px;">Model</label>
+                        <input type="text" name="model" value="<?= $row["model"]; ?>" id="model"
+                            class="form-control pt-1 pb-1 bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
                 </div>
-            </form>
-        </div>
+    </form>
+    </div>
     </div>
     <!-- JAVASCRIPT -->
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -48,20 +48,20 @@ include_once './conn.php';
         <div class="card shadow-lg p-4 rounded">
             <form action="data/data_customer.php" class="form-horizontal" method="post" enctype="multipart/form-data" name="update_members">
                 <div class="row">
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size: 17px;">NIC Number
                             <span class="text-danger">*</span></label>
                         <input type="text" name="nic" id="cus_image" class="form-control pt-1 pb-1"
                             placeholder="Enter nic" style="height: 50px; font-size: 17px;" required>
                     </div>
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <label for="customer_name" class="form-label m-0 fw-normal" style="font-size: 17px;">Customer
                             Name <span class="text-danger">*</span></label>
                         <input type="text" name="customer_name" class="form-control pt-1 pb-1"
                             placeholder="Enter customer name" style="height: 50px; font-size: 17px;" required>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <label for="customer_city" class="form-label m-0 fw-normal" style="font-size: 17px;">Customer
                             City <span class="text-danger">*</span></label>
                         <input type="text" name="customer_city" id="customer_city" class="form-control pt-1 pb-1"
@@ -75,14 +75,14 @@ include_once './conn.php';
                             placeholder="Enter address" style="height: 50px; font-size: 17px;" required>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <label for="customer_mobile" class="form-label m-0 fw-normal" style="font-size: 17px;">Mobile
                             Number (9477777777) <span class="text-danger">*</span></label>
                         <input type="number" name="customer_mobile" id="customer_mobile" class="form-control pt-1 pb-1"
                             placeholder="Enter mobile number" style="height: 50px; font-size: 17px;" required>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <label for="inputName2" class="form-label m-0 fw-normal" style="font-size: 17px;">Gender</label>
                         <select name="customer_gender" id="customer_gender" style="height: 50px; font-size: 17px;" class="form-select pt-1 pb-1">
                             <option>Female</option>
@@ -90,14 +90,14 @@ include_once './conn.php';
                         </select>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <label for="customer_birthdate" class="form-label m-0 fw-normal" style="font-size: 17px;">Birth
                             Day</label>
                         <input type="date" name="customer_birthdate" style="height: 50px; font-size: 17px;" id="customer_birthdate"
                             class="form-control pt-1 pb-1">
                     </div>
 
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size: 17px;">Profile
                             Pic</label>
                         <input type="file" name="cus_image" id="cus_image" style="height: 50px; font-size: 17px;" class="form-control pt-1 pb-1" value="">

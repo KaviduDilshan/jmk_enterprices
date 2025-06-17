@@ -1,6 +1,14 @@
 <?php
 
 include_once './conn.php';
+$c_id = $_GET["id"];
+$query = "SELECT * FROM customer WHERE c_id=$c_id";
+$result = mysqli_query($con, $query);
+$row = mysqli_fetch_assoc($result);
+
+// $sql = "select * from customer where c_id='" . $c_id . "'";
+//     $result_customer_view = mysqli_query($conn, $sql);
+//     $row = mysqli_fetch_assoc($result_customer_view);
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
@@ -48,63 +56,59 @@ include_once './conn.php';
         </nav>
 
         <div class="card shadow-lg p-4 rounded">
-
-            <form action="#" class="form-horizontal" method="post" enctype="multipart/form-data" name="update_members">
-
-                <div class="col-lg-6 mb-3">
+                <div class="col-lg-12 mb-3">
                     <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size:17px;">NIC Number </label>
-                    <input type="text" name="nic" id="cus_image" class="form-control pt-1 pb-1 bg-dark-subtle "
-                        style="height: 50px; font-size: 17px;" readonly>
+                    <input type="text" name="nic" value="<?= $row["nic"]; ?>" id="cus_image"
+                        class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <label for="customer_name" class="form-label m-0 fw-normal" style="font-size:17px;">Customer
                             Name </label>
-                        <input type="text" name="customer_name" id="customer_name"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
-                    </div>
-
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_city" class="form-label m-0 fw-normal" style="font-size:17px;">Customer
-                            City</label>
-                        <input type="text" name="customer_city" id="customer_city"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                        <input type="text" name="customer_name" value="<?= $row['customer_name'] ?>" id="customer_name"
+                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
                     <div class="col-lg-12 mb-3">
-                        <label for="customer_address" class="form-label m-0 fw-normal"
-                            style="font-size:17px;">Address</label>
-                        <input type="text" name="customer_address" id="customer_address"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                        <label for="customer_city" class="form-label m-0 fw-normal" style="font-size:17px;">Customer
+                            City</label>
+                        <input type="text" name="customer_city" value="<?= $row['customer_city'] ?>" id="customer_city"
+                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
+                        <label for="customer_city" class="form-label m-0 fw-normal" style="font-size:17px;">Customer Address</label>
+                        <input type="text" name="customer_address" value="<?= $row['customer_address'] ?>" id="customer_city"
+                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;"
+                            readonly>
+                    </div>
+
+                    <div class="col-lg-12 mb-3">
                         <label for="customer_mobile" class="form-label m-0 fw-normal" style="font-size:17px;">Mobile
                             Number </label>
-                        <input type="number" name="customer_mobile" id="customer_mobile"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                        <input type="number" name="customer_mobile" value="<?= $row['customer_mobile'] ?>" id="customer_mobile"
+                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <label for="inputName2" class="form-label m-0 fw-normal" style="font-size:17px;">Gender</label>
-                        <input name="customer_gender" id="customer_gender"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                        <input name="customer_gender" value="<?= $row['customer_gender'] ?>" id="customer_gender"
+                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
+                    <div class="col-lg-12 mb-3">
                         <label for="customer_birthdate" class="form-label m-0 fw-normal" style="font-size:17px;">Birth
                             Day</label>
-                        <input type="text" name="customer_birthdate" id="customer_birthdate"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
+                        <input type="text" name="customer_birthdate" value="<?= $row['customer_birthdate'] ?>" id="customer_birthdate"
+                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;"
+                            readonly>
                     </div>
 
-                    <div class="col-lg-6 mb-3">
-                        <label for="customer_status" class="form-label m-0 fw-normal"
-                            style="font-size:17px;">Status</label>
-                        <input type="text" name="customer_status" id="customer_status"
-                            class="form-control pt-1 pb-1 bg-dark-subtle " style="height: 50px; font-size: 17px;" readonly>
-                    </div>
                 </div>
             </form>
         </div>

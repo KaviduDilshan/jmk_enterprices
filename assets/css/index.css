@@ -1,12 +1,53 @@
 
-@media (max-width: 991.98px) {
-    .heding h2 {
-        font-size: 70px;
-        margin-top: 30px;
-        color: rgb(255, 255, 255);
+/* Make card adapt nicely to small screens */
+@media (max-width: 767.98px) {
+    .login-card {
+        padding: 1rem !important;
+        margin: 10px;
     }
 
+    .login-card h4 {
+        font-size: 30px !important;
+    }
+
+    .login-card p {
+        font-size: 16px !important;
+    }
+
+    #a_username,
+    #a_password {
+        font-size: 16px !important;
+        height: 50px !important;
+    }
+
+    .btn {
+        font-size: 18px !important;
+        height: 50px !important;
+    }
+
+    .auth-page-content {
+        padding: 10px;
+    }
+
+    footer .text-muted {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+/* Optional for extra small screens */
+@media (max-width: 480px) {
     .login-card {
-        margin-top: 250px !important;
+        border-radius: 8px;
+    }
+
+    .auth-page-content {
+        height: auto;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .text-center h4 {
+        font-size: 26px !important;
     }
 }

@@ -50,71 +50,71 @@ include_once './conn.php';
 
         <div class="card shadow-lg p-4 rounded">
             <div class="input-group input-group-lg  mb-4">
-                <input type="text" class="form-control " placeholder="Search oder by name ">
+                <input type="text" class="form-control " placeholder="Search oder by name " id="productsearch">
                 <button class="btn btn-primary p-3" type="submit"><i class="fa fa-search"></i></button>
             </div>
 
 
             <div class="" style="font-size:20px;">
-                   <?php  
-    $query = "SELECT * FROM products ORDER BY pro_id DESC";
-    $result = mysqli_query($con, $query);
+                <?php
+                $query = "SELECT * FROM products ORDER BY pro_id DESC";
+                $result = mysqli_query($con, $query);
 
-    if (mysqli_num_rows($result) > 0): 
-        while ($cus = mysqli_fetch_assoc($result)):
-    ?>
-        <a href="order_detils.php?id=<?= $cus['pro_id'] ?>" class="product_get text-decoration-none text-dark">
-            <h3 class="product_name"><?= htmlspecialchars($cus['product_name']) ?></h3>
-            <p><?= htmlspecialchars($cus['barcode']) ?> | <?= htmlspecialchars($cus['customer_mobile']) ?><br>
-                <small><?= htmlspecialchars($cus['customer_address']) ?></small>
-            </p>
-            <hr>
-        </a>
-    <?php 
-        endwhile;
-    else: 
-    ?>
-        <p>No customers found.</p>
-    <?php endif; ?>
-</div>
+                if (mysqli_num_rows($result) > 0):
+                    while ($cus = mysqli_fetch_assoc($result)):
+                        ?>
+                        <a href="order_detils.php?id=<?= $cus['pro_id'] ?>" class=" product_get text-decoration-none text-dark">
+                            <h3 class="product_name"><?= htmlspecialchars($cus['product_name']) ?></h3>
+                            <p><?= htmlspecialchars($cus['qty_b1']) ?> | <?= htmlspecialchars($cus['unit_price']) ?><br>
+                                <small><?= htmlspecialchars($cus['product_description']) ?></small>
+                            </p>
+                            <hr>
+                        </a>
+                    <?php
+                    endwhile;
+                else:
+                    ?>
+                    <p>No customers found.</p>
+                <?php endif; ?>
+            </div>
 
 
-<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const searchInput = document.getElementById('customerserach');
-            const customerItems = document.querySelectorAll('.customer_get');
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const searchInput = document.getElementById('productsearch');
+                    const customerItems = document.querySelectorAll('.product_get');
 
-            searchInput.addEventListener('keyup', function () {
-                const searchTerm = searchInput.value.toLowerCase().trim();
+                    searchInput.addEventListener('keyup', function () {
+                        const searchTerm = searchInput.value.toLowerCase().trim();
 
-                customerItems.forEach(function (item) {
-                    const name = item.querySelector('.customer_name').textContent.toLowerCase();
-                    if (name.includes(searchTerm)) {
-                        item.style.display = '';
-                    } else {
-                        item.style.display = 'none';
-                    }
+                        customerItems.forEach(function (item) {
+                            const name = item.querySelector('.product_name').textContent.toLowerCase();
+                            if (name.includes(searchTerm)) {
+                                item.style.display = '';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    });
                 });
-            });
-        });
-    </script>
-   
+            </script>
 
 
-    <!-- JAVASCRIPT -->
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
-    <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="assets/js/plugins.js"></script>
 
-    <!-- particles js -->
-    <script src="assets/libs/particles.js/particles.js"></script>
-    <!-- particles app js -->
-    <script src="assets/js/pages/particles.app.js"></script>
-    <!-- password-addon init -->
-    <script src="assets/js/pages/password-addon.init.js"></script>
+            <!-- JAVASCRIPT -->
+            <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="assets/libs/simplebar/simplebar.min.js"></script>
+            <script src="assets/libs/node-waves/waves.min.js"></script>
+            <script src="assets/libs/feather-icons/feather.min.js"></script>
+            <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+            <script src="assets/js/plugins.js"></script>
+
+            <!-- particles js -->
+            <script src="assets/libs/particles.js/particles.js"></script>
+            <!-- particles app js -->
+            <script src="assets/js/pages/particles.app.js"></script>
+            <!-- password-addon init -->
+            <script src="assets/js/pages/password-addon.init.js"></script>
 
 </body>
 
