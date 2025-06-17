@@ -1,0 +1,27 @@
+<select class="form-select pt-1 pb-1 select" name="pro_id" id="pro_id" required>
+                                                <option value="0">Select Product</option>
+                                                <?php
+                                                $pro_result = mysqli_query($conn, "SELECT * FROM `products`");
+                                                while ($row = mysqli_fetch_array($pro_result)) {
+                                                    echo '<option value="' . $row['pro_id'] . '" >' . $row['product_name'] . ' ' . $row['barcode'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" />
+
+
+
+<script>
+
+        $(document).ready(function() {
+            //Select2 
+            $(".select").select2({
+                maximumSelectionLength: 2,
+            });
+        });
+</script>
