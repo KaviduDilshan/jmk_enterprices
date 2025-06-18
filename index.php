@@ -22,11 +22,12 @@ $error = isset($_GET['error']) ? $_GET['error'] : '';
 </head>
 
 <body>
+
     <div class="auth-page-content"
-        style="background-image: linear-gradient(to right, #1A2980 0%, #2955b4 51%, #298bdb 100%); height:100vh;">
+        style="background-image: linear-gradient(to right, #1A2980 0%, #2955b4 51%, #298bdb 100%); height:100vh  ">
         <div class="container h-100 d-flex justify-content-center align-items-center">
-            <div class="row w-100">
-                <div class="col-md-12 col-lg-12 col-sm-6 col-xl-12">
+            <div class="row w-100 ">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xl-12">
                     <div class="card login-card card-bg-fill" style="border-radius: 10px;">
                         <div class="card-body p-4">
                             <div class="text-center mt-2">
@@ -56,20 +57,18 @@ $error = isset($_GET['error']) ? $_GET['error'] : '';
                                     <div class="row">
                                         <div class="mb-3">
                                             <input type="text" id="a_username" name="a_username" class="form-control"
-                                                placeholder="Enter username"
-                                                style="height:60px; font-size:17px;">
+                                                placeholder="Enter username" style="height:60px; font-size:17px;">
                                         </div>
                                         <div class="mb-3">
                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                 <input type="password" id="a_password" name="a_password"
                                                     class="form-control pe-5 password-input"
-                                                    placeholder="Enter password"
-                                                    style="height:60px; font-size:17px;">
+                                                    placeholder="Enter password" style="height:60px; font-size:17px;">
                                             </div>
                                         </div>
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100"
-                                                style="height:60px; font-size:20px;" type="submit">LogIn</button>
+                                            <button class="btn btn-success w-100" style="height:60px; font-size:20px;"
+                                                type="submit">LogIn</button>
                                         </div>
                                     </div>
                                 </form>
@@ -83,12 +82,12 @@ $error = isset($_GET['error']) ? $_GET['error'] : '';
     </div>
 
     <!-- footer -->
-    <footer class="footer">
+    <footer class="footer mt-auto bg-light py-3" style="position: fixed; bottom: 0; left: 0; width: 100%;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="text-center">
-                        <p class="mb-0 text-muted">&copy;
+                    <div class="text-start">
+                        <p class="mb-0 text-muted text-center ">&copy;
                             <script>document.write(new Date().getFullYear())</script> JMK Enterprises. Developed by
                             <a href="https://www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
                         </p>
@@ -97,6 +96,7 @@ $error = isset($_GET['error']) ? $_GET['error'] : '';
             </div>
         </div>
     </footer>
+
 
     <!-- JS -->
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -108,6 +108,6 @@ $error = isset($_GET['error']) ? $_GET['error'] : '';
     <script src="assets/libs/particles.js/particles.js"></script>
     <script src="assets/js/pages/particles.app.js"></script>
     <script src="assets/js/pages/password-addon.init.js"></script>
-</body>
+    </>
 
 </html>

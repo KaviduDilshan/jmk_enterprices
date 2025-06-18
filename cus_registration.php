@@ -32,93 +32,96 @@ include_once './conn.php';
 
 <body>
 
-    <div class="">
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav w-100">
-                    <li class="nav-item px-4">
-                        <a class="nav-link" href="#" style="font-size:30px; color:white;">Register New Customer</a>
-                    </li>
-                    <li class="nav-item ms-auto p-2">
-                        <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="card shadow-lg p-4 rounded">
-            <form action="data/data_customer.php" class="form-horizontal" method="post" enctype="multipart/form-data" name="update_members">
-                <div class="row">
-                    <div class="col-lg-12 mb-3">
-                        <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size: 17px;">NIC Number
-                            <span class="text-danger">*</span></label>
-                        <input type="text" name="nic" id="cus_image" class="form-control pt-1 pb-1"
-                            placeholder="Enter nic" style="height: 50px; font-size: 17px;" required>
-                    </div>
-                    <div class="col-lg-12 mb-3">
-                        <label for="customer_name" class="form-label m-0 fw-normal" style="font-size: 17px;">Customer
-                            Name <span class="text-danger">*</span></label>
-                        <input type="text" name="customer_name" class="form-control pt-1 pb-1"
-                            placeholder="Enter customer name" style="height: 50px; font-size: 17px;" required>
-                    </div>
-
-                    <div class="col-lg-12 mb-3">
-                        <label for="customer_city" class="form-label m-0 fw-normal" style="font-size: 17px;">Customer
-                            City <span class="text-danger">*</span></label>
-                        <input type="text" name="customer_city" id="customer_city" class="form-control pt-1 pb-1"
-                            placeholder="Enter city" style="height: 50px; font-size: 17px;" required>
-                    </div>
-
-                    <div class="col-lg-12 mb-3">
-                        <label for="customer_address" class="form-label m-0 fw-normal" style="font-size: 17px;">Address
-                            <span class="text-danger">*</span></label>
-                        <input type="text" name="customer_address" id="customer_address" class="form-control pt-1 pb-1"
-                            placeholder="Enter address" style="height: 50px; font-size: 17px;" required>
-                    </div>
-
-                    <div class="col-lg-12 mb-3">
-                        <label for="customer_mobile" class="form-label m-0 fw-normal" style="font-size: 17px;">Mobile
-                            Number (9477777777) <span class="text-danger">*</span></label>
-                        <input type="number" name="customer_mobile" id="customer_mobile" class="form-control pt-1 pb-1"
-                            placeholder="Enter mobile number" style="height: 50px; font-size: 17px;" required>
-                    </div>
-
-                    <div class="col-lg-12 mb-3">
-                        <label for="inputName2" class="form-label m-0 fw-normal" style="font-size: 17px;">Gender</label>
-                        <select name="customer_gender" id="customer_gender" style="height: 50px; font-size: 17px;" class="form-select pt-1 pb-1">
-                            <option>Female</option>
-                            <option>Male</option>
-                        </select>
-                    </div>
-
-                    <div class="col-lg-12 mb-3">
-                        <label for="customer_birthdate" class="form-label m-0 fw-normal" style="font-size: 17px;">Birth
-                            Day</label>
-                        <input type="date" name="customer_birthdate" style="height: 50px; font-size: 17px;" id="customer_birthdate"
-                            class="form-control pt-1 pb-1">
-                    </div>
-
-                    <div class="col-lg-12 mb-3">
-                        <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size: 17px;">Profile
-                            Pic</label>
-                        <input type="file" name="cus_image" id="cus_image" style="height: 50px; font-size: 17px;" class="form-control pt-1 pb-1" value="">
-                    </div>
-                </div>
-
-                <div class="row justify-content-end">
-                    <div class="col-md-6 mt-1 text-end">
-                        <a href="dashboad.php" class="ml-1 btn btn-warning bg-gradient waves-effect waves-light w-100"
-                            style="font-size: 17px; height: 50px;">cancel</a>
-                    </div>
-                    <div class="col-md-6 mt-1 mb-1 text-end">
-                        <button type="submit" class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100"
-                            style="font-size: 17px; height: 50px;">save</button><br>
-                    </div>
-
-                </div>
-            </form>
 
 
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid d-flex flex-wrap align-items-center">
+            <a href="#" class="navbar-brand" style="font-size: 22px; color: white; flex-grow:1;">
+                Register New Customer
+            </a>
+            <a class="btn btn-danger" href="index.php" style="font-size: 16px; white-space: nowrap;">
+                Log Out
+            </a>
         </div>
+    </nav>
+
+    <div class="card shadow-lg p-4 rounded">
+        <form action="data/data_customer.php" class="form-horizontal" method="post" enctype="multipart/form-data"
+            name="update_members">
+            <div class="row">
+                <div class="col-lg-12 mb-3">
+                    <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size: 17px;">NIC Number
+                        <span class="text-danger">*</span></label>
+                    <input type="text" name="nic" id="cus_image" class="form-control pt-1 pb-1" placeholder="Enter nic"
+                        style="height: 50px; font-size: 17px;" required>
+                </div>
+                <div class="col-lg-12 mb-3">
+                    <label for="customer_name" class="form-label m-0 fw-normal" style="font-size: 17px;">Customer
+                        Name <span class="text-danger">*</span></label>
+                    <input type="text" name="customer_name" class="form-control pt-1 pb-1"
+                        placeholder="Enter customer name" style="height: 50px; font-size: 17px;" required>
+                </div>
+
+                <div class="col-lg-12 mb-3">
+                    <label for="customer_city" class="form-label m-0 fw-normal" style="font-size: 17px;">Customer
+                        City <span class="text-danger">*</span></label>
+                    <input type="text" name="customer_city" id="customer_city" class="form-control pt-1 pb-1"
+                        placeholder="Enter city" style="height: 50px; font-size: 17px;" required>
+                </div>
+
+                <div class="col-lg-12 mb-3">
+                    <label for="customer_address" class="form-label m-0 fw-normal" style="font-size: 17px;">Address
+                        <span class="text-danger">*</span></label>
+                    <input type="text" name="customer_address" id="customer_address" class="form-control pt-1 pb-1"
+                        placeholder="Enter address" style="height: 50px; font-size: 17px;" required>
+                </div>
+
+                <div class="col-lg-12 mb-3">
+                    <label for="customer_mobile" class="form-label m-0 fw-normal" style="font-size: 17px;">Mobile
+                        Number (9477777777) <span class="text-danger">*</span></label>
+                    <input type="number" name="customer_mobile" id="customer_mobile" class="form-control pt-1 pb-1"
+                        placeholder="Enter mobile number" style="height: 50px; font-size: 17px;" required>
+                </div>
+
+                <div class="col-lg-12 mb-3">
+                    <label for="inputName2" class="form-label m-0 fw-normal" style="font-size: 17px;">Gender</label>
+                    <select name="customer_gender" id="customer_gender" style="height: 50px; font-size: 17px;"
+                        class="form-select pt-1 pb-1">
+                        <option>Female</option>
+                        <option>Male</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-12 mb-3">
+                    <label for="customer_birthdate" class="form-label m-0 fw-normal" style="font-size: 17px;">Birth
+                        Day</label>
+                    <input type="date" name="customer_birthdate" style="height: 50px; font-size: 17px;"
+                        id="customer_birthdate" class="form-control pt-1 pb-1">
+                </div>
+
+                <div class="col-lg-12 mb-3">
+                    <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size: 17px;">Profile
+                        Pic</label>
+                    <input type="file" name="cus_image" id="cus_image" style="height: 50px; font-size: 17px;"
+                        class="form-control pt-1 pb-1" value="">
+                </div>
+            </div>
+
+            <div class="row justify-content-end">
+                <div class="col-md-6 mt-1 text-end">
+                    <a href="dashboad.php" class="ml-1 btn btn-warning bg-gradient waves-effect waves-light w-100"
+                        style="font-size: 17px; height: 50px;">cancel</a>
+                </div>
+                <div class="col-md-6 mt-1 mb-1 text-end">
+                    <button type="submit" class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100"
+                        style="font-size: 17px; height: 50px;">save</button><br>
+                </div>
+
+            </div>
+        </form>
+
+
+    </div>
 
     </div>
 

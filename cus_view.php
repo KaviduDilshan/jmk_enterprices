@@ -35,16 +35,14 @@ include_once './conn.php';
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark ">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav w-100">
-                <li class="nav-item px-4">
-                    <a class="nav-link" href="#" style="font-size:30px; color:white;">Registed Customer</a>
-                </li>
-                <li class="nav-item ms-auto p-2">
-                    <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid d-flex flex-wrap align-items-center">
+            <a href="#" class="navbar-brand" style="font-size: 22px; color: white; flex-grow:1;">
+                Registerd Customers
+            </a>
+            <a class="btn btn-danger" href="index.php" style="font-size: 16px; white-space: nowrap;">
+                Log Out
+            </a>
         </div>
     </nav>
 
