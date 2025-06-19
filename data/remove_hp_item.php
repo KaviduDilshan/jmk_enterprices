@@ -3,9 +3,9 @@
 session_start();
 include_once '../conn.php';
 
-if (isset($_GET["hp_sales_id"]) && isset($_GET["invoice"]) && isset($_SESSION['login'])) {
+if (isset($_GET["hp_sales_id"]) && isset($_GET["order_id"]) && isset($_SESSION['login'])) {
     $hp_sales_id = base64_decode($_GET["hp_sales_id"]);
-    $invoice = $_GET["invoice"];
+    $invoice = $_GET["order_id"];
     
 
     $po_det = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `hp_sales_order` WHERE `hp_sales_id`=$hp_sales_id"));
@@ -27,5 +27,5 @@ if (isset($_GET["hp_sales_id"]) && isset($_GET["invoice"]) && isset($_SESSION['l
     if ($po_det != null) {
         mysqli_query($con, "DELETE FROM `hp_sales_order` WHERE `hp_sales_id`=$hp_sales_id");
     }
-    header("Location:../today_oder.php?invoice=$invoice");
+    header("Location:../today_oder.php?order_id=" . base64_encode($invoice));
 }

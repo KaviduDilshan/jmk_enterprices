@@ -1,7 +1,8 @@
 <?php
 
 include_once './conn.php';
-$order_id = base64_decode($_GET["order_id"]);
+$order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
+
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
@@ -84,7 +85,7 @@ $order_id = base64_decode($_GET["order_id"]);
                     </div>
                    
                     <div class="col-md-1 d-flex justify-content-end">
-                        <a  class="btn btn-danger" style="height: 50px; width: 50px;" href="data/remove_hp_item.php?hp_sales_id=<?= base64_encode($view_row["hp_sales_id"]) ?>&invoice=<?= $order_id ?>">
+                        <a  class="btn btn-danger" style="height: 50px; width: 50px;" href="data/remove_hp_item.php?hp_sales_id=<?= base64_encode($view_row["hp_sales_id"]) ?>&order_id=<?= $order_id ?>">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </div>
@@ -97,9 +98,9 @@ $order_id = base64_decode($_GET["order_id"]);
     </div>
 
 
-    <script>
-
-    </script>
+ <script>
+ 
+</script>
 
     <!-- JAVASCRIPT -->
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -21,7 +21,6 @@ include_once './conn.php';
     <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid d-flex flex-wrap align-items-center">
@@ -35,82 +34,89 @@ include_once './conn.php';
     </nav>
 
     <!-- Search input -->
-    <div class="card shadow-lg p-4 rounded">
-        <div class="input-group input-group-lg mb-2">
-            <input type="text" id="productsearch" class="form-control" placeholder="Search items" autocomplete="off">
-            <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
-        </div>
-
-        <div style="font-size: 20px;" id="product-list">
-            <?php
-            $query = "SELECT * FROM products ORDER BY pro_id";
-            $result = mysqli_query($con, $query);
-
-            if (mysqli_num_rows($result) > 0):
-                while ($cus = mysqli_fetch_assoc($result)):
-                    ?>
-                    <div class="product_get text-dark" style="display: none; cursor: pointer;"
-                        data-proid="<?= $cus['pro_id'] ?>" data-unitprice="<?= $cus['unit_price'] ?>">
-                        <h3 class="product_name"><?= htmlspecialchars($cus['product_name']) ?></h3>
-                        <hr>
-                    </div>
-                    <?php
-                endwhile;
-            else:
-                echo '<p>No products found.</p>';
-            endif;
-            ?>
-        </div>
-    </div>
-
-    <!-- Total and customer -->
-    <div class="card p-4 pt-3 mt-3">
-        <div class="row">
-            <div class="col-md-4 mb-2">
-                <a class="btn btn-danger w-100" href="today_oder.php?order_id=<?= $_GET["order_id"];?>" style="height: 50px; font-size: 17px;">View</a>
+    <form action="data/data_save.php">
+        <div class="card shadow-lg p-4 rounded">
+            <div class="input-group input-group-lg mb-2">
+                <input type="text" id="productsearch" class="form-control" placeholder="Search items"
+                    autocomplete="off">
+                <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
             </div>
-            <div class="col-md-8 mb-2">
-                <input type="text" class="form-control bg-dark-subtle" value="0.00"
-                    style="height: 50px; font-size: 17px;" readonly>
+
+            <div style="font-size: 20px;" id="product-list">
+                <?php
+                $query = "SELECT * FROM products ORDER BY pro_id";
+                $result = mysqli_query($con, $query);
+
+                if (mysqli_num_rows($result) > 0):
+                    while ($cus = mysqli_fetch_assoc($result)):
+                        ?>
+                        <div class="product_get text-dark" style="display: none; cursor: pointer;"
+                            data-proid="<?= $cus['pro_id'] ?>" data-unitprice="<?= $cus['unit_price'] ?>">
+                            <h3 class="product_name"><?= htmlspecialchars($cus['product_name']) ?></h3>
+                            <hr>
+                        </div>
+                        <?php
+                    endwhile;
+                else:
+                    echo '<p>No products found.</p>';
+                endif;
+                ?>
             </div>
         </div>
 
-        <div class="input-group input-group-lg mt-3 ">
-            <input type="text" id="customersearch" class="form-control" placeholder="Search customer"
-                autocomplete="off">
-            <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
-        </div>
-
-        <div style="font-size: 20px;" id="customer-list">
-            <?php
-            $query = "SELECT * FROM customer ORDER BY c_id";
-            $result = mysqli_query($con, $query);
-
-            if (mysqli_num_rows($result) > 0):
-                while ($cus = mysqli_fetch_assoc($result)):
-                    ?>
-                    <div class="customer_get text-dark" style="display: none; cursor: pointer;">
-                        <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
-                        <hr>
-                    </div>
-                    <?php
-                endwhile;
-            else:
-                echo '<p>No customer found.</p>';
-            endif;
-            ?>
-        </div>
-
-        <div class="row justify-content-end mt-4">
-            <div class="col-md-6 mb-2">
-                <button type="reset" class="btn btn-warning w-100"
-                    style="height: 70px; font-size: 25px;">cancel</button>
+        <!-- Total and customer -->
+        <div class="card p-4 pt-3 mt-3">
+            <div class="row">
+                <div class="col-md-4 mb-2">
+                    <a class="btn btn-danger w-100" href="today_oder.php?order_id=<?= $_GET["order_id"]; ?>"
+                        style="height: 50px; font-size: 17px;">View</a>
+                </div>
+                <div class="col-md-8 mb-2">
+                    <input type="text" class="form-control bg-dark-subtle" value="0.00"
+                        style="height: 50px; font-size: 17px;" readonly>
+                </div>
             </div>
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-primary w-100" style="height: 70px; font-size: 25px;">save</button>
+
+            <div class="input-group input-group-lg mt-3 ">
+                <input type="text" id="customersearch" class="form-control" placeholder="Search customer"
+                    autocomplete="off">
+                <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
+            </div>
+
+            <div style="font-size: 20px;" id="customer-list">
+                <?php
+                $query = "SELECT * FROM customer ORDER BY c_id";
+                $result = mysqli_query($con, $query);
+
+                if (mysqli_num_rows($result) > 0):
+                    while ($cus = mysqli_fetch_assoc($result)):
+                        ?>
+                        <div class="customer_get text-dark" style="display: none; cursor: pointer;"
+                            data-cid="<?= $cus['c_id'] ?>">
+                            <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
+                            <hr>
+                        </div>
+                        <?php
+                    endwhile;
+                else:
+                    echo '<p>No customer found.</p>';
+                endif;
+                ?>
+            </div>
+
+            <div class="row justify-content-end mt-4">
+                <div class="col-md-6 mb-2">
+                    <button type="reset" class="btn btn-warning w-100"
+                        style="height: 70px; font-size: 25px;">cancel</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary w-100"
+                        style="height: 70px; font-size: 25px;">save</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+    </body>
 
     <!-- JAVASCRIPT -->
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -155,7 +161,6 @@ include_once './conn.php';
 
                     // Set modal content
                     document.getElementById('modalProductName').textContent = productName;
-                    document.getElementById('modalProductId').textContent = productId;
                     document.getElementById('modalProductPrice').textContent = productPrice;
 
                     //post
@@ -184,12 +189,20 @@ include_once './conn.php';
                     }
                 });
             });
+
+            // Show popup on click
             customertItems.forEach(function (item) {
                 item.style.cursor = "pointer";
                 item.addEventListener('click', function () {
                     const customerName = item.querySelector('h3.customer_name').textContent.trim();
                     customersearchInput.value = customerName;
                     customertItems.forEach(i => i.style.display = 'none');
+
+                    const customerId = item.dataset.proid;
+
+                    //post
+                    document.getElementById('inputCustomerid').value = customerId;
+                    
 
                 })
             });
@@ -199,50 +212,56 @@ include_once './conn.php';
 
         })
     </script>
-</body>
+    
+<body>
+    <!-- Product Popup Modal -->
+    
+        <div class="modal fade" id="productModal" tabindex="-1">
+            <div class="modal-dialog">
+                <form action="data/data_view.php" method="POST">
+                <div class="modal-content ">
+                    <div class="modal-header  " style="background-color:blue ">
+                        <h4 id="modalProductName" class="mb-3" style="color:white"></h4>
+                        <button type="button" class="btn-close bg-white mb-2" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-10">
 
-<!-- Product Popup Modal -->
-<form action="data/data_view.php" method="POST">
-    <div class="modal fade" id="productModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content ">
-                <div class="modal-header  " style="background-color:blue ">
-                    <h4 id="modalProductName" class="mb-3" style="color:white"></h4>
-                    <button type="button" class="btn-close bg-white mb-2" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-10">
-                            <h4>Product ID : <span id="modalProductId" class="mb-3" ></span>
                                 <input type="text" name="product_id" id="inputProductId" readonly hidden>
 
-                                <h4>Unit Price : <span id="modalProductPrice" class="mb-3"></span>
-                                    <input type="text" name="unit_price" id="inputProductprice" readonly hidden>
+                                <input type="text" name="unit_price" id="inputProductprice" readonly hidden>
 
-                                    <input type="number" name="quantity" id="inputQty" class="form-control mt-2"
-                                        placeholder="Enter Quantity">
+                                <input type="number" name="quantity" id="inputQty" class="form-control mt-2"
+                                    placeholder="Enter Quantity">
 
-                                    <input type="text" name="product_name" id="inputProductname" readonly hidden>
+                                <input type="text" name="product_name" id="inputProductname" readonly hidden>
 
-                                    <input type="text" name="total_amount"  readonly hidden>
+                                <input type="text" name="total_amount" readonly hidden>
 
-                                    <input type="text" name="date" value="<?= date("Y-m-d");?>" readonly hidden>
+                                <input type="text" name="date" value="<?= date("Y-m-d"); ?>" readonly hidden>
 
-                                    <input type="text" name="order_id" value="<?= $_GET["order_id"];?>" readonly hidden>
-                                    <input type="date" name="warrenty_end" class="form-control mt-2"
-                                        placeholder="Enter Quantity">
-                                    <input type="text" name="duration" class="form-control mt-2"
-                                        placeholder="Enter Duration">
-                        </div>
-                        <div class="col-2">
-                            <button type="submit" id="addBtn" class="btn btn-success" style="margin-top:62px"><i class="fas fa-plus"></i>
-                            </button>
+                                <input type="text" name="time" value="<?= date("H:i:s"); ?>" readonly hidden>
+
+                                <input type="text" name="order_id" value="<?= $_GET["order_id"]; ?>" readonly hidden>
+
+                                <input type="number" name="warrenty_end" class="form-control mt-2"
+                                    placeholder="Enter Quantity">
+
+                                <input type="text" name="duration" class="form-control mt-2"
+                                    placeholder="Enter Duration">
+                            </div>
+                            <div class="col-2">
+                                <button type="submit" id="addBtn" class="btn btn-success" style="margin-top:62px"><i
+                                        class="fas fa-plus"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
-    </div>
-</form>
-
+    
+    </body>
 </html>

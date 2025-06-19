@@ -11,6 +11,17 @@ $date = $_POST['date'];
 $warrenty_end = $_POST['warrenty_end'];
 $duration = $_POST['duration'];
 $company = 1;
+if ($company == 1) {
+    $bra = 'qty_b1';
+} elseif ($company == 2) {
+    $bra = 'qty_b2';
+} elseif ($company == 3) {
+    $bra = 'qty_b3';
+} elseif ($company == 4) {
+    $bra = 'qty_b4';
+} elseif ($company == 5) {
+    $bra = 'qty_b5';
+}
 
 $total_amount = $unit_price * $quantity;
 
@@ -19,6 +30,7 @@ $sql = "INSERT INTO hp_sales_order (invoice,pro_id,unit_price,total,quantity,dat
 
 if (mysqli_query($con, $sql)) {
     $last_id = mysqli_insert_id($con);
+    mysqli_query($con, "UPDATE products SET $bra = $bra - $quantity WHERE pro_id=$product_id");
     header("Location: ../order.php?order_id=" . base64_encode($order_id));
 
     exit();
