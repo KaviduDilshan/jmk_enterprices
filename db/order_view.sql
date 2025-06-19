@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2025 at 01:42 PM
+-- Generation Time: Jun 19, 2025 at 07:18 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -29,13 +29,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `order_view` (
-  `v_id` int(11) NOT NULL,
-  `invoice` varchar(255) NOT NULL,
+  `ov_id` int(11) NOT NULL,
+  `order_id` varchar(255) NOT NULL,
   `pro_id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `unit_price` decimal(13,2) NOT NULL,
-  `qty` int(11) NOT NULL
+  `total_amount` decimal(13,2) NOT NULL,
+  `qty` decimal(13,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_view`
+--
+
+INSERT INTO `order_view` (`ov_id`, `order_id`, `pro_id`, `product_name`, `unit_price`, `total_amount`, `qty`) VALUES
+(1, '0001', 2255, '4 legs Chair', '10000.00', '20000.00', '2.00');
 
 --
 -- Indexes for dumped tables
@@ -45,7 +53,7 @@ CREATE TABLE `order_view` (
 -- Indexes for table `order_view`
 --
 ALTER TABLE `order_view`
-  ADD PRIMARY KEY (`v_id`);
+  ADD PRIMARY KEY (`ov_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -55,7 +63,7 @@ ALTER TABLE `order_view`
 -- AUTO_INCREMENT for table `order_view`
 --
 ALTER TABLE `order_view`
-  MODIFY `v_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ov_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
