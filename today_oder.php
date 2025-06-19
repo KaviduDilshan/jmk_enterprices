@@ -37,20 +37,16 @@ include_once './conn.php';
 </head>
 
 <body>
-    <div class="">
-        <nav class="navbar navbar-expand-md navbar-dark ">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav w-100">
-                    <li class="nav-item px-4">
-                        <a class="nav-link" href="#" style="font-size:35px; color:white;">Today Oders</a>
-                    </li>
-                    <li class="nav-item ms-auto p-2">
-                        <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid d-flex flex-wrap align-items-center">
+            <a href="#" class="navbar-brand" style="font-size: 25px; color: white; flex-grow:1;">
+                Today Oders
+            </a>
+            <a class="btn btn-danger" href="index.php" style="font-size: 18px; white-space: nowrap;">
+                Log Out
+            </a>
+        </div>
+    </nav>
         <div class="card shadow-lg p-4 rounded">
             <div class="input-group input-group-lg  mb-4">
                 <input type="text" class="form-control " placeholder="Search oder by name ">

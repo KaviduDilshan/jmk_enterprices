@@ -32,18 +32,17 @@ include_once './conn.php';
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav w-100">
-                <li class="nav-item px-4">
-                    <a class="nav-link" href="#" style="font-size:35px; color:white;">JMK ENTERPRISES</a>
-                </li>
-                <li class="nav-item ms-auto p-2">
-                    <a class="btn btn-danger" href="index.php" style="font-size: 20px;">Log Out</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid d-flex flex-wrap align-items-center">
+            <a href="#" class="navbar-brand" style="font-size: 25px; color: white; flex-grow:1;">
+                JMK ENTERPRISES
+            </a>
+            <a class="btn btn-danger" href="index.php" style="font-size: 18px; white-space: nowrap;">
+                Log Out
+            </a>
         </div>
     </nav>
+
 
     <!-- ✅ Card with Buttons -->
     <div class="container mt-4">
@@ -53,10 +52,10 @@ include_once './conn.php';
                     <a class="btns btn-primary btn-block" href="cus_registration.php">Customer Ragistration</a>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <a class="btns btn-primary btn-block" href="cus_view.php">Customer<br>View</a>
+                    <a class="btns btn-primary btn-block" href="cus_view.php">Customer View</a>
                 </div>
             </div>
-            +
+            
             <div class="row text-center">
                 <div class="col-md-6 mb-4">
                     <a class="btns btn-primary btn-block" href="order.php"> Make Order</a>
@@ -71,24 +70,20 @@ include_once './conn.php';
 
 
     <!-- footer -->
-    <footer class="footer">
+    <footer class="footer mt-auto bg-light py-3" style="position: fixed; bottom: 0; left: 0; width: 100%;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="text-center">
-                        <p class="mb-0 text-muted">&copy;
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> JMK Enterprises. Developed by
-                            <a href="www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
+                    <div class="text-start">
+                        <p class="mb-0 text-muted text-center ">&copy;
+                            <script>document.write(new Date().getFullYear())</script> JMK Enterprises. Developed by
+                            <a href="https://www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- end Footer -->
-
 
 
 
