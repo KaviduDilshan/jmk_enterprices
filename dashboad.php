@@ -1,12 +1,12 @@
 <?php
-
-include_once './conn.php';
-$company = $_SESSION['company'];
+session_start();
+include_once 'conn.php';
+$company = 1;
 $a_id = $_SESSION['login'];
 
-$sales_max_id = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(sales_id) FROM sales_order "))["MAX(sales_id)"]) + 1;
-$trans_max_id = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(t_id) FROM transaction "))["MAX(t_id)"]) + 1;
-$cash_max_id = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(ca_l_id) FROM cash_ledger "))["MAX(ca_l_id)"]) + 1;
+$sales_max_id = intval(mysqli_fetch_assoc(mysqli_query($con, "SELECT MAX(sales_id) FROM sales_order "))["MAX(sales_id)"]) + 1;
+$trans_max_id = intval(mysqli_fetch_assoc(mysqli_query($con, "SELECT MAX(t_id) FROM transaction"))["MAX(t_id)"]) + 1;
+$cash_max_id = intval(mysqli_fetch_assoc(mysqli_query($con, "SELECT MAX(ca_l_id) FROM cash_ledger"))["MAX(ca_l_id)"]) + 1;
 $invoice2 = ($sales_max_id * $trans_max_id * $cash_max_id) * mt_rand(100000, 1000000);
 $invoice = $a_id . $company . $invoice2;
 
@@ -73,7 +73,7 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
             
             <div class="row text-center">
                 <div class="col-md-6 mb-4">
-                    <a class="btns btn-primary btn-block" href="order.php"> Make Order</a>
+                    <a class="btns btn-primary btn-block" href="order.php?order_id=<?=base64_encode($invoice);?>"> Make Order</a>
                 </div>
                 <div class="col-md-6 mb-4">
                     <a class="btns btn-primary btn-block" href="order_view.php">Oder view</a>

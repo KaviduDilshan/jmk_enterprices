@@ -67,7 +67,7 @@ include_once './conn.php';
     <div class="card p-4 pt-3 mt-3">
         <div class="row">
             <div class="col-md-4 mb-2">
-                <a class="btn btn-danger w-100" href="today_oder.php" style="height: 50px; font-size: 17px;">View</a>
+                <a class="btn btn-danger w-100" href="today_oder.php?order_id=<?= $_GET["order_id"];?>" style="height: 50px; font-size: 17px;">View</a>
             </div>
             <div class="col-md-8 mb-2">
                 <input type="text" class="form-control bg-dark-subtle" value="0.00"
@@ -159,9 +159,9 @@ include_once './conn.php';
                     document.getElementById('modalProductPrice').textContent = productPrice;
 
                     //post
+                    document.getElementById('inputProductname').value = productName;
                     document.getElementById('inputProductId').value = productId;
-                    document.getElementById('inputProductprice').value = productName;
-                    document.getElementById('inputProductname').value = productPrice;
+                    document.getElementById('inputProductprice').value = productPrice;
 
                     // Show modal
                     const modal = new bootstrap.Modal(document.getElementById('productModal'));
@@ -202,7 +202,7 @@ include_once './conn.php';
 </body>
 
 <!-- Product Popup Modal -->
-<form action="data_view.php" method="POST">
+<form action="data/data_view.php" method="POST">
     <div class="modal fade" id="productModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content ">
@@ -213,19 +213,29 @@ include_once './conn.php';
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-10">
-                            <h4>Product ID : <span id="modalProductId" class="mb-3"></span>
-                                <input type="hidden" name="product_id" id="inputProductId">
+                            <h4>Product ID : <span id="modalProductId" class="mb-3" ></span>
+                                <input type="text" name="product_id" id="inputProductId" readonly hidden>
 
                                 <h4>Unit Price : <span id="modalProductPrice" class="mb-3"></span>
-                                    <input type="hidden" name="unit_price" id="inputProductprice">
+                                    <input type="text" name="unit_price" id="inputProductprice" readonly hidden>
 
-                                    <input type="number" id="inputQty" class="form-control mt-2"
+                                    <input type="number" name="quantity" id="inputQty" class="form-control mt-2"
                                         placeholder="Enter Quantity">
 
-                                    <input type="hidden" name="product_id" id="inputProductname">
+                                    <input type="text" name="product_name" id="inputProductname" readonly hidden>
+
+                                    <input type="text" name="total_amount"  readonly hidden>
+
+                                    <input type="text" name="date" value="<?= date("Y-m-d");?>" readonly hidden>
+
+                                    <input type="text" name="order_id" value="<?= $_GET["order_id"];?>" readonly hidden>
+                                    <input type="date" name="warrenty_end" class="form-control mt-2"
+                                        placeholder="Enter Quantity">
+                                    <input type="text" name="duration" class="form-control mt-2"
+                                        placeholder="Enter Duration">
                         </div>
                         <div class="col-2">
-                            <button type="submit" id="addBtn" class="btn btn-success  "><i class="fas fa-plus"></i>
+                            <button type="submit" id="addBtn" class="btn btn-success" style="margin-top:62px"><i class="fas fa-plus"></i>
                             </button>
                         </div>
                     </div>

@@ -54,7 +54,7 @@ include_once './conn.php';
 
             <div class="" style="font-size:20px;">
                 <?php
-                $query = "SELECT * FROM products ORDER BY pro_id DESC";
+                $query = "SELECT * FROM order_save ORDER BY os_id  DESC";
                 $result = mysqli_query($con, $query);
 
                 if (mysqli_num_rows($result) > 0):

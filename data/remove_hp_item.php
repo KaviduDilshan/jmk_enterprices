@@ -1,14 +1,14 @@
 <?php
 
 session_start();
-include_once '../../conn.php';
+include_once '../conn.php';
 
 if (isset($_GET["hp_sales_id"]) && isset($_GET["invoice"]) && isset($_SESSION['login'])) {
     $hp_sales_id = base64_decode($_GET["hp_sales_id"]);
     $invoice = $_GET["invoice"];
     
 
-    $po_det = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `hp_sales_order` WHERE `hp_sales_id`=$hp_sales_id"));
+    $po_det = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `hp_sales_order` WHERE `hp_sales_id`=$hp_sales_id"));
     $qty = $po_det["quantity"];
     $pro_id = $po_det["pro_id"];
     $company = $po_det['company'];
@@ -23,9 +23,9 @@ if (isset($_GET["hp_sales_id"]) && isset($_GET["invoice"]) && isset($_SESSION['l
     } elseif ($company == 5) {
         $bra = 'qty_b5';
     }
-    mysqli_query($conn, "UPDATE products SET $bra = $bra + $qty WHERE pro_id=$pro_id");
+    mysqli_query($con, "UPDATE products SET $bra = $bra + $qty WHERE pro_id=$pro_id");
     if ($po_det != null) {
-        mysqli_query($conn, "DELETE FROM `hp_sales_order` WHERE `hp_sales_id`=$hp_sales_id");
+        mysqli_query($con, "DELETE FROM `hp_sales_order` WHERE `hp_sales_id`=$hp_sales_id");
     }
-    header("location:../hp_sales.php?invoice=$invoice");
+    header("Location:../today_oder.php?invoice=$invoice");
 }

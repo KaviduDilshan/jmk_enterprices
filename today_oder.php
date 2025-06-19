@@ -1,6 +1,7 @@
 <?php
 
 include_once './conn.php';
+$order_id = base64_decode($_GET["order_id"]);
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
@@ -47,145 +48,73 @@ include_once './conn.php';
             </a>
         </div>
     </nav>
-        <div class="card shadow-lg p-4 rounded">
-            <div class="input-group input-group-lg  mb-4">
-                <input type="text" class="form-control " placeholder="Search oder by name ">
-                <button class="btn btn-primary p-3" type="submit"><i class="fa fa-search"></i></button>
-            </div>
 
-            <div class="row justify-content-end mt-2" style="font-size:20px;">
-                <div class="col-md-8">
-                    <a class="text-decoration-none text-dark">
-                        <h3>
-                            Product barcode
-                        </h3>
-                        <p>Product name<br>
-                            <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                        </p>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <input type="text" name="left_input" class="form-control bg-dark-subtle mb-2" placeholder="0.00"
-                        style="height: 50px; font-size: 17px;">
-                    <button type="submit" class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100"
-                        style="background-color:green; height: 50px; font-size: 17px;">Delete</button>
-                </div>
-                <hr>
-            </div>
+    <div class=" card row justify-content-end p-3 " style="font-size:20px;">
+        <div class="row">
+            <?php
+            $view_order = "SELECT * FROM hp_sales_order WHERE invoice='$order_id'";
+            $view_result = mysqli_query($con, $view_order);
+            while ($view_row = mysqli_fetch_array($view_result)) {
+                $pro_id = $view_row["pro_id"];
+                $product = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM products WHERE pro_id='$pro_id'"));
+                ?>
 
-            <a class="text-decoration-none text-dark">
-                <h3>
-                    Product barcode
-                </h3>
-                <p>Product name<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
+                <div class="row align-items-center mb-3">
+                    
+                    <div class="col-md-12">
+                        <h4><?= $product["product_name"]; ?></h4>
+                    </div>
 
-            <a href="cus_details.php?id=1" class="text-decoration-none text-dark">
-                <h3>
-                    Product barcode
-                </h3>
-                <p>Product name<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-            <a class="text-decoration-none text-dark">
-                <h3>
-                    Product barcode
-                </h3>
-                <p>Product name<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-            <a class="text-decoration-none text-dark">
-                <h3>
-                    Product barcode
-                </h3>
-                <p>Product name<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-            <a class="text-decoration-none text-dark">
-                <h3>
-                    Product barcode
-                </h3>
-                <p>Product name<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-            <a class="text-decoration-none text-dark">
-                <h3>
-                    Product barcode
-                </h3>
-                <p>Product name<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-            <a class="text-decoration-none text-dark">
-                <h3>
-                    Product barcode
-                </h3>
-                <p>Product name<br>
-                    <small>asdsadasda sa dsad sad as dasd as das das dsa d</small>
-                </p>
-                <hr>
-            </a>
-
-
-            <div class="row">
-                <div class="col-md-6 mb-2">
-                    <input type="text" name="left_input" class="form-control bg-dark-subtle" placeholder="0.00"
-                        style="height: 50px; font-size: 17px;">
-                </div>
-                <div class="col-md-6 mb-2">
-                    <button type="submit" class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100"
-                        style="background-color:green; height: 50px; font-size: 17px;">Delete</button>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <p class="mb-0 text-muted">&copy;
-                                <script>document.write(new Date().getFullYear())</script> JMK Enterprises. Developed by
-                                <a href="www.tritcal.com">Tritcal International (Pvt.) Ltd</a>
-                            </p>
+                    
+                    <div class="col-md-11">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <strong>Unit Price:</strong><br>
+                                Rs. <?= number_format($view_row['unit_price'], 2) ?>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Quantity:</strong><br>
+                                <?= $view_row['quantity'] ?>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Total Amount:</strong><br>
+                                Rs. <?= number_format($view_row['unit_price'] * $view_row['quantity'], 2) ?>
+                            </div>
                         </div>
                     </div>
+                   
+                    <div class="col-md-1 d-flex justify-content-end">
+                        <a  class="btn btn-danger" style="height: 50px; width: 50px;" href="data/remove_hp_item.php?hp_sales_id=<?= base64_encode($view_row["hp_sales_id"]) ?>&invoice=<?= $order_id ?>">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </footer>
-        <!-- end Footer -->
+                <hr>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
 
 
+    <script>
 
+    </script>
 
-        <!-- JAVASCRIPT -->
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
-        <script src="assets/libs/feather-icons/feather.min.js"></script>
-        <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-        <script src="assets/js/plugins.js"></script>
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+    <script src="assets/libs/feather-icons/feather.min.js"></script>
+    <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+    <script src="assets/js/plugins.js"></script>
 
-        <!-- particles js -->
-        <script src="assets/libs/particles.js/particles.js"></script>
-        <!-- particles app js -->
-        <script src="assets/js/pages/particles.app.js"></script>
-        <!-- password-addon init -->
-        <script src="assets/js/pages/password-addon.init.js"></script>
+    <!-- particles js -->
+    <script src="assets/libs/particles.js/particles.js"></script>
+    <!-- particles app js -->
+    <script src="assets/js/pages/particles.app.js"></script>
+    <!-- password-addon init -->
+    <script src="assets/js/pages/password-addon.init.js"></script>
 
 </body>
 

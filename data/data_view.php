@@ -1,25 +1,25 @@
 <?php
-
 session_start();
 include_once '../conn.php';
 
+$order_id = base64_decode($_POST['order_id']);
+$product_id = $_POST['product_id'];
+$product_name = $_POST['product_name'];
+$unit_price = $_POST['unit_price'];
+$quantity = $_POST['quantity'];
+$date = $_POST['date'];
+$warrenty_end = $_POST['warrenty_end'];
+$duration = $_POST['duration'];
+$company = 1;
 
-$nic = $_POST['nic'];
-$customer_name = $_POST['customer_name'];
-$customer_city = $_POST['customer_city'];
-$customer_address = $_POST['customer_address'];
-$customer_mobile = $_POST['customer_mobile'];
-$customer_gender = $_POST['customer_gender'];
-$customer_birthdate = $_POST['customer_birthdate'];
-$cus_image =isset($_POST['cus_image']) ? $_POST['cus_image']:"";
+$total_amount = $unit_price * $quantity;
 
-$sql = "INSERT INTO customer(nic,customer_name,customer_city,customer_address,customer_mobile,customer_gender,customer_birthdate,image)"
-    . "VALUES(\"$nic\",\"$customer_name\",\"$customer_city\",\"$customer_address\",\"$customer_mobile\",\"$customer_gender\",\"$customer_birthdate\",\"$cus_image\")";
+$sql = "INSERT INTO hp_sales_order (invoice,pro_id,unit_price,total,quantity,date,warrenty_end,duration,company) 
+        VALUES('$order_id','$product_id','$unit_price','$total_amount','$quantity','$date','$warrenty_end','$duration','$company')";
 
 if (mysqli_query($con, $sql)) {
     $last_id = mysqli_insert_id($con);
+    header("Location: ../order.php?order_id=" . base64_encode($order_id));
 
-    
-        header('Location: ../dashboad.php?cu_id=' . base64_encode($last_id));
-    
+    exit();
 }
