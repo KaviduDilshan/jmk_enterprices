@@ -1,6 +1,21 @@
 <?php
 
 include_once './conn.php';
+$company = $_SESSION['company'];
+$a_id = $_SESSION['login'];
+
+$sales_max_id = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(sales_id) FROM sales_order "))["MAX(sales_id)"]) + 1;
+$trans_max_id = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(t_id) FROM transaction "))["MAX(t_id)"]) + 1;
+$cash_max_id = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(ca_l_id) FROM cash_ledger "))["MAX(ca_l_id)"]) + 1;
+$invoice2 = ($sales_max_id * $trans_max_id * $cash_max_id) * mt_rand(100000, 1000000);
+$invoice = $a_id . $company . $invoice2;
+
+if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
+    $invoice = $_GET["invoice"];
+} else {
+    $invoice = $a_id . $company . $invoice2;
+}
+
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
