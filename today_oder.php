@@ -3,6 +3,7 @@
 include_once './conn.php';
 $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
 
+
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
@@ -61,12 +62,12 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
                 ?>
 
                 <div class="row align-items-center mb-3">
-                    
+
                     <div class="col-md-12">
                         <h4><?= $product["product_name"]; ?></h4>
                     </div>
 
-                    
+
                     <div class="col-md-11">
                         <div class="row">
                             <div class="col-md-4">
@@ -83,9 +84,10 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="col-md-1 d-flex justify-content-end">
-                        <a  class="btn btn-danger" style="height: 50px; width: 50px;" href="data/remove_hp_item.php?hp_sales_id=<?= base64_encode($view_row["hp_sales_id"]) ?>&order_id=<?= $order_id ?>">
+                        <a class="btn btn-danger" style="height: 50px; width: 50px;"
+                            href="data/remove_hp_item.php?hp_sales_id=<?= base64_encode($view_row["hp_sales_id"]) ?>&order_id=<?= $order_id ?>">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </div>
@@ -95,12 +97,16 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
             }
             ?>
         </div>
+
+        <div class="col-md-12 mb-2">
+            <a type="reset" class="btn btn-warning w-100" style="height: 70px; font-size: 25px;" href="order.php?order_id=<?=base64_encode($order_id)?>">cancel</a>
+        </div>
     </div>
 
 
- <script>
- 
-</script>
+    <script>
+
+    </script>
 
     <!-- JAVASCRIPT -->
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>

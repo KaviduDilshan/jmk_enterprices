@@ -23,10 +23,10 @@ if ($company == 1) {
     $bra = 'qty_b5';
 }
 
-$total_amount = $unit_price * $quantity;
+$total = $unit_price * $quantity;
 
-$sql = "INSERT INTO hp_sales_order (invoice,pro_id,unit_price,total,quantity,date,warrenty_end,duration,company) 
-        VALUES('$order_id','$product_id','$unit_price','$total_amount','$quantity','$date','$warrenty_end','$duration','$company')";
+$sql = "INSERT INTO hp_sales_order (invoice,date,pro_id,quantity,unit_price,total,warrenty_end,duration,company) 
+        VALUES('$order_id','$date','$product_id','$quantity','$unit_price','$total','$warrenty_end','$duration','$company')";
 
 if (mysqli_query($con, $sql)) {
     $last_id = mysqli_insert_id($con);

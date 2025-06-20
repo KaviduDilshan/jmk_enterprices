@@ -1,5 +1,18 @@
 <?php
 include_once './conn.php';
+
+$order_id = $_GET["order_id"];
+// $query = "SELECT * FROM hp_sales_order WHERE invoice='$order_id'";
+// $result = mysqli_query($con, $query);
+// $row = mysqli_fetch_assoc($result);
+
+// $sumquery = "SELECT SUM(total) AS total_sum FROM hp_sales_order WHERE invoice = '$order_id'";
+// $sumresult = mysqli_query($con, $query);
+// $sumrow = mysqli_fetch_assoc($result);
+// $totalAmount = $sumrow['total_sum'] ?? 0.00;
+
+$order_id_de = base64_decode($_GET["order_id"]);
+$totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_sales_order WHERE invoice=$order_id_de"));
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
@@ -21,6 +34,7 @@ include_once './conn.php';
     <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid d-flex flex-wrap align-items-center">
@@ -34,7 +48,7 @@ include_once './conn.php';
     </nav>
 
     <!-- Search input -->
-    <form action="data/data_save.php">
+    <form action="data/data_save.php" method="POST">
         <div class="card shadow-lg p-4 rounded">
             <div class="input-group input-group-lg mb-2">
                 <input type="text" id="productsearch" class="form-control" placeholder="Search items"
@@ -72,8 +86,8 @@ include_once './conn.php';
                         style="height: 50px; font-size: 17px;">View</a>
                 </div>
                 <div class="col-md-8 mb-2">
-                    <input type="text" class="form-control bg-dark-subtle" value="0.00"
-                        style="height: 50px; font-size: 17px;" readonly>
+                    <input type="text" class="form-control bg-dark-subtle" style="height: 50px; font-size: 17px;"
+                        value="<?= number_format($totalAmount['SUM(total)'], 2) ?>" readonly>
                 </div>
             </div>
 
@@ -104,6 +118,15 @@ include_once './conn.php';
                 ?>
             </div>
 
+            <input type="text" name="order_id" value="<?= $_GET["order_id"]; ?>" readonly hidden>
+            <input type="text" id="inputCustomerid" name="customer_id" readonly hidden>
+            <!-- <input type="text" name="product_id" id="inputProductId" readonly hidden> -->
+            <input type="text" name="date" class="form-control mt-2" value="<?= date("Y-m-d"); ?>" readonly hidden>
+            <input type="text" name="time" value="<?= date("H:i:s"); ?>" readonly hidden>
+            <input type="text" id="totalAmount" name="totalAmount" value="<?= ($totalAmount['SUM(total)']) ?>" readonly
+                hidden>
+            <input type="text" id="status" name="status" readonly hidden>
+
             <div class="row justify-content-end mt-4">
                 <div class="col-md-6 mb-2">
                     <button type="reset" class="btn btn-warning w-100"
@@ -116,7 +139,7 @@ include_once './conn.php';
             </div>
         </div>
     </form>
-    </body>
+
 
     <!-- JAVASCRIPT -->
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -198,11 +221,11 @@ include_once './conn.php';
                     customersearchInput.value = customerName;
                     customertItems.forEach(i => i.style.display = 'none');
 
-                    const customerId = item.dataset.proid;
+                    const customerId = item.dataset.cid;
 
                     //post
                     document.getElementById('inputCustomerid').value = customerId;
-                    
+
 
                 })
             });
@@ -212,13 +235,12 @@ include_once './conn.php';
 
         })
     </script>
-    
-<body>
+
     <!-- Product Popup Modal -->
-    
-        <div class="modal fade" id="productModal" tabindex="-1">
-            <div class="modal-dialog">
-                <form action="data/data_view.php" method="POST">
+
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog">
+            <form action="data/data_view.php" method="POST">
                 <div class="modal-content ">
                     <div class="modal-header  " style="background-color:blue ">
                         <h4 id="modalProductName" class="mb-3" style="color:white"></h4>
@@ -227,41 +249,60 @@ include_once './conn.php';
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-10">
+                                <h4>Unit Price : <span id="modalProductPrice"></span></h4>
+
+                                <!-- Quantity -->
+                                <div class="d-flex align-items-center mb-2">
+                                    <label for="inputQty" class="me-2" style="min-width: 70px;">Quantity:</label>
+                                    <input type="number" name="quantity" id="inputQty" class="form-control"
+                                        placeholder="Enter Quantity">
+                                </div>
+
+                                <!-- Warranty End Date -->
+                                <div class="d-flex align-items-center mb-2">
+                                    <label for="warrenty_end" class="me-2" style="min-width: 70px;">Warranty
+                                        End:</label>
+                                    <input type="date" name="warrenty_end" id="warrenty_end" class="form-control"
+                                        value="<?= date("Y-m-d"); ?>">
+                                </div>
+
+                                <!-- Duration -->
+                                <div class="d-flex align-items-center mb-2">
+                                    <label for="duration" class="me-2" style="min-width: 70px;">Duration:</label>
+                                    <input type="number" name="duration" id="duration" class="form-control"
+                                        placeholder="Enter Duration">
+                                </div>
+
+                                <input type="text" id="inputCustomerid" name="customer_id" readonly hidden>
 
                                 <input type="text" name="product_id" id="inputProductId" readonly hidden>
 
                                 <input type="text" name="unit_price" id="inputProductprice" readonly hidden>
 
-                                <input type="number" name="quantity" id="inputQty" class="form-control mt-2"
-                                    placeholder="Enter Quantity">
-
                                 <input type="text" name="product_name" id="inputProductname" readonly hidden>
 
                                 <input type="text" name="total_amount" readonly hidden>
 
-                                <input type="text" name="date" value="<?= date("Y-m-d"); ?>" readonly hidden>
+                                <input type="text" name="date" class="form-control mt-2" value="<?= date("Y-m-d"); ?>"
+                                    readonly hidden>
 
                                 <input type="text" name="time" value="<?= date("H:i:s"); ?>" readonly hidden>
 
                                 <input type="text" name="order_id" value="<?= $_GET["order_id"]; ?>" readonly hidden>
 
-                                <input type="number" name="warrenty_end" class="form-control mt-2"
-                                    placeholder="Enter Quantity">
-
-                                <input type="text" name="duration" class="form-control mt-2"
-                                    placeholder="Enter Duration">
                             </div>
                             <div class="col-2">
-                                <button type="submit" id="addBtn" class="btn btn-success" style="margin-top:62px"><i
+                                <button type="submit" id="addBtn" class="btn btn-success" style="margin-top:132px"><i
                                         class="fas fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                </form>
-            </div>
+            </form>
         </div>
-    
-    </body>
+    </div>
+
+</body>
+
 </html>
