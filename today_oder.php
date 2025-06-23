@@ -40,10 +40,10 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark ">
         <div class="container-fluid d-flex flex-wrap align-items-center">
             <a href="#" class="navbar-brand" style="font-size: 25px; color: white; flex-grow:1;">
-                Today Oders
+                Today orders
             </a>
             <a class="btn btn-danger" href="index.php" style="font-size: 18px; white-space: nowrap;">
                 Log Out
@@ -51,7 +51,7 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
         </div>
     </nav>
 
-    <div class=" card row justify-content-end p-3 " style="font-size:20px;">
+    <div class=" card row justify-content-end p-4" style="font-size:20px;">
         <div class="row">
             <?php
             $view_order = "SELECT * FROM hp_sales_order WHERE invoice='$order_id'";
@@ -66,8 +66,7 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
                     <div class="col-md-12">
                         <h4><?= $product["product_name"]; ?></h4>
                     </div>
-
-
+                    
                     <div class="col-md-11">
                         <div class="row">
                             <div class="col-md-4">
@@ -99,13 +98,13 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
         </div>
 
         <div class="col-md-12 mb-2">
-            <a type="reset" class="btn btn-warning w-100" style="height: 70px; font-size: 25px;" href="order.php?order_id=<?=base64_encode($order_id)?>">cancel</a>
+            <a type="reset" class="btn btn-warning w-100" style="height: 70px; font-size: 25px;"
+                href="order.php?order_id=<?= base64_encode($order_id) ?>">cancel</a>
         </div>
     </div>
 
 
     <script>
-
     </script>
 
     <!-- JAVASCRIPT -->

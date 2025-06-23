@@ -53,16 +53,15 @@ include_once './conn.php';
         </div> -->
 
 
-    
-        <?php
-date_default_timezone_set('Asia/Colombo');
-$today = date("Y-m-d");
 
-$query = "
+    <?php
+    date_default_timezone_set('Asia/Colombo');
+    $today = date("Y-m-d");
+
+    $query = "
     SELECT 
         customer.customer_name,
-        order_save.c_id,
-        SUM(order_save.total_price) AS total_sum,
+        order_save.c_id,total_price,order_time,
         GROUP_CONCAT(DISTINCT products.product_name SEPARATOR ' / ') AS product_list
     FROM order_save  
     JOIN customer ON order_save.c_id = customer.c_id
@@ -70,30 +69,26 @@ $query = "
     JOIN products ON products.pro_id = hp_sales_order.pro_id
     WHERE order_save.order_date = '$today'
     GROUP BY order_save.c_id
-    ORDER BY total_sum DESC
+    ORDER BY order_time DESC
 ";
 
-$result = mysqli_query($con, $query);
-?>
+    $result = mysqli_query($con, $query);
+    ?>
 
-        <div class="card row justify-content-end p-3" style="font-size:20px;">
-    <?php if (mysqli_num_rows($result) > 0): ?>
-        <?php while ($cus = mysqli_fetch_assoc($result)): ?>
-            <div <?= $cus['c_id'] ?> class="product_get text-decoration-none text-dark">
-                <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
-                <h4 class="products"><strong>Products : </strong> <?= htmlspecialchars($cus['product_list']) ?></h4>
-                <h3 class="total"><strong>Rs. </strong> <?= number_format($cus['total_sum'], 2) ?></h3>
-                <hr>
-        </div>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <p>No orders found for today.</p>
-    <?php endif; ?>
-</div>
-
-
-
-
+    <div class="card row justify-content-end p-3" style="font-size:20px;">
+        <?php if (mysqli_num_rows($result) > 0): ?>
+            <?php while ($cus = mysqli_fetch_assoc($result)): ?>
+                <div <?= $cus['c_id'] ?> class="product_get text-decoration-none text-dark">
+                    <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
+                    <h4 class="products"><strong>Products : </strong> <?= htmlspecialchars($cus['product_list']) ?></h4>
+                    <h3 class="total"><strong>Rs. </strong> <?= number_format($cus['total_price'], 2) ?></h3>
+                    <hr>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>No orders found for today.</p>
+        <?php endif; ?>
+    </div>
 
     <!-- <script>
             document.addEventListener('DOMContentLoaded', function () {
