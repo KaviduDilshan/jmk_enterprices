@@ -52,8 +52,8 @@ include_once './conn.php';
                 <div class="col-lg-12 mb-3">
                     <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size: 17px;">NIC Number
                         <span class="text-danger">*</span></label>
-                    <input type="text" name="nic" id="cus_image" class="form-control pt-1 pb-1" placeholder="Enter nic"
-                        style="height: 50px; font-size: 17px;" required required autocomplete="off">
+                    <input type="text" name="nic" id="nic" class="form-control pt-1 pb-1" placeholder="Enter nic"
+                        style="height: 50px; font-size: 17px;" required  autocomplete="off">
                 </div>
                 <div class="col-lg-12 mb-3">
                     <label for="customer_name" class="form-label m-0 fw-normal" style="font-size: 17px;">Customer

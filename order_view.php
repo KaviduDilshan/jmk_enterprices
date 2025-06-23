@@ -61,14 +61,14 @@ include_once './conn.php';
     $query = "
     SELECT 
         customer.customer_name,
-        order_save.c_id,total_price,order_time,
+        order_save.c_id,total_price,order_time,os_id, 
         GROUP_CONCAT(DISTINCT products.product_name SEPARATOR ' / ') AS product_list
     FROM order_save  
     JOIN customer ON order_save.c_id = customer.c_id
     JOIN hp_sales_order ON hp_sales_order.invoice = order_save.order_id
     JOIN products ON products.pro_id = hp_sales_order.pro_id
     WHERE order_save.order_date = '$today'
-    GROUP BY order_save.c_id
+    GROUP BY order_save.order_id
     ORDER BY order_time DESC
 ";
 
@@ -80,8 +80,9 @@ include_once './conn.php';
             <?php while ($cus = mysqli_fetch_assoc($result)): ?>
                 <div <?= $cus['c_id'] ?> class="product_get text-decoration-none text-dark">
                     <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
-                    <h4 class="products"><strong>Products : </strong> <?= htmlspecialchars($cus['product_list']) ?></h4>
-                    <h3 class="total"><strong>Rs. </strong> <?= number_format($cus['total_price'], 2) ?></h3>
+                    <h3 class="bill"><strong>Bill number : </strong><?= htmlspecialchars($cus['os_id']) ?></h3>
+                    <h3 class="products"><strong>Products : </strong> <?= htmlspecialchars($cus['product_list']) ?></h3>
+                    <h2 class="total"><strong>Rs. </strong> <?= number_format($cus['total_price'], 2) ?></h2>
                     <hr>
                 </div>
             <?php endwhile; ?>
