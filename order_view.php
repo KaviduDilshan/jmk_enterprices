@@ -53,7 +53,7 @@ include_once './conn.php';
         </div> -->
 
 
-
+<div class="card row justify-content-end p-3" style="font-size:20px;">
     <?php
     date_default_timezone_set('Asia/Colombo');
     $today = date("Y-m-d");
@@ -61,29 +61,36 @@ include_once './conn.php';
     // Step 1: Get all today's orders
     $orderQuery = "SELECT * FROM order_save WHERE order_date = '$today' ORDER BY order_time DESC";
     $orderResult = mysqli_query($con, $orderQuery);
-    while ($row = mysqli_fetch_array($orderResult)) {
-
-    
-    $c_id = $row['c_id'];
-    $customer = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `customer` WHERE `c_id`=$c_id"));
-    ?>
-
-    <div class="card row justify-content-end p-3" style="font-size:20px;">
-        <?php if (mysqli_num_rows($result) > 0): ?>
-            <?php while ($cus = mysqli_fetch_assoc($result)): ?>
-                <div <?= $cus['c_id'] ?> class="product_get text-decoration-none text-dark">
-                    <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
-                    <h3 class="bill"><strong>Bill number : </strong><?= htmlspecialchars($cus['os_id']) ?></h3>
-                    <h3 class="products"><strong>Products : </strong> <?= htmlspecialchars($cus['product_list']) ?></h3>
-                    <h2 class="total"><strong>Rs. </strong> <?= number_format($cus['total_price'], 2) ?></h2>
-                    <hr>
+    if (mysqli_num_rows($orderResult) > 0){
+        while ($row = mysqli_fetch_array($orderResult)) {
+            $order_id = $row["order_id"];
+        
+            $c_id = $row['c_id'];
+            $customer = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `customer` WHERE `c_id`=$c_id"));
+        ?>
+        
+            <div <?= $row['c_id'] ?> class="product_get text-decoration-none text-dark">
+                <h3 class="customer_name"><?= $customer['customer_name'] ?></h3>
+                <h3 class="bill"><strong>Bill number : </strong><?= $row['os_id'] ?></h3>
+                <h3 class="products"><strong>Products : </strong> <?php
+                    $view_order = "SELECT * FROM `hp_sales_order` WHERE `invoice`='$order_id'";
+                    $view_result = mysqli_query($con, $view_order);
+                    while ($view_row = mysqli_fetch_array($view_result)) {
+                        $pro_id = $view_row["pro_id"];
+                        $product = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `products` WHERE `pro_id`='$pro_id'"));
+                        echo $product["product_name"]. " " . $view_row["quantity"] .  ' / '  ;
+                    }
+                 ?>  </h3>
+                <h2 class="total"><strong>Rs. </strong> <?= number_format($row["total_price"], 2, '.', ',') ?></h2>
+                <hr>
+            </div>
+        <?php   }
+        }else{?>
+            
+                <p>No orders found for today.</p>
+             
+                <?php   }   ?>
                 </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p>No orders found for today.</p>
-        <?php endif; ?>
-    </div>
-     <?php   }   ?>
     <!-- <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const searchInput = document.getElementById('productsearch');
