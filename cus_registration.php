@@ -87,8 +87,16 @@ include_once './conn.php';
                     <label for="inputName2" class="form-label m-0 fw-normal" style="font-size: 17px;">Gender</label>
                     <select name="customer_gender" id="customer_gender" style="height: 50px; font-size: 17px;"
                         class="form-select pt-1 pb-1">
-                        <option>Female</option>
-                        <option>Male</option>
+                        <option value="1"<?php
+                            if ($row['customer_gender'] == 1) {
+                                echo 'selected';
+                            }
+                            ?>>Male</option>
+                        <option value="2" <?php
+                            if ($row['customer_gender'] == 2) {
+                                echo 'selected';
+                            }
+                        ?>>Female</option>
                     </select>
                 </div>
 
