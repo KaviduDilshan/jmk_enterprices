@@ -51,7 +51,7 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
     <form action="data/data_save.php" method="POST">
         <div class="card shadow-lg p-4 rounded">
             <div class="input-group input-group-lg mb-2">
-                <input type="text" id="productsearch" class="form-control" placeholder="Search items" 
+                <input type="text" id="productsearch" class="form-control" placeholder="Search items"
                     autocomplete="off">
                 <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
             </div>
@@ -129,8 +129,8 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
 
             <div class="row justify-content-end mt-4">
                 <div class="col-md-6 mb-2">
-                    <button type="reset" class="btn btn-warning w-100"
-                        style="height: 70px; font-size: 25px;">cancel</button>
+                    <a type="reset" class="btn btn-warning w-100" style="height: 70px; font-size: 25px;"
+                        href="data/remove_hp_itemall.php?order_id=<?= $order_id ?>">Cancel & Remove</a>
                 </div>
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-primary w-100"

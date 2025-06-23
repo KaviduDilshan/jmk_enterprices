@@ -58,21 +58,14 @@ include_once './conn.php';
     date_default_timezone_set('Asia/Colombo');
     $today = date("Y-m-d");
 
-    $query = "
-    SELECT 
-        customer.customer_name,
-        order_save.c_id,total_price,order_time,os_id, 
-        GROUP_CONCAT(DISTINCT products.product_name SEPARATOR ' / ') AS product_list
-    FROM order_save  
-    JOIN customer ON order_save.c_id = customer.c_id
-    JOIN hp_sales_order ON hp_sales_order.invoice = order_save.order_id
-    JOIN products ON products.pro_id = hp_sales_order.pro_id
-    WHERE order_save.order_date = '$today'
-    GROUP BY order_save.order_id
-    ORDER BY order_time DESC
-";
+    // Step 1: Get all today's orders
+    $orderQuery = "SELECT * FROM order_save WHERE order_date = '$today' ORDER BY order_time DESC";
+    $orderResult = mysqli_query($con, $orderQuery);
+    while ($row = mysqli_fetch_array($orderResult)) {
 
-    $result = mysqli_query($con, $query);
+    
+    $c_id = $row['c_id'];
+    $customer = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `customer` WHERE `c_id`=$c_id"));
     ?>
 
     <div class="card row justify-content-end p-3" style="font-size:20px;">
@@ -90,7 +83,7 @@ include_once './conn.php';
             <p>No orders found for today.</p>
         <?php endif; ?>
     </div>
-
+     <?php   }   ?>
     <!-- <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const searchInput = document.getElementById('productsearch');

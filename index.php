@@ -108,6 +108,5 @@ $error = isset($_GET['error']) ? $_GET['error'] : '';
     <script src="assets/libs/particles.js/particles.js"></script>
     <script src="assets/js/pages/particles.app.js"></script>
     <script src="assets/js/pages/password-addon.init.js"></script>
-    </>
-
+</body>
 </html>

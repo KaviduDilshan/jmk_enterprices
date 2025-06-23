@@ -60,13 +60,12 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
 
 
     <!-- ✅ Card with Buttons -->
-    <div class="container mt-4">
-        <div class="card shadow-lg p-4 rounded">
-            <div class="row text-center">
-                <div class="col-md-6 mb-4">
-                    <a class="btns btn-primary btn-block" href="cus_registration.php">Customer Ragistration</a>
+        <div class="card shadow-lg p-4 rounded" style="height:100vh">
+            <div class="row text-center mt-5 ">
+                <div class="col-md-6 mb-4 ">
+                    <a class="btns btn-primary btn-block" href="cus_registration.php">Customer Registration</a>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6 mb-4 ">
                     <a class="btns btn-primary btn-block" href="cus_view.php">Customer View</a>
                 </div>
             </div>
@@ -79,9 +78,8 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
                     <a class="btns btn-primary btn-block" href="order_view.php">Oder view</a>
                 </div>
             </div>
-
         </div>
-    </div>
+    
 
 
     <!-- footer -->
