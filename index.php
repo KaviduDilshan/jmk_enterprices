@@ -33,7 +33,7 @@ $error = isset($_GET['error']) ? $_GET['error'] : '';
                         <div class="card-body p-4 p-md-5">
                             <div class="text-center mb-4">
                                 <h4 class="text-primary" style="font-size: 40px;">JMK Enterprises</h4>
-                                <p class="text-muted" style="font-size: 18px;">Sign in to continue</p>
+                                <p class="text-muted" style="font-size: 18px;">Login in to continue</p>
                             </div>
 
                             <div class="text-center text-danger mb-3" style="font-size: 17px;">
