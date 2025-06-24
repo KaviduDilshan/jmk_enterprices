@@ -59,13 +59,13 @@ $error = isset($_GET['error']) ? $_GET['error'] : '';
                                 <div class="mb-3 input-group">
                                     <span class="input-group-text bg-primary text-white"><i class="ri-user-line"></i></span>
                                     <input type="text" name="a_username" class="form-control" placeholder="Enter username"
-                                        style="height: 55px; font-size: 16px;" required>
+                                        style="height: 55px; font-size: 16px;" required autocomplete="off">
                                 </div>
 
                                 <div class="mb-4 input-group">
                                     <span class="input-group-text bg-primary text-white"><i class="ri-lock-line"></i></span>
                                     <input type="password" name="a_password" class="form-control" placeholder="Enter password"
-                                        style="height: 55px; font-size: 16px;" required>
+                                        style="height: 55px; font-size: 16px;" required autocomplete="off">
                                 </div>
 
                                 <div class="d-grid">
