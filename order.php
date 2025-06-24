@@ -83,7 +83,7 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
             <div class="row">
                 <div class="col-md-4 mb-2">
                     <a class="btn btn-danger w-100" href="today_oder.php?order_id=<?= $_GET["order_id"]; ?>"
-                        style="height: 50px; font-size: 17px;">View</a>
+                        style=" font-size: 20px;">View</a>
                 </div>
                 <div class="col-md-8 mb-2">
                     <input type="text" class="form-control bg-dark-subtle" style="height: 50px; font-size: 17px;"
@@ -127,14 +127,14 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
                 hidden>
             <input type="text" id="status" name="status" readonly hidden>
 
-            <div class="row justify-content-end mt-4">
-                <div class="col-md-6 mb-2">
-                    <a type="reset" class="btn btn-warning w-100" style="height: 70px; font-size: 25px;"
+            <div class="row justify-content-end  mt-4">
+                <div class="col-md-6 ">
+                    <a type="reset" class="btn btn-warning w-100 " style= "font-size: 20px;"
                         href="data/remove_hp_itemall.php?order_id=<?= $order_id ?>">Cancel & Remove</a>
                 </div>
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-primary w-100"
-                        style="height: 70px; font-size: 25px;">save</button>
+                        style=" font-size: 20px;">save</button>
                 </div>
             </div>
         </div>

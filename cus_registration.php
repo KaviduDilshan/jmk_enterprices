@@ -1,6 +1,7 @@
 <?php
 
 include_once './conn.php';
+
 ?>
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
@@ -53,13 +54,14 @@ include_once './conn.php';
                     <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size: 17px;">NIC Number
                         <span class="text-danger">*</span></label>
                     <input type="text" name="nic" id="nic" class="form-control pt-1 pb-1" placeholder="Enter nic"
-                        style="height: 50px; font-size: 17px;" required  autocomplete="off">
+                        style="height: 50px; font-size: 17px;" required autocomplete="off">
                 </div>
                 <div class="col-lg-12 mb-3">
                     <label for="customer_name" class="form-label m-0 fw-normal" style="font-size: 17px;">Customer
                         Name <span class="text-danger">*</span></label>
                     <input type="text" name="customer_name" class="form-control pt-1 pb-1"
-                        placeholder="Enter customer name" style="height: 50px; font-size: 17px;" required autocomplete="off">
+                        placeholder="Enter customer name" style="height: 50px; font-size: 17px;" required
+                        autocomplete="off">
                 </div>
 
                 <div class="col-lg-12 mb-3">
@@ -80,23 +82,17 @@ include_once './conn.php';
                     <label for="customer_mobile" class="form-label m-0 fw-normal" style="font-size: 17px;">Mobile
                         Number (9477777777) <span class="text-danger">*</span></label>
                     <input type="number" name="customer_mobile" id="customer_mobile" class="form-control pt-1 pb-1"
-                        placeholder="Enter mobile number" style="height: 50px; font-size: 17px;" required autocomplete="off">
+                        placeholder="Enter mobile number" style="height: 50px; font-size: 17px;" required
+                        autocomplete="off">
                 </div>
 
                 <div class="col-lg-12 mb-3">
                     <label for="inputName2" class="form-label m-0 fw-normal" style="font-size: 17px;">Gender</label>
                     <select name="customer_gender" id="customer_gender" style="height: 50px; font-size: 17px;"
                         class="form-select pt-1 pb-1">
-                        <option value="1"<?php
-                            if ($row['customer_gender'] == 1) {
-                                echo 'selected';
-                            }
-                            ?>>Male</option>
-                        <option value="2" <?php
-                            if ($row['customer_gender'] == 2) {
-                                echo 'selected';
-                            }
-                        ?>>Female</option>
+                        <option value="" selected disabled>Select Gender</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
                     </select>
                 </div>
 
@@ -115,14 +111,14 @@ include_once './conn.php';
                 </div>
             </div>
 
-            <div class="row justify-content-end">
-                <div class="col-md-6 mt-1 text-end">
-                    <a href="dashboad.php" class="ml-1 btn btn-warning bg-gradient waves-effect waves-light w-100"
-                        style="font-size: 17px; height: 50px;">cancel</a>
+            <div class="row ">
+                <div class="col-md-6 mt-1 ">
+                    <a href="dashboad.php" class="ml-1 btn btn-warning bg-gradient waves-effect waves-light w-100  "
+                        style="font-size: 17px; ">Cancel & Remove</a>
                 </div>
-                <div class="col-md-6 mt-1 mb-1 text-end">
-                    <button type="submit" class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100"
-                        style="font-size: 17px; height: 50px;">save</button><br>
+                <div class="col-md-6 mt-1 mb-1 ">
+                    <button type="submit" class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100 "
+                        style="font-size: 17px; ">Save</button><br>
                 </div>
 
             </div>

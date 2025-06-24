@@ -42,6 +42,8 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
 
 </head>
 
@@ -60,26 +62,39 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
 
 
     <!-- ✅ Card with Buttons -->
-        <div class="card shadow-lg p-4 rounded" style="height:100vh">
-            <div class="row text-center mt-5 ">
-                <div class="col-md-6 mb-4 ">
-                    <a class="btns btn-primary btn-block" href="cus_registration.php">Customer Registration</a>
-                </div>
-                <div class="col-md-6 mb-4 ">
-                    <a class="btns btn-primary btn-block" href="cus_view.php">Customer View</a>
-                </div>
+    <div class="card shadow-lg p-4 rounded" style="height:100vh">
+        <div class="row text-center mt-5">
+            <div class="col-md-6 mb-4 d-flex justify-content-center">
+                <a class="btns btn-primary text-center d-flex flex-column align-items-center"
+                    href="cus_registration.php">
+                    <img src="assets/images/icons/1.png" style="width: 100px; height: 100px; margin-bottom: 30px;">
+                    Customer Registration
+                </a>
             </div>
-            
-            <div class="row text-center">
-                <div class="col-md-6 mb-4">
-                    <a class="btns btn-primary btn-block" href="order.php?order_id=<?=base64_encode($invoice);?>"> Make Order</a>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <a class="btns btn-primary btn-block" href="order_view.php">Oder view</a>
-                </div>
+
+            <div class="col-md-6 mb-4 d-flex justify-content-center">
+                <a class="btns btn-primary text-center d-flex flex-column align-items-center" href="cus_view.php">
+                    <img src="assets/images/icons/2.png" style="width: 100px; height: 100px; margin-bottom: 30px;">
+                    Customer View</a>
             </div>
         </div>
-    
+
+        <div class="row text-center mt-3">
+            <div class="col-md-6 mb-4 d-flex justify-content-center">
+                <a class="btns btn-primary text-center d-flex flex-column align-items-center"
+                    href="order.php?order_id=<?= base64_encode($invoice); ?>">
+                    <img src="assets/images/icons/3.png" style="width: 110px; height: 110px; margin-bottom: 20px;">
+                    Make Order</a>
+            </div>
+            <div class="col-md-6 mb-4 d-flex justify-content-center">
+                <a class="btns btn-primary text-center d-flex flex-column align-items-center" href="order_view.php">
+                    <img src="assets/images/icons/4.png" style="width: 100px; height: 100px; margin-bottom: 30px;">
+                    Order View</a>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <!-- footer -->
