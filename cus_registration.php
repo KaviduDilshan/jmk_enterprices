@@ -37,7 +37,7 @@ include_once './conn.php';
 
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid d-flex flex-wrap align-items-center">
-            <a href="#" class="navbar-brand" style="font-size: 22px; color: white; flex-grow:1;">
+            <a href="#" class="navbar-brand" style="font-size: 20px; color: white; flex-grow:1;">
                 Register New Customer
             </a>
             <a class="btn btn-danger" href="index.php" style="font-size: 16px; white-space: nowrap;">

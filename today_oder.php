@@ -98,8 +98,8 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
         </div>
 
         <div class="col-md-12 mb-2">
-            <a type="reset" class="btn btn-warning w-100" style="height: 70px; font-size: 25px;"
-                href="order.php?order_id=<?= base64_encode($order_id) ?>">cancel</a>
+            <a type="reset" class="btn btn-warning w-100 " style= "font-size: 20px;"
+                href="order.php?order_id=<?= base64_encode($order_id) ?>">cancel </a>
         </div>
     </div>
 
