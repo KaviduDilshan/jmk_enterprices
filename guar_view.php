@@ -38,7 +38,7 @@ include_once './conn.php';
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid d-flex flex-wrap align-items-center">
             <a href="#" class="navbar-brand" style="font-size: 22px; color: white; flex-grow:1;">
-                Registerd Customers
+                Registerd Guarantors
             </a>
             <a class="btn btn-danger" href="index.php" style="font-size: 16px; white-space: nowrap;">
                 Log Out
@@ -58,16 +58,16 @@ include_once './conn.php';
         
 
             <?php
-            $query = "SELECT * FROM customer ORDER BY c_id DESC";
+            $query = "SELECT * FROM guarantor ORDER BY gu_id  DESC";
             $result = mysqli_query($con, $query);
 
             if (mysqli_num_rows($result) > 0):
                 while ($cus = mysqli_fetch_assoc($result)):
                     ?>
-                    <a href="cus_details.php?id=<?= $cus['c_id'] ?>" class="customer_get text-decoration-none text-dark">
-                        <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
-                        <p><?= htmlspecialchars($cus['nic']) ?> | <?= htmlspecialchars($cus['customer_mobile']) ?><br>
-                            <small><?= htmlspecialchars($cus['customer_address']) ?></small>
+                    <a href="cus_details.php?id=<?= $cus['gu_id '] ?>" class="customer_get text-decoration-none text-dark">
+                        <h3 class="guarantor_name"><?= htmlspecialchars($cus['guarantor_name']) ?></h3>
+                        <p><?= htmlspecialchars($cus['nic']) ?> | <?= htmlspecialchars($cus['guarantor_mobile_01']) ?><br>
+                            <small><?= htmlspecialchars($cus['guarantor_address']) ?></small>
                         </p>
                         <hr>
                     </a>
