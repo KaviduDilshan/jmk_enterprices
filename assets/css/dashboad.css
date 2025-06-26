@@ -25,3 +25,42 @@
     box-shadow: 0 6px 15px rgba(161, 208, 230, 0.15);
     opacity: 0.95;
 }
+
+
+    @media (min-width: 600px) and (max-width: 768px) {
+    .row.custom-two-cols > div {
+        width: 50% !important;    
+        display: flex;
+        justify-content: center;
+    }
+
+    .btns {
+        font-size: 20px;
+        padding: 20px;
+        height: 250px;
+        width: 90%;
+    }
+
+    .btns img {
+        width: 90px !important;
+        height: 90px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .card {
+        padding: 2rem 1rem !important;
+    }
+
+    .navbar {
+        height: 80px;
+    }
+
+    .navbar-brand {
+        font-size: 20px !important;
+    }
+
+    .btn-danger {
+        font-size: 16px !important;
+        padding: 6px 12px;
+    }
+}

@@ -7,3 +7,19 @@
     background-color: #d1e8ee;
     cursor: pointer;
 }
+
+@media (min-width: 300px) and (max-width: 768px) {
+  .same-line-sm {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: nowrap;
+  }
+
+  .same-line-sm span {
+    display: inline-block;
+  }
+}
+
+
+

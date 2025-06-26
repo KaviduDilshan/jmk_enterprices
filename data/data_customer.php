@@ -14,7 +14,7 @@ $customer_birthdate = $_POST['customer_birthdate'];
 $cus_image =isset($_POST['cus_image']) ? $_POST['cus_image']:"";
 
 $img_name = "";
-$target_dir = "../image/";
+$target_dir = "../image/customer/";
 if (isset($_FILES["cus_image"])) {
 
     $img_name = mt_rand(100000, 1000000) . "_" . basename($_FILES["cus_image"]["name"]);

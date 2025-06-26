@@ -66,20 +66,22 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
                     <div class="col-md-12">
                         <h4><?= $product["product_name"]; ?></h4>
                     </div>
-                    
+
                     <div class="col-md-11">
                         <div class="row">
-                            <div class="col-md-4">
-                                <strong>Unit Price:</strong><br>
-                                Rs. <?= number_format($view_row['unit_price'], 2) ?>
+                            <div class="col-md-4 same-line-sm">
+                                <span><strong>Unit Price:</strong></span>
+                                <span class="price-value">Rs. <?= number_format($view_row['unit_price'], 2) ?></span>
                             </div>
-                            <div class="col-md-4">
-                                <strong>Quantity:</strong><br>
-                                <?= $view_row['quantity'] ?>
+
+                            <div class="col-md-4 same-line-sm">
+                                <span><strong>Quantity:</strong></span>
+                                <span><?= $view_row['quantity'] ?></span>
                             </div>
-                            <div class="col-md-4">
-                                <strong>Total Amount:</strong><br>
-                                Rs. <?= number_format($view_row['unit_price'] * $view_row['quantity'], 2) ?>
+
+                            <div class="col-md-4 same-line-sm">
+                                <span><strong>Total Amount:</strong></span>
+                                <span>Rs. <?= number_format($view_row['unit_price'] * $view_row['quantity'], 2) ?></span>
                             </div>
                         </div>
                     </div>
@@ -97,8 +99,8 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
             ?>
         </div>
 
-        <div class="col-md-12 mb-2">
-            <a type="reset" class="btn btn-warning w-100 " style= "font-size: 20px;"
+        <div class="col-md-12 ">
+            <a type="reset" class="btn btn-warning w-100 " style="font-size: 17px;"
                 href="order.php?order_id=<?= base64_encode($order_id) ?>">cancel </a>
         </div>
     </div>

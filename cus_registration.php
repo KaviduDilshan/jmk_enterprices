@@ -111,17 +111,15 @@ include_once './conn.php';
                 </div>
             </div>
 
-            <div class="row ">
-                <div class="col-md-6 mt-1 ">
-                    <a href="dashboad.php" class="ml-1 btn btn-warning bg-gradient waves-effect waves-light w-100  "
-                        style="font-size: 17px; ">Cancel & Remove</a>
+            <div class="row text-center mt-2">
+                <div class="col-6 col-md-6 col-lg-6 mt-1">
+                    <a href="dashboad.php" class="btn btn-warning w-100" style="font-size: 17px;">Cancel & Remove</a>
                 </div>
-                <div class="col-md-6 mt-1 mb-1 ">
-                    <button type="submit" class="ml-1 btn btn-primary bg-gradient waves-effect waves-light w-100 "
-                        style="font-size: 17px; ">Save</button><br>
+                <div class="col-6 col-md-6 col-lg-6 mt-1 mb-1">
+                    <button type="submit" class="btn btn-primary w-100" style="font-size: 17px;" >Save</button>
                 </div>
-
             </div>
+
         </form>
     </div>
 
