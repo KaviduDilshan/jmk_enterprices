@@ -83,7 +83,7 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
             <div class="row">
                 <div class="col-md-4 mb-2">
                     <a class="btn btn-danger w-100" href="today_oder.php?order_id=<?= $_GET["order_id"]; ?>"
-                        style=" font-size: 17px;">View</a>
+                        style=" font-size: 21px;">View</a>
                 </div>
                 <div class="col-md-8 mb-2">
                     <input type="text" class="form-control bg-dark-subtle" style="height: 50px; font-size: 17px;"
@@ -93,6 +93,62 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
 
             <div class="input-group input-group-lg mt-3 ">
                 <input type="text" id="customersearch" class="form-control" placeholder="Search customer" required
+                    autocomplete="off">
+                <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
+            </div>
+
+            <!-- Guarantor 01 -->
+            <div style="font-size: 20px;" id="customer-list">
+                <?php
+                $query = "SELECT * FROM customer ORDER BY c_id";
+                $result = mysqli_query($con, $query);
+
+                if (mysqli_num_rows($result) > 0):
+                    while ($cus = mysqli_fetch_assoc($result)):
+                        ?>
+                        <div class="customer_get text-dark" style="display: none; cursor: pointer;"
+                            data-cid="<?= $cus['c_id'] ?>">
+                            <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
+                            <hr>
+                        </div>
+                        <?php
+                    endwhile;
+                else:
+                    echo '<p>No customer found.</p>';
+                endif;
+                ?>
+            </div>
+
+            <div class="input-group input-group-lg mt-3 ">
+                <input type="text" id="customersearch" class="form-control" placeholder="Search First Guarantor " required
+                    autocomplete="off">
+                <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
+            </div>
+
+            <div style="font-size: 20px;" id="customer-list">
+                <?php
+                $query = "SELECT * FROM customer ORDER BY c_id";
+                $result = mysqli_query($con, $query);
+
+                if (mysqli_num_rows($result) > 0):
+                    while ($cus = mysqli_fetch_assoc($result)):
+                        ?>
+                        <div class="customer_get text-dark" style="display: none; cursor: pointer;"
+                            data-cid="<?= $cus['c_id'] ?>">
+                            <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
+                            <hr>
+                        </div>
+                        <?php
+                    endwhile;
+                else:
+                    echo '<p>No customer found.</p>';
+                endif;
+                ?>
+            </div>
+
+            <!-- Guarantor 02 -->
+            <div class="input-group input-group-lg mt-3 ">
+                <input type="text" id="customersearch" class="form-control" placeholder="Search Second Guarantor" required
                     autocomplete="off">
                 <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
             </div>

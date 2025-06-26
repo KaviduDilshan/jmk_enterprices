@@ -48,14 +48,15 @@ include_once './conn.php';
 
     <div class="card shadow-lg p-4 rounded">
         <div class="input-group input-group-lg  mb-4">
-            <input type="text" class="form-control " placeholder="Search customer by name" id="customerserach" autocomplete="off">
+            <input type="text" class="form-control " placeholder="Search customer by name" id="customerserach"
+                autocomplete="off">
             <button class="btn btn-primary p-3" type="submit"><i class="fa fa-search"></i></button>
         </div>
 
 
         <div class="" style="font-size:20px;">
 
-        
+
 
             <?php
             $query = "SELECT * FROM customer ORDER BY c_id DESC";
@@ -71,7 +72,7 @@ include_once './conn.php';
                         </p>
                         <hr>
                     </a>
-                <?php
+                    <?php
                 endwhile;
             else:
                 ?>

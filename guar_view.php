@@ -48,15 +48,12 @@ include_once './conn.php';
 
     <div class="card shadow-lg p-4 rounded">
         <div class="input-group input-group-lg  mb-4">
-            <input type="text" class="form-control " placeholder="Search customer by name" id="customerserach" autocomplete="off">
+            <input type="text" class="form-control " placeholder="Search guarantor by name" id="guarantorserach" autocomplete="off">
             <button class="btn btn-primary p-3" type="submit"><i class="fa fa-search"></i></button>
         </div>
 
 
         <div class="" style="font-size:20px;">
-
-        
-
             <?php
             $query = "SELECT * FROM guarantor ORDER BY gu_id  DESC";
             $result = mysqli_query($con, $query);
@@ -64,7 +61,7 @@ include_once './conn.php';
             if (mysqli_num_rows($result) > 0):
                 while ($cus = mysqli_fetch_assoc($result)):
                     ?>
-                    <a href="cus_details.php?id=<?= $cus['gu_id '] ?>" class="customer_get text-decoration-none text-dark">
+                    <a href="guar_details.php?id=<?= $cus['gu_id'] ?>" class="guarantor_get text-decoration-none text-dark">
                         <h3 class="guarantor_name"><?= htmlspecialchars($cus['guarantor_name']) ?></h3>
                         <p><?= htmlspecialchars($cus['nic']) ?> | <?= htmlspecialchars($cus['guarantor_mobile_01']) ?><br>
                             <small><?= htmlspecialchars($cus['guarantor_address']) ?></small>
@@ -82,14 +79,14 @@ include_once './conn.php';
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                const searchInput = document.getElementById('customerserach');
-                const customerItems = document.querySelectorAll('.customer_get');
+                const searchInput = document.getElementById('guarantorserach');
+                const guarantorItems = document.querySelectorAll('.guarantor_get');
 
                 searchInput.addEventListener('keyup', function () {
                     const searchTerm = searchInput.value.toLowerCase().trim();
 
-                    customerItems.forEach(function (item) {
-                        const name = item.querySelector('.customer_name').textContent.toLowerCase();
+                    guarantorItems.forEach(function (item) {
+                        const name = item.querySelector('.guarantor_name').textContent.toLowerCase();
                         if (name.includes(searchTerm)) {
                             item.style.display = '';
                         } else {

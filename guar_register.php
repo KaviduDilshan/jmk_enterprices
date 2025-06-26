@@ -38,7 +38,7 @@ include_once './conn.php';
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid d-flex flex-wrap align-items-center">
             <a href="#" class="navbar-brand" style="font-size: 20px; color: white; flex-grow:1;">
-                Register New Guarantor 
+                Register New Guarantor
             </a>
             <a class="btn btn-danger" href="index.php" style="font-size: 16px; white-space: nowrap;">
                 Log Out
@@ -54,49 +54,47 @@ include_once './conn.php';
                 <div class="col-lg-12 mb-3">
                     <label for="nic" class="form-label m-0 fw-normal" style="font-size: 17px;">NIC Number <span
                             class="text-danger">*</span></label>
-                    <input type="text" name="nic" id="nic" class="form-control pt-1 pb-1" placeholder="Enter nic" required>
+                    <input type="text" name="nic" id="nic" class="form-control pt-1 pb-1" placeholder="Enter nic"
+                        style="height: 50px; font-size: 17px;" required autocomplete="off">
                 </div>
 
                 <div class="col-lg-12 mb-3">
-                    <label for="customer_name" class="form-label m-0 fw-normal" style="font-size: 17px;">Guarantor Name <span
-                            class="text-danger">*</span></label>
+                    <label for="customer_name" class="form-label m-0 fw-normal" style="font-size: 17px;">Guarantor Name
+                        <span class="text-danger">*</span></label>
                     <input type="text" name="guarantor_name" class="form-control pt-1 pb-1"
-                        placeholder="Enter guarantor name"  required>
+                        placeholder="Enter guarantor name" style="height: 50px; font-size: 17px;" required
+                        autocomplete="off">
                 </div>
 
                 <div class="col-lg-12 mb-3">
-                    <label for="customer_city" class="form-label m-0 fw-normal" style="font-size: 17px;">Guarantor City <span
-                            class="text-danger">*</span></label>
+                    <label for="customer_city" class="form-label m-0 fw-normal" style="font-size: 17px;">Guarantor City
+                        <span class="text-danger">*</span></label>
                     <input type="text" name="guarantor_city" id="guarantor_city" class="form-control pt-1 pb-1"
-                        placeholder="Enter city"  required>
+                        placeholder="Enter city" style="height: 50px; font-size: 17px;" required autocomplete="off">
                 </div>
 
                 <div class="col-lg-12 mb-3">
-                    <label for="customer_address" class="form-label m-0 fw-normal" style="font-size: 17px;">Guarantor Address <span
-                            class="text-danger">*</span></label>
+                    <label for="customer_address" class="form-label m-0 fw-normal" style="font-size: 17px;">Guarantor
+                        Address <span class="text-danger">*</span></label>
                     <input type="text" name="guarantor_address" id="guarantor_address" class="form-control pt-1 pb-1"
-                        placeholder="Enter address"  required>
+                        placeholder="Enter address" style="height: 50px; font-size: 17px;" required autocomplete="off">
                 </div>
 
                 <div class="col-lg-12 mb-3">
-                    <label for="customer_mobile" class="form-label m-0 fw-normal" style="font-size: 17px;">Mobile Number 01 <span
-                            class="text-danger">*</span></label>
-                    <input type="number" name="guarantor_mobile_01" id="guarantor_mobile_01" class="form-control pt-1 pb-1"
-                        placeholder="Enter mobile number 01"  required>
+                    <label for="customer_mobile" class="form-label m-0 fw-normal" style="font-size: 17px;">Mobile Number
+                        01 <span class="text-danger">*</span></label>
+                    <input type="number" name="guarantor_mobile_01" id="guarantor_mobile_01"
+                        class="form-control pt-1 pb-1" placeholder="Enter mobile number 01"
+                        style="height: 50px; font-size: 17px;" required autocomplete="off">
                 </div>
 
                 <div class="col-lg-12 mb-3">
-                    <label for="customer_mobile" class="form-label m-0 fw-normal" style="font-size: 17px;">Mobile Number 02 <span
-                            class="text-danger">*</span></label>
-                    <input type="number" name="guarantor_mobile_02" id="guarantor_mobile_02" class="form-control pt-1 pb-1"
-                        placeholder="Enter mobile number 02"  required>
+                    <label for="customer_mobile" class="form-label m-0 fw-normal" style="font-size: 17px;">Mobile Number
+                        02 <span class="text-danger">*</span></label>
+                    <input type="number" name="guarantor_mobile_02" id="guarantor_mobile_02"
+                        class="form-control pt-1 pb-1" placeholder="Enter mobile number 02"
+                        style="height: 50px; font-size: 17px;" required autocomplete="off">
                 </div>
-
-                <!-- <div class="col-lg-6 mb-3">
-                <label for="inputName2" class="form-label m-0 fw-normal">Email</label>
-                <input type="text" name="guarantor_email" id="customer_mobile" class="form-control pt-1 pb-1"
-                    placeholder="Enter email" value="<?php echo $row['guarantor_email']; ?>">
-            </div> -->
 
                 <div class="col-lg-12 mb-3">
                     <label for="inputName2" class="form-label m-0 fw-normal" style="font-size: 17px;">Gender</label>
@@ -109,11 +107,13 @@ include_once './conn.php';
                 </div>
 
                 <div class="col-lg-12 mb-3">
-                    <label for="guarantor_birthdate" class="form-label m-0 fw-normal" style="font-size: 17px;">Birth Day</label>
-                    <input type="date" name="birthdate" id="birthdate" class="form-control pt-1 pb-1">
+                    <label for="guarantor_birthdate" class="form-label m-0 fw-normal" style="font-size: 17px;">Birth
+                        Day</label>
+                    <input type="date" name="birthdate" id="birthdate" class="form-control pt-1 pb-1"
+                        style="height: 50px; font-size: 17px;">
                 </div>
 
-                
+
                 <div class="col-lg-12 mb-3">
                     <label for="deb_amount" class="form-label m-0 fw-normal" style="font-size: 17px;">ProfilePic</label>
                     <input type="file" name="gua_image" id="gua_image" style="height: 50px; font-size: 17px;"
@@ -121,14 +121,14 @@ include_once './conn.php';
                 </div>
             </div>
 
-        <div class="row text-center mt-2">
-            <div class="col-6 col-md-6 col-lg-6 mt-1">
-                <a href="dashboad.php" class="btn btn-warning w-100" style="font-size: 17px;">Cancel & Remove</a>
+            <div class="row text-center mt-2">
+                <div class="col-6 col-md-6 col-lg-6 mt-1">
+                    <a href="dashboad.php" class="btn btn-warning w-100" style="font-size: 17px;">Cancel & Remove</a>
+                </div>
+                <div class="col-6 col-md-6 col-lg-6 mt-1 mb-1">
+                    <button type="submit" class="btn btn-primary w-100" style="font-size: 17px;">Save</button>
+                </div>
             </div>
-            <div class="col-6 col-md-6 col-lg-6 mt-1 mb-1">
-                <button type="submit" class="btn btn-primary w-100" style="font-size: 17px;">Save</button>
-            </div>
-        </div>
 
         </form>
     </div>
@@ -152,6 +152,3 @@ include_once './conn.php';
 </body>
 
 </html>
-
-
-
