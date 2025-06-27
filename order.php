@@ -91,13 +91,14 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
                 </div>
             </div>
 
+            <!-- customer -->
             <div class="input-group input-group-lg mt-3 ">
                 <input type="text" id="customersearch" class="form-control" placeholder="Search customer" required
                     autocomplete="off">
                 <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
             </div>
 
-            <!-- Guarantor 01 -->
+
             <div style="font-size: 20px;" id="customer-list">
                 <?php
                 $query = "SELECT * FROM customer ORDER BY c_id";
@@ -119,23 +120,26 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
                 ?>
             </div>
 
+
+
+            <!-- Guarantor 01 -->
             <div class="input-group input-group-lg mt-3 ">
-                <input type="text" id="customersearch" class="form-control" placeholder="Search First Guarantor " required
-                    autocomplete="off">
+                <input type="text" id="guarantorsearch1" class="form-control" placeholder="Search First Guarantor "
+                    required autocomplete="off">
                 <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
             </div>
 
-            <div style="font-size: 20px;" id="customer-list">
+            <div style="font-size: 20px;" id="guarantor-list">
                 <?php
-                $query = "SELECT * FROM customer ORDER BY c_id";
+                $query = "SELECT * FROM guarantor ORDER BY gu_id  DESC";
                 $result = mysqli_query($con, $query);
 
                 if (mysqli_num_rows($result) > 0):
                     while ($cus = mysqli_fetch_assoc($result)):
                         ?>
-                        <div class="customer_get text-dark" style="display: none; cursor: pointer;"
-                            data-cid="<?= $cus['c_id'] ?>">
-                            <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
+                        <div class="guarantor_get text-dark" style="display: none; cursor: pointer;"
+                            data-gid1="<?= $cus['gu_id'] ?>">
+                            <h3 class="guarantor_name1"><?= htmlspecialchars($cus['guarantor_name']) ?></h3>
                             <hr>
                         </div>
                         <?php
@@ -147,36 +151,38 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
             </div>
 
             <!-- Guarantor 02 -->
-            <div class="input-group input-group-lg mt-3 ">
-                <input type="text" id="customersearch" class="form-control" placeholder="Search Second Guarantor" required
-                    autocomplete="off">
+            <div class="input-group input-group-lg mt-3">
+                <input type="text" id="guarantorsearch2" class="form-control" placeholder="Search Second Guarantor"
+                    required autocomplete="off">
                 <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
             </div>
 
-            <div style="font-size: 20px;" id="customer-list">
+            <div style="font-size: 20px;" id="guarantor-list2">
                 <?php
-                $query = "SELECT * FROM customer ORDER BY c_id";
+                $query = "SELECT * FROM guarantor ORDER BY gu_id DESC";
                 $result = mysqli_query($con, $query);
 
                 if (mysqli_num_rows($result) > 0):
                     while ($cus = mysqli_fetch_assoc($result)):
                         ?>
-                        <div class="customer_get text-dark" style="display: none; cursor: pointer;"
-                            data-cid="<?= $cus['c_id'] ?>">
-                            <h3 class="customer_name"><?= htmlspecialchars($cus['customer_name']) ?></h3>
+                        <div class="guarantor_get2 text-dark" style="display: none; cursor: pointer;"
+                            data-gid2="<?= $cus['gu_id'] ?>">
+                            <h3 class="guarantor_name2"><?= htmlspecialchars($cus['guarantor_name']) ?></h3>
                             <hr>
                         </div>
                         <?php
                     endwhile;
                 else:
-                    echo '<p>No customer found.</p>';
+                    echo '<p>No guarantor found.</p>';
                 endif;
                 ?>
             </div>
 
+
             <input type="text" name="order_id" value="<?= $_GET["order_id"]; ?>" readonly hidden>
             <input type="text" id="inputCustomerid" name="customer_id" readonly hidden>
-            <!-- <input type="text" name="product_id" id="inputProductId" readonly hidden> -->
+            <input type="text" id="guarantorId1" name="guarantor_1_id" readonly hidden>
+            <input type="text" id="guarantorId2" name="guarantor_2_id" readonly hidden>
             <input type="text" name="date" class="form-control mt-2" value="<?= date("Y-m-d"); ?>" readonly hidden>
             <input type="text" name="time" value="<?= date("H:i:s"); ?>" readonly hidden>
             <input type="text" id="totalAmount" name="totalAmount" value="<?= ($totalAmount['SUM(total)']) ?>" readonly
@@ -185,12 +191,11 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
 
             <div class="row text-center mt-2">
                 <div class="col-6 col-md-6 col-lg-6 mt-1">
-                    <a type="reset" class="btn btn-warning w-100 " style= "font-size: 17px;"
+                    <a type="reset" class="btn btn-warning w-100 " style="font-size: 17px;"
                         href="data/remove_hp_itemall.php?order_id=<?= $order_id ?>">Cancel & Remove</a>
                 </div>
                 <div class="col-6 col-md-6 col-lg-6 mt-1">
-                    <button type="submit" class="btn btn-primary w-100"
-                        style=" font-size: 17px;">save</button>
+                    <button type="submit" class="btn btn-primary w-100" style=" font-size: 17px;">save</button>
                 </div>
             </div>
         </div>
@@ -279,15 +284,58 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
 
                     const customerId = item.dataset.cid;
 
-                    //post
+                    //post hidden
                     document.getElementById('inputCustomerid').value = customerId;
 
 
                 })
             });
 
+            // Filter and select for Guarantor 01
+            const guarantorsearch1 = document.getElementById('guarantorsearch1');
+            const guarantorItems1 = document.querySelectorAll('.guarantor_get');
 
+            guarantorsearch1.addEventListener('keyup', function () {
+                const term = guarantorsearch1.value.toLowerCase().trim();
+                guarantorItems1.forEach(item => {
+                    const name = item.querySelector('.guarantor_name1').textContent.toLowerCase();
+                    item.style.display = (term !== "" && name.includes(term)) ? 'block' : 'none';
+                });
+            });
 
+            guarantorItems1.forEach(item => {
+                item.addEventListener('click', function () {
+                    guarantorsearch1.value = item.querySelector('.guarantor_name1').textContent.trim();
+                    guarantorItems1.forEach(i => i.style.display = 'none');
+
+                    const guId1 = item.dataset.gid1;
+                    // Optional: assign to hidden input
+                    document.getElementById('guarantorId1').value = guId1;
+                });
+            });
+
+            // Filter and select for Guarantor 02
+            const guarantorsearch2 = document.getElementById('guarantorsearch2');
+            const guarantorItems2 = document.querySelectorAll('.guarantor_get2');
+
+            guarantorsearch2.addEventListener('keyup', function () {
+                const term = guarantorsearch2.value.toLowerCase().trim();
+                guarantorItems2.forEach(item => {
+                    const name = item.querySelector('.guarantor_name2').textContent.toLowerCase();
+                    item.style.display = (term !== "" && name.includes(term)) ? 'block' : 'none';
+                });
+            });
+
+            guarantorItems2.forEach(item => {
+                item.addEventListener('click', function () {
+                    guarantorsearch2.value = item.querySelector('.guarantor_name2').textContent.trim();
+                    guarantorItems2.forEach(i => i.style.display = 'none');
+
+                    const guId2 = item.dataset.gid2;
+                    // Optional: assign to hidden input
+                    document.getElementById('guarantorId2').value = guId2;
+                });
+            });
 
         })
     </script>

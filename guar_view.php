@@ -78,7 +78,7 @@ include_once './conn.php';
 
 
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 const searchInput = document.getElementById('guarantorserach');
                 const guarantorItems = document.querySelectorAll('.guarantor_get');
 

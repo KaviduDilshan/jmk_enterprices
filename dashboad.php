@@ -1,6 +1,13 @@
 <?php
 session_start();
 include_once 'conn.php';
+// Check if user is logged in
+if (!isset($_SESSION['login'])) {
+    // If not logged in, redirect to login page
+    header("Location: index.php");
+    exit();
+}
+
 $company = 1;
 $a_id = $_SESSION['login'];
 
