@@ -55,9 +55,6 @@ include_once './conn.php';
 
 
         <div class="" style="font-size:20px;">
-
-
-
             <?php
             $query = "SELECT * FROM customer ORDER BY c_id DESC";
             $result = mysqli_query($con, $query);
@@ -79,45 +76,43 @@ include_once './conn.php';
                 <p>No customers found.</p>
             <?php endif; ?>
         </div>
+    </div>
 
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const searchInput = document.getElementById('customerserach');
-                const customerItems = document.querySelectorAll('.customer_get');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('customerserach');
+            const customerItems = document.querySelectorAll('.customer_get');
 
-                searchInput.addEventListener('keyup', function () {
-                    const searchTerm = searchInput.value.toLowerCase().trim();
+            searchInput.addEventListener('keyup', function () {
+                const searchTerm = searchInput.value.toLowerCase().trim();
 
-                    customerItems.forEach(function (item) {
-                        const name = item.querySelector('.customer_name').textContent.toLowerCase();
-                        if (name.includes(searchTerm)) {
-                            item.style.display = '';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
+                customerItems.forEach(function (item) {
+                    const name = item.querySelector('.customer_name').textContent.toLowerCase();
+                    if (name.includes(searchTerm)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
                 });
             });
-        </script>
+        });
+    </script>
 
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+    <script src="assets/libs/feather-icons/feather.min.js"></script>
+    <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+    <script src="assets/js/plugins.js"></script>
 
-
-
-        <!-- JAVASCRIPT -->
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
-        <script src="assets/libs/feather-icons/feather.min.js"></script>
-        <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-        <script src="assets/js/plugins.js"></script>
-
-        <!-- particles js -->
-        <script src="assets/libs/particles.js/particles.js"></script>
-        <!-- particles app js -->
-        <script src="assets/js/pages/particles.app.js"></script>
-        <!-- password-addon init -->
-        <script src="assets/js/pages/password-addon.init.js"></script>
+    <!-- particles js -->
+    <script src="assets/libs/particles.js/particles.js"></script>
+    <!-- particles app js -->
+    <script src="assets/js/pages/particles.app.js"></script>
+    <!-- password-addon init -->
+    <script src="assets/js/pages/password-addon.init.js"></script>
 
 </body>
 

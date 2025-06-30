@@ -70,6 +70,7 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
 
     <!-- ✅ Card with Buttons -->
     <div class="card shadow-lg p-4 rounded" style="min-height:100vh">
+
         <div class="row custom-two-cols text-center mt-2">
             <div class="col-md-6  mb-4 d-flex justify-content-center">
                 <a class="btns btn-primary text-center d-flex flex-column align-items-center"
@@ -88,8 +89,7 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
 
         <div class="row custom-two-cols text-center mt-2">
             <div class="col-md-6  mb-4 d-flex justify-content-center">
-                <a class="btns btn-primary text-center d-flex flex-column align-items-center"
-                    href="guar_register.php">
+                <a class="btns btn-primary text-center d-flex flex-column align-items-center" href="guar_register.php">
                     <img src="assets/images/icons/9.png" style="width: 100px; height: 100px; margin-bottom: 30px;">
                     Guarantor Registration
                 </a>
@@ -116,15 +116,12 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
             </div>
         </div>
 
-        <div class="row custom-two-cols text-center mt-2">
-            <div class="col-md-6 mb-2 d-flex justify-content-center">
-                <a class="btns btn-primary text-center d-flex flex-column align-items-center"
-                    href="guar_register.php">
-                    <img src="assets/images/icons/7.png" style="width: 100px; height: 100px; margin-bottom: 30px;">
-                    Installments 
-                </a>
-            </div>
-            
+        <div class="col-md-12 col-lg-12 mb-4 mt-2">
+            <a class="btns btnone btn-primary text-center d-flex flex-column align-items-center mx-auto"
+                href="installment.php">
+                <img src="assets/images/icons/7.png" style="width: 100px; height: 100px; margin-bottom: 30px;">
+                Installments
+            </a>
         </div>
 
     </div>

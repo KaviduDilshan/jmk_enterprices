@@ -77,10 +77,11 @@ include_once './conn.php';
                     while ($view_row = mysqli_fetch_array($view_result)) {
                         $pro_id = $view_row["pro_id"];
                         $product = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `products` WHERE `pro_id`='$pro_id'"));
-                        echo $product["product_name"] . " (qty-" . (int)$view_row["quantity"] . ") / ";
+                        echo $product["product_name"] . " (qty-" . (int) $view_row["quantity"] . ") / ";
                     }
                     ?> </h3>
-                    <h2 class="total"><strong>Total Price : Rs. </strong> <?= number_format($row["total_price"], 2, '.', ',') ?></h2>
+                    <h2 class="total"><strong>Total Price : Rs. </strong> <?= number_format($row["total_price"], 2, '.', ',') ?>
+                    </h2>
                     <hr>
                 </div>
             <?php }
