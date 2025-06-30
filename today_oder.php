@@ -17,7 +17,7 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
     <meta charset="utf-8" />
     <title>JMK Enterprises</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
     <meta content="Themesbrand" name="author" />
 
     <link rel="stylesheet" href="assets/css/cus_view.css">
@@ -86,10 +86,10 @@ $order_id = isset($_GET["order_id"]) ? base64_decode($_GET["order_id"]) : null;
                         </div>
                     </div>
 
-                    <div class="col-md-1 d-flex justify-content-end">
-                        <a class="btn btn-danger" style="height: 50px; width: 50px;"
+                    <div class="col-md-1 d-flex  justify-content-end">
+                        <a class="btn  btn-danger" style="height: 50px; width: 50px;"
                             href="data/remove_hp_item.php?hp_sales_id=<?= base64_encode($view_row["hp_sales_id"]) ?>&order_id=<?= $order_id ?>">
-                            <i class="fas fa-trash-alt"></i>
+                            <i class=" fas fa-trash-alt"></i>
                         </a>
                     </div>
                 </div>

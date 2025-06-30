@@ -72,7 +72,7 @@ include_once './conn.php';
                 </div>
 
                 <div class="col-lg-12 mb-3">
-                    <label for="customer_address" class="form-label m-0 fw-normal" style="font-size: 17px;">Address
+                    <label for="customer_address" class="form-label m-0 fw-normal" style="font-size: 17px;"> Customer Address
                         <span class="text-danger">*</span></label>
                     <input type="text" name="customer_address" id="customer_address" class="form-control pt-1 pb-1"
                         placeholder="Enter address" style="height: 50px; font-size: 17px;" required autocomplete="off">

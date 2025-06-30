@@ -81,7 +81,7 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
 
             <div class="col-md-6 mb-4 d-flex justify-content-center">
                 <a class="btns btn-primary text-center d-flex flex-column align-items-center" href="cus_view.php">
-                    <img src="assets/images/icons/2.png" style="width: 100px; height: 100px; margin-bottom: 30px;">
+                    <img src="assets/images/icons/2.png" style="width: 110px; height: 110px; margin-bottom: 20px;">
                     Customer View</a>
             </div>
         </div>
@@ -90,7 +90,7 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
             <div class="col-md-6  mb-4 d-flex justify-content-center">
                 <a class="btns btn-primary text-center d-flex flex-column align-items-center"
                     href="guar_register.php">
-                    <img src="assets/images/icons/5.png" style="width: 100px; height: 100px; margin-bottom: 30px;">
+                    <img src="assets/images/icons/9.png" style="width: 100px; height: 100px; margin-bottom: 30px;">
                     Guarantor Registration
                 </a>
             </div>
@@ -106,7 +106,7 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
             <div class="col-md-6 mb-4 d-flex justify-content-center">
                 <a class="btns btn-primary text-center d-flex flex-column align-items-center"
                     href="order.php?order_id=<?= base64_encode($invoice); ?>">
-                    <img src="assets/images/icons/3.png" style="width: 110px; height: 110px; margin-bottom: 20px;">
+                    <img src="assets/images/icons/8.png" style="width: 110px; height: 110px; margin-bottom: 30px;">
                     Make Order</a>
             </div>
             <div class="col-md-6 mb-4 d-flex justify-content-center">
@@ -115,6 +115,18 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
                     Order View</a>
             </div>
         </div>
+
+        <div class="row custom-two-cols text-center mt-2">
+            <div class="col-md-6 mb-2 d-flex justify-content-center">
+                <a class="btns btn-primary text-center d-flex flex-column align-items-center"
+                    href="guar_register.php">
+                    <img src="assets/images/icons/7.png" style="width: 100px; height: 100px; margin-bottom: 30px;">
+                    Installments 
+                </a>
+            </div>
+            
+        </div>
+
     </div>
 
 

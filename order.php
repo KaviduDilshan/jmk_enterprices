@@ -189,7 +189,7 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
                 hidden>
             <input type="text" id="status" name="status" readonly hidden>
 
-            <div class="row text-center mt-2">
+            <div class="row text-center mt-3">
                 <div class="col-6 col-md-6 col-lg-6 mt-1">
                     <a type="reset" class="btn btn-warning w-100 " style="font-size: 17px;"
                         href="data/remove_hp_itemall.php?order_id=<?= $order_id ?>">Cancel & Remove</a>
@@ -366,7 +366,7 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
                                 <div class="d-flex align-items-center mb-2">
                                     <label for="warrenty_end" class="me-2" style="min-width: 70px;">Warranty
                                         End:</label>
-                                    <input type="date" name="warrenty_end" id="warrenty_end" class="form-control"
+                                    <input type="date" name="warrenty_end" id="warrenty_end" class="form-control" autocomplete="off"
                                         value="<?= date("Y-m-d"); ?>">
                                 </div>
 
@@ -374,7 +374,7 @@ $totalAmount = mysqli_fetch_array(mysqli_query($con, "SELECT SUM(total) FROM hp_
                                 <div class="d-flex align-items-center mb-2">
                                     <label for="duration" class="me-2" style="min-width: 70px;">Duration:</label>
                                     <input type="number" name="duration" id="duration" class="form-control"
-                                        placeholder="Enter Duration">
+                                        placeholder="Enter Duration" autocomplete="off">
                                 </div>
 
                                 <input type="text" id="inputCustomerid" name="customer_id" readonly hidden>

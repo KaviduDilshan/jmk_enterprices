@@ -69,7 +69,7 @@ include_once './conn.php';
                 ?>
 
                 <div <?= $row['c_id'] ?> class="product_get text-decoration-none text-dark">
-                    <h3 class="customer_name"><?= $customer['customer_name'] ?></h3>
+                    <h2 class="customer_name"><strong><?= $customer['customer_name'] ?></strong></h2>
                     <h3 class="bill"><strong>Bill number : </strong><?= $row['os_id'] ?></h3>
                     <h3 class="products"><strong>Products : </strong> <?php
                     $view_order = "SELECT * FROM `hp_sales_order` WHERE `invoice`='$order_id'";
@@ -80,7 +80,7 @@ include_once './conn.php';
                         echo $product["product_name"] . " (qty-" . (int)$view_row["quantity"] . ") / ";
                     }
                     ?> </h3>
-                    <h2 class="total"><strong>Rs. </strong> <?= number_format($row["total_price"], 2, '.', ',') ?></h2>
+                    <h2 class="total"><strong>Total Price : Rs. </strong> <?= number_format($row["total_price"], 2, '.', ',') ?></h2>
                     <hr>
                 </div>
             <?php }
