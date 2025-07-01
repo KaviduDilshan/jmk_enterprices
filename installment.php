@@ -38,7 +38,7 @@ include_once './conn.php';
 
     <div class="card shadow-lg p-4 rounded">
         <div class="input-group input-group-lg mt-3 ">
-            <input type="text" id="customersearch" class="form-control" placeholder="Search customer" required
+            <input type="text" id="customerserach" class="form-control" placeholder="Search customer" required
                 autocomplete="off">
             <button class="btn btn-primary p-3" type="button"><i class="fa fa-search"></i></button>
         </div>
@@ -49,81 +49,93 @@ include_once './conn.php';
             $detailsresult = mysqli_query($con, $detailquery);
 
             if (mysqli_num_rows($detailsresult) > 0):
-            while ($row = mysqli_fetch_array($detailsresult)):
-                $c_id = $row['c_id'];
-                $customer = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `customer` WHERE `c_id`=$c_id"));
+                while ($row = mysqli_fetch_array($detailsresult)):
+                    $c_id = $row['c_id'];
+                    $customer = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `customer` WHERE `c_id`=$c_id"));
 
-                $hp_t_id = $row['hp_t_id'];
-                $paid_amount = mysqli_fetch_assoc(mysqli_query($con, "SELECT SUM(paid_total) FROM hp_installments WHERE `hp_t_id`=$hp_t_id"));
-                if($paid_amount != null){
-                    $paid_amount = $paid_amount["SUM(paid_total)"];
-                }
-                $balance=$row["tot_loan_amount"]-$paid_amount;
+                    $hp_t_id = $row['hp_t_id'];
+                    $paid_amount = mysqli_fetch_assoc(mysqli_query($con, "SELECT SUM(paid_total) FROM hp_installments WHERE `hp_t_id`=$hp_t_id"));
+                    if ($paid_amount != null) {
+                        $paid_amount = $paid_amount["SUM(paid_total)"];
+                    }
+                    $balance = $row["tot_loan_amount"] - $paid_amount;
 
-                if($customer):
-                    ?>
-                    <div class="customer_get text-dark" style="display: none; cursor: pointer;" data-cid="<?= $c_id?>">
-                        <h3 class="customer_name"><?= htmlspecialchars($customer['customer_name']) ?></h3>
-                        <hr>
-                    </div>
+                    if ($customer):
+                        ?>
 
-                    <div class="mt-4">
-                    <a href="cus_details.php?id=<?= $customer['c_id'] ?>" class="customer_get text-decoration-none text-dark">
-                        <h3 class="customer_name"><?= htmlspecialchars($customer['customer_name']) ?></h3>
-                        <h3 class="customer_name">Agreement number : <strong><?= $row['hp_t_id'] ?></strong></h3>
-                        <h3 class="customer_name">Loan date : <strong><?= $row['transaction_date'] ?></strong></h3>
-                        <h3 class="customer_name">Total Loan Amount : <strong>Rs.<?= $row['tot_loan_amount'] ?></strong></h3>
-                        <h3 class="customer_name">Paid Amount : <strong>Rs.<?= $paid_amount  ?></strong></h3>
-                        <h3 class="customer_name">Balance Amount : <strong>Rs.<?= $balance  ?></strong></h3>
-                        <hr>
-                    </a>
-                    </div>
-                    <?php
+                        <div class="mt-4">
+                            <a href="installment_payment.php?id=<?= $customer['c_id'] ?>"
+                                class="customer_get text-decoration-none text-dark">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th style="width:250px;">Customer Name</th>
+                                            <td style="width:30px;">:</td>
+                                            <td><?= htmlspecialchars($customer['customer_name']) ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Agreement Number</th>
+                                            <td style="width:30px;">:</td>
+                                            <td><?= $row['agreement_number'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Loan Date</th>
+                                            <td style="width:30px;">:</td>
+                                            <td><?= $row['transaction_date'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Total Loan Amount</th>
+                                            <td style="width:30px;">:</td>
+                                            <td>Rs. <?= number_format($row['tot_loan_amount'], 2) ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Paid Amount</th>
+                                            <td style="width:30px;">:</td>
+                                            <td>Rs. <?= number_format($paid_amount, 2) ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Balance Amount</th>
+                                            <td style="width:30px;">:</td>
+                                            <td>Rs. <?= number_format($balance, 2) ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <h3 class="customer_name" hidden>Customer name :
+                                    <strong><?= htmlspecialchars($customer['customer_name']) ?></strong>
+                                </h3>
+                                <hr>
+                            </a>
+                        </div>
+                        <?php
                     endif;
-                endwhile;     
+                endwhile;
             else:
                 echo '<p>No customer found.</p>';
             endif;
-        ?>
+            ?>
         </div>
     </div>
 
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-             // Filter customer as you type
-            const customersearchInput = document.getElementById('customersearch');
-            const customertItems = document.querySelectorAll('.customer_get');
+            const searchInput = document.getElementById('customerserach');
+            const customerItems = document.querySelectorAll('.customer_get');
 
-            customersearchInput.addEventListener('keyup', function () {
-                const searchTerm = customersearchInput.value.toLowerCase().trim();
-                customertItems.forEach(function (item) {
+            searchInput.addEventListener('keyup', function () {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+
+                customerItems.forEach(function (item) {
                     const name = item.querySelector('.customer_name').textContent.toLowerCase();
-                    if (searchTerm !== "" && name.includes(searchTerm)) {
-                        item.style.display = 'block';
+                    if (name.includes(searchTerm)) {
+                        item.style.display = '';
                     } else {
                         item.style.display = 'none';
                     }
                 });
             });
-
-            // Show popup on click
-            customertItems.forEach(function (item) {
-                item.style.cursor = "pointer";
-                item.addEventListener('click', function () {
-                    const customerName = item.querySelector('h3.customer_name').textContent.trim();
-                    customersearchInput.value = customerName;
-                    customertItems.forEach(i => i.style.display = 'none');
-
-                    const customerId = item.dataset.cid;
-
-                    //post hidden
-                    document.getElementById('inputCustomerid').value = customerId;
-
-
-                })
-            });
-        })
+        });
     </script>
 
     <!-- JAVASCRIPT -->
@@ -138,4 +150,5 @@ include_once './conn.php';
     <script src="assets/js/pages/password-addon.init.js"></script>
 
 </body>
+
 </html>
