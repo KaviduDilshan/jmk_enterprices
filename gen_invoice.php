@@ -1,13 +1,13 @@
 <?php
 
-include_once '../../conn.php';
+include_once './conn.php';
 include_once './session.php';
 $company = $_SESSION['company'];
 $a_id = $_SESSION['login'];
 
-$sales_max_id = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(sales_id) FROM sales_order "))["MAX(sales_id)"]) + 1;
-$trans_max_id = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(t_id) FROM transaction "))["MAX(t_id)"]) + 1;
-$cash_max_id = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(ca_l_id) FROM cash_ledger "))["MAX(ca_l_id)"]) + 1;
+$sales_max_id = intval(mysqli_fetch_assoc(mysqli_query($con, "SELECT MAX(sales_id) FROM sales_order "))["MAX(sales_id)"]) + 1;
+$trans_max_id = intval(mysqli_fetch_assoc(mysqli_query($con, "SELECT MAX(t_id) FROM transaction "))["MAX(t_id)"]) + 1;
+$cash_max_id = intval(mysqli_fetch_assoc(mysqli_query($con, "SELECT MAX(ca_l_id) FROM cash_ledger "))["MAX(ca_l_id)"]) + 1;
 $invoice2 = ($sales_max_id * $trans_max_id * $cash_max_id) * mt_rand(100000, 1000000);
 $invoice = $a_id . $company . $invoice2;
 
@@ -27,13 +27,13 @@ if (isset($_GET["invoice"]) && $_GET["invoice"] != null) {
 //    $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `mrn_request` WHERE `invoice`=\"$finalcode\""));
 //}
 
-$finalcode_for_rmqc2 = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(ph_id) FROM purchase_history"))["MAX(ph_id)"]) + 1 * 9999;
+$finalcode_for_rmqc2 = intval(mysqli_fetch_assoc(mysqli_query($con, "SELECT MAX(ph_id) FROM purchase_history"))["MAX(ph_id)"]) + 1 * 9999;
 $finalcode_for_rmqc = $a_id . $company . $finalcode_for_rmqc2;
 
-$rmqcdata = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `purchase_history` WHERE `invoice`=\"$finalcode_for_rmqc\""));
+$rmqcdata = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `purchase_history` WHERE `invoice`=\"$finalcode_for_rmqc\""));
 while ($rmqcdata != null) {
     $finalcode_for_rmqc *= mt_rand(100000, 1000000);
-    $rmqcdata = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `purchase_history` WHERE `invoice`=\"$finalcode_for_rmqc\""));
+    $rmqcdata = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `purchase_history` WHERE `invoice`=\"$finalcode_for_rmqc\""));
 }
 
 //$finalcode_for_dpqc = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(fph_id) FROM field_purchase_history"))["MAX(fph_id)"]) + 1 * 9999;
@@ -51,26 +51,26 @@ while ($rmqcdata != null) {
 //    $pfdtdata = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `pro_fdt_q_control` WHERE `qc_id`=\"$finalcode_for_pfdt\""));
 //}
 
-$finalcode_for_po2 = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(po_id) FROM `purchase_order`"))["MAX(po_id)"]) + 1 * 9999;
+$finalcode_for_po2 = intval(mysqli_fetch_assoc(mysqli_query($con, "SELECT MAX(po_id) FROM `purchase_order`"))["MAX(po_id)"]) + 1 * 9999;
 $finalcode_for_po = $a_id . $company . $finalcode_for_po2;
-$pfdtdatap = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `purchase_order` WHERE `invoice`=\"$finalcode_for_po\""));
+$pfdtdatap = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `purchase_order` WHERE `invoice`=\"$finalcode_for_po\""));
 while ($pfdtdatap != null) {
     $finalcode_for_po *= mt_rand(100000, 1000000);
-    $pfdtdatap = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `purchase_order` WHERE `invoice`=\"$finalcode_for_po\""));
+    $pfdtdatap = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `purchase_order` WHERE `invoice`=\"$finalcode_for_po\""));
 }
 
-$finalcode_for_qo2 = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(qo_id) FROM `quotation`"))["MAX(qo_id)"]) + 1 * 9999;
+$finalcode_for_qo2 = intval(mysqli_fetch_assoc(mysqli_query($con, "SELECT MAX(qo_id) FROM `quotation`"))["MAX(qo_id)"]) + 1 * 9999;
 $finalcode_for_qo = $a_id . $company . $finalcode_for_qo2;
-$pfdtdataq = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `quotation` WHERE `invoice`=\"$finalcode_for_qo\""));
+$pfdtdataq = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `quotation` WHERE `invoice`=\"$finalcode_for_qo\""));
 while ($pfdtdataq != null) {
     $finalcode_for_qo *= mt_rand(100000, 1000000);
-    $pfdtdataq = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `quotation` WHERE `invoice`=\"$finalcode_for_qo\""));
+    $pfdtdataq = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `quotation` WHERE `invoice`=\"$finalcode_for_qo\""));
 }
 
-$finalcode_for_bb2 = intval(mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(bb_id) FROM `stock_trans_b_to_b`"))["MAX(bb_id)"]) + 1 * 9999;
+$finalcode_for_bb2 = intval(mysqli_fetch_assoc(mysqli_query($con, "SELECT MAX(bb_id) FROM `stock_trans_b_to_b`"))["MAX(bb_id)"]) + 1 * 9999;
 $finalcode_for_bb = $a_id . $company . $finalcode_for_bb2;
-$pfdtdataqb = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `stock_trans_b_to_b` WHERE `invoice`=\"$finalcode_for_bb\""));
+$pfdtdataqb = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `stock_trans_b_to_b` WHERE `invoice`=\"$finalcode_for_bb\""));
 while ($pfdtdataqb != null) {
     $finalcode_for_bb *= mt_rand(100000, 1000000);
-    $pfdtdataqb = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `stock_trans_b_to_b` WHERE `invoice`=\"$finalcode_for_bb\""));
+    $pfdtdataqb = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM `stock_trans_b_to_b` WHERE `invoice`=\"$finalcode_for_bb\""));
 }

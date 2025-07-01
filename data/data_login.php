@@ -18,6 +18,7 @@ if ($login_pass != '' && $login_user != '') {
         if (password_verify($login_pass, $res['a_password'])) {
             if ($res['a_type'] == 6) {
                 $_SESSION['login'] = $res['a_id'];
+                $_SESSION['company'] = 1;
                 $_SESSION['type'] = $res['a_type'];
                 $_SESSION['username'] = $res['a_username'];
                 header('Location: ../dashboad.php');
