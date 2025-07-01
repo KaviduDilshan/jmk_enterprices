@@ -1,31 +1,34 @@
 <?php
-include_once './session.php';
-include_once '../common.php';
-include_once '../conn.php';
-include_once '../inc/functions.php';
-include_once '../inc/database.php';
-include_once 'data/data_list.php';
-include_once 'data/gen_invoice.php';
+// include_once './session.php';
+// include_once '../common.php';
+// include_once '../conn.php';
+ include_once '../inc/functions.php';
+ include_once '../inc/database.php';
+// include_once 'data/data_list.php';
+// include_once 'data/gen_invoice.php';
 
-if (isset($_POST['agreement_number'])) {
-    $agree = $_POST['agreement_number'];
-} else {
-    $agree = 0;
-}
-$agree_detail_id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM hp_transaction WHERE agreement_number = '$agree'"));
+include_once './conn.php';
+
+// if (isset($_POST['agreement_number'])) {
+//     $agree = $_POST['agreement_number'];
+// } else {
+//     $agree = 0;
+// }
+
+$agree_detail_id = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM hp_transaction WHERE loan_status = 1 ORDER BY hp_t_id"));
 $hp_t_id = $agree_detail_id['hp_t_id'];
-$agree_detail = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM hp_transaction WHERE hp_t_id = $hp_t_id"));
+$agree_detail = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM hp_transaction WHERE hp_t_id = $hp_t_id"));
 
 $c_id = $agree_detail['c_id'];
 $gu_id_01 = $agree_detail['gu_id_01'];
 $gu_id_02 = $agree_detail['gu_id_02'];
-$customer = (mysqli_fetch_assoc(mysqli_query($conn, "SELECT customer_name FROM customer WHERE c_id = $c_id"))["customer_name"]);
-$other_char = (mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(charge_amount) FROM hp_other_chargers WHERE hp_t_id = $hp_t_id"))["SUM(charge_amount)"]);
-$gurenter_01 = (mysqli_fetch_assoc(mysqli_query($conn, "SELECT guarantor_name FROM guarantor WHERE gu_id = $gu_id_01"))["guarantor_name"]);
-$gurenter_02 = (mysqli_fetch_assoc(mysqli_query($conn, "SELECT guarantor_name FROM guarantor WHERE gu_id = $gu_id_02"))["guarantor_name"]);
+$customer = (mysqli_fetch_assoc(mysqli_query($con, "SELECT customer_name FROM customer WHERE c_id = $c_id"))["customer_name"]);
+$other_char = (mysqli_fetch_assoc(mysqli_query($con, "SELECT SUM(charge_amount) FROM hp_other_chargers WHERE hp_t_id = $hp_t_id"))["SUM(charge_amount)"]);
+$gurenter_01 = (mysqli_fetch_assoc(mysqli_query($con, "SELECT guarantor_name FROM guarantor WHERE gu_id = $gu_id_01"))["guarantor_name"]);
+$gurenter_02 = (mysqli_fetch_assoc(mysqli_query($con, "SELECT guarantor_name FROM guarantor WHERE gu_id = $gu_id_02"))["guarantor_name"]);
 
 $loan_amount = $agree_detail['tot_loan_amount'] + $other_char;
-$paid_total = (mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(paid_total) FROM `hp_installments` WHERE `hp_t_id`=$hp_t_id"))["SUM(paid_total)"]);
+$paid_total = (mysqli_fetch_assoc(mysqli_query($con, "SELECT SUM(paid_total) FROM `hp_installments` WHERE `hp_t_id`=$hp_t_id"))["SUM(paid_total)"]);
 
 $arriess = $loan_amount - $paid_total;
 
@@ -36,43 +39,34 @@ $arriess = $loan_amount - $paid_total;
     data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
 
 <head>
-
     <meta charset="utf-8" />
-    <title>JMK Enterprises - Installment Payments</title>
+    <title>JMK Enterprises</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
-    
 
-    <!-- jsvectormap css -->
-    <link href="assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
-    <!--Swiper slider css-->
-    <link href="assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
-    <!-- Layout config Js -->
+    <link rel="stylesheet" href="assets/css/order.css">
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
     <script src="assets/js/layout.js"></script>
-    <!-- Bootstrap Css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
-    <!-- custom Css-->
     <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
-
-    <!-- Ionicons -->
-    <link href="css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <script src="js/error_list.js" type="text/javascript"></script>
-
-    <script src="js/custom.min.js" type="text/javascript"></script>
-    <script src="js/sweetalert.min.js" type="text/javascript"></script>
-    <script src="js/error_list.js" type="text/javascript"></script>
-    <script src="js/custom_admin.js" type="text/javascript"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid d-flex flex-wrap align-items-center">
+            <a href="#" class="navbar-brand" style="font-size: 25px; color: white; flex-grow:1;">
+                 Payments
+            </a>
+            <a class="btn btn-danger" href="index.php" style="font-size: 18px; white-space: nowrap;">
+                Log Out
+            </a>
+        </div>
+    </nav>
+
     <?php
         if (isset($_GET['error'])) {
             $error = base64_decode($_GET['error']);
@@ -83,65 +77,55 @@ $arriess = $loan_amount - $paid_total;
     <div id="layout-wrapper">
 
         <div class="container-fluid">
-            
+
             <div class="row mt-2 pb-0">
                 <div class="col-lg-12">
                     <div class="card mb-2">
                         <div class="card-body pb-0">                                    
                             <div class="live-preview">
-                                <form action="#" method="post">
-                                    <div class="form-group row">
-                                        <div class="col-lg-10 col-md-8 mb-2" >
-                                            <input type="text" class="form-control pt-1 pb-1" name="agreement_number" placeholder="Enter Agreement No *" value="" required>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2  mb-2">
-                                            <button type="submit" class="ml-1 pt-1 pb-1 btn btn-secondary bg-gradient waves-effect waves-light w-100">Find</button>
-                                        </div>
-                                    </div>
-                                </form>
-                                <hr class="mt-2 mb-3">
+                               
                                 <div class="row mb-0">
-                                    <div class="col-lg-3 col-md-3 mb-3">
-                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $agree_detail['duration']; ?>" readonly>
-                                        <small class="mx-1"><b>Duration</b></small>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3 mb-3">
-                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $agree_detail['transaction_date']; ?>" readonly>
-                                        <small class="mx-1"><b>Loan Date</b></small>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3 mb-3">
-                                        <input type="text" name="date" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= date("Y-m-d") ?>" readonly>
-                                        <small class="mx-1"><b>Payment Date</b></small>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3 mb-3">
-                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $customer ?>" readonly>
-                                        <small class="mx-1"><b>Customer</b></small>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3 mb-3">
-                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $gurenter_01 ?>" readonly>
-                                        <small class="mx-1"><b>Guarantor 01</b></small>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3 mb-3">
-                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $gurenter_02 ?>" readonly>
-                                        <small class="mx-1"><b>Guarantor 02</b></small>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3 mb-3">
-                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $agree_detail['des']; ?>" readonly>
-                                        <small class="mx-1"><b>Description</b></small>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-3 mb-3">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+                                        <h4 class="mx-1"><b>Agreement #</b></h4>
                                         <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $agree_detail['agreement_number']; ?>" readonly>
-                                        <small class="mx-1"><b>Agreement #</b></small>
                                     </div>
-                                    
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+                                        <h4 class="mx-1"><b>Duration</b></h4>
+                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $agree_detail['duration']; ?>" readonly>  
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+                                        <h4 class="mx-1"><b>Loan Date</b></h4>
+                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $agree_detail['transaction_date']; ?>" readonly>          
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+                                        <h4 class="mx-1"><b>Payment Date</b></h4>
+                                        <input type="text" name="date" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= date("Y-m-d") ?>" readonly>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+                                        <h4 class="mx-1"><b>Customer</b></h4>
+                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $customer ?>" readonly>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+                                        <h4 class="mx-1"><b>Description</b></h4>
+                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $agree_detail['des']; ?>" readonly>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+                                        <h4 class="mx-1"><b>Guarantor 01</b></h4>
+                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $gurenter_01 ?>" readonly>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+                                        <h4 class="mx-1"><b>Guarantor 02</b></h4>
+                                        <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= $gurenter_02 ?>" readonly>
+                                    </div>   
                                 </div>
+
                             </div>
                         </div> 
                     </div>
@@ -150,7 +134,7 @@ $arriess = $loan_amount - $paid_total;
                             <div class="card">
                                 <div class="card-body">
                                     <div class="live-preview">
-                                        <form action="data/installment_pay.php" class="form-horizontal" method="post" enctype="multipart/form-data">
+                                        <form action="#" class="form-horizontal" method="post" enctype="multipart/form-data">
                                             <input type="text" name="hp_t_id" value="<?= $hp_t_id ?>" readonly required hidden>
                                             <input type="text" name="c_id" value="<?= $c_id ?>" readonly required hidden>
                                             <input type="text" name="total" value="<?= $agree_detail['net_total'] ?>" readonly required hidden>
@@ -159,7 +143,7 @@ $arriess = $loan_amount - $paid_total;
                                             <input type="text" name="date" class="form-control pt-1 pb-1 bg-dark-subtle" value="<?= date("Y-m-d") ?>"hidden readonly>
                                             <div class="row">
                                                 <div class="col-xl-6">
-                                                    <p class="m-0 mb-1"><strong>Payment History</strong></p>
+                                                    <h5 class="m-0 mb-1"><strong>Payment History</strong></h5>
                                                     <div class="table-responsive mt-0"  style=" background-color: #f7ff99; padding: 1%;margin-top: 1%; height: 250px; overflow: scroll;">
                                                         <table class="table table-bordered mb-1 mt-0" style="width: 100%; background-color: #fff;">
                                                             <thead>
@@ -173,7 +157,7 @@ $arriess = $loan_amount - $paid_total;
                                                             </thead>
                                                             <tbody>
                                                                 <?php
-                                                                $installments = mysqli_query($conn, "SELECT * FROM `hp_installments` WHERE `hp_t_id`=$hp_t_id");
+                                                                $installments = mysqli_query($con, "SELECT * FROM `hp_installments` WHERE `hp_t_id`=$hp_t_id");
                                                                 while ($row = mysqli_fetch_array($installments)) {
                                                                     ?>
                                                                     <tr>
@@ -194,18 +178,19 @@ $arriess = $loan_amount - $paid_total;
 
                                                 <div class="col-xl-6">
                                                     <div class="row pt-1 pb-1 mt-3 form-actions">
-                                                        <div class="col-lg-6 mb-3">
+                                                        <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
+                                                            <h4 class="mx-1"><b>Loan Amount</b></h4>
                                                             <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle o_chargers" value="<?= $agree_detail['loan_amount'] ?>" placeholder="" readonly>
-                                                            <small class="mx-1"><b>Loan Amount</b></small>
                                                         </div>
-                                                        <div class="col-lg-6 mb-3">
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <h4 class="mx-1"><b>Monthly Installment</b></h4>
                                                             <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle o_chargers" value="<?= $agree_detail['installment_amount'] ?>" placeholder="" readonly>
-                                                            <small class="mx-1"><b>Monthly Installment</b></small>
                                                         </div>
-                                                        <div class="col-lg-6 mb-3">
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <h4 class="mx-1"><b>Installment Term</b></h4>
                                                             <select name="month" id="customer_status" class="form-select pt-1 pb-1 bg-dark-subtle" readonly>
                                                                 <?php
-                                                                $installments = mysqli_query($conn, "SELECT * FROM `hp_installments` WHERE `paid_total` = 0 AND `hp_t_id`=$hp_t_id ");
+                                                                $installments = mysqli_query($con, "SELECT * FROM `hp_installments` WHERE `paid_total` = 0 AND `hp_t_id`=$hp_t_id ");
                                                                 while ($row = mysqli_fetch_array($installments)) {
                                                                     ?>
                                                                     <option value="<?= $row['month']; ?>"><?= $row['month']; ?></option>
@@ -213,31 +198,31 @@ $arriess = $loan_amount - $paid_total;
                                                                 }
                                                                 ?>
                                                             </select>
-                                                            <small class="mx-1"><b>Installment Term</b></small>
+                                                            
                                                         </div>
-                                                        <div class="col-lg-6 mb-3">
-                                                            <input type="number" class="form-control pt-1 pb-1 o_chargers" step="0.01" name='paid_total' id="total_c" value="0.00" placeholder="0.00">
-                                                            <small class="mx-1"><b>Payment</b></small>
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <h4 class="mx-1"><b>Payment</b></h4>
+                                                            <input type="number" class="form-control pt-1 pb-1 o_chargers" step="0.01" name='paid_total' id="total_c"  placeholder="0.00">
                                                         </div>
-                                                        <div class="col-lg-6 mb-3">
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <h4 class="mx-1"><b>Interest</b></h4>
                                                             <input type="number" class="form-control pt-1 pb-1 bg-dark-subtle" step="0.01" name='' value="<?= $agree_detail['month_interest']; ?>" placeholder="0.00" readonly>
-                                                            <small class="mx-1"><b>Interest</b></small>
                                                         </div>
-                                                        <div class="col-lg-6 mb-3">
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <h4 class="mx-1"><b>Other Charges</b></h4>
                                                             <input type="number" class="form-control pt-1 pb-1 bg-dark-subtle" step="0.01" name='other_tot' value="<?= $other_char ?>" placeholder="0.00" readonly>
-                                                            <small class="mx-1"><b>Other Charges</b></small>
                                                         </div>
-                                                        <div class="col-lg-4 mb-3">
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <h4 class="mx-1"><b>Total Arrease</b></h4>
                                                             <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" name='tot_arries' id="arriess" value="<?= $arriess ?>" placeholder="0.00" readonly>
-                                                            <small class="mx-1"><b>Total Arrease</b></small>
                                                         </div>
-                                                        <div class="col-lg-4 mb-3">
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <h4 class="mx-1"><b>Balance Amount</b></h4>
                                                             <input type="text" class="form-control pt-1 pb-1 bg-dark-subtle" name='tot_arries' id="tot_arries" value="" placeholder="0.00" readonly>
-                                                            <small class="mx-1"><b>Balance Amount</b></small>
                                                         </div>
-                                                        <div class="col-lg-4 mb-3">
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 mb-3">
+                                                            <h4 class="mx-1"><b>Cash Commission</b></h4>
                                                             <input type="text" class="form-control pt-1 pb-1" name='cash_commission' id="cash_commission" value="0">
-                                                            <small class="mx-1"><b>Cash Commission</b></small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -253,10 +238,11 @@ $arriess = $loan_amount - $paid_total;
                                                 </div> -->
                                                     
                                                 <div class="row mt-2">
-                                                <hr><h6><b>Payment Type Details</b></h6><hr>
-                                                    <div class="col-6">
-                                                        <div class="row">
-                                                            <div class="col-lg-6 mb-3">
+                                                <hr><h5><b>Payment Type Details</b></h5><hr>
+                                                    <div class="col-12 ">
+                                                        <div class="row ">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
+                                                                <h5 class="mx-1"><b>Payment Type<span class="text-danger">*</span></b></h5>
                                                                 <select name="tra_type" id="tra_type" class="form-select pt-1 pb-1" required>
                                                                     <option value="1"<?php
                                                                     if ($row['tra_type'] == 1) {
@@ -274,10 +260,10 @@ $arriess = $loan_amount - $paid_total;
                                                                     }
                                                                     ?>>Online Transfer</option>
                                                                 </select>
-                                                                <small class="mx-1"><b>Payment Type<span class="text-danger">*</span></b></small>
                                                             </div>
 
-                                                            <div class="col-lg-6 mb-3" style="display: <?= ($row['tra_type'] > 1) ? "block" : "none" ?>" id="tra_online">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 mb-3" style="display: <?= ($row['tra_type'] > 1) ? "block" : "none" ?>" id="tra_online">
+                                                                <h5 class="mx-1"><b>Select Bank<span class="text-danger">*</span></b></h5>
                                                                 <select name="ba_id" id="ba_id" class="form-select pt-1 pb-1 select">
                                                                     <option value="0">Select Bank</option>
                                                                     <?= $database->loadAllbank($row['ba_id']) ?>
@@ -286,11 +272,12 @@ $arriess = $loan_amount - $paid_total;
                                                             </div>
 
                                                             <div class="col-lg-6 mb-3" style="display: <?= ($row['tra_type'] == 2) ? "block" : "none" ?>" id="tra_chq_no">
-                                                                <input type="number" name="chq_no" class="form-control pt-1 pb-1" value="value="<?php echo $row['chq_no']; ?>>
+                                                                <input type="number" name="chq_no" class="form-control pt-1 pb-1" value=<?php echo $row['chq_no']; ?>>
                                                                 <small class="mx-1"><b>Cheque No.<span class="text-danger">*</span></b></small>
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-6">
                                                         <div class="row justify-content-end mb-1 form-actions">
                                                             <div class="col-6">
@@ -301,10 +288,20 @@ $arriess = $loan_amount - $paid_total;
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
+
+                                                   
+                                                    <div class="row text-center mt-2">
+                                                        <div class="col-6 col-md-6 col-lg-6 mt-1">
+                                                            <a href="dashboad.php" class="btn btn-warning w-100" style="font-size: 17px;">Cancel & Remove</a>
+                                                        </div>
+                                                        <div class="col-6 col-md-6 col-lg-6 mt-1 mb-1">
+                                                            <button type="submit" class="btn btn-primary w-100" style="font-size: 17px;" >Save</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>    
                                         </form>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>
