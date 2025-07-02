@@ -1,20 +1,14 @@
 <?php
 
 session_start();
-include_once '../inc/functions.php';
+include_once './inc/functions.php';
+include_once './conn.php';
 
 
-if ($_SESSION['SecKey'] != getSecKey($_SESSION['login'], $conn)) {
-
-    include_once '../inc/del_session.php';
-    header('Location: login.php');
-    exit();
-}
 
 if ($_SESSION['login'] == '') {
-
-    include_once '../inc/del_session.php';
-    header('Location: login.php');
+   
+    header('Location: index.php');
     exit();
 }
 

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include '../../conn.php';
+include_once '../conn.php';
 
 if (isset($_POST["add"])) {
     $date = $_POST["date"];
@@ -55,42 +55,42 @@ if (isset($_POST["add"])) {
 
     $sql = "update `hp_installments` set date='" . $transaction_date . "', paid_total='" . $paid_total . "', balance='" . $balance . "' WHERE hp_t_id='" . $hp_t_id . "' AND month='" . $month . "'";
 
-    if (mysqli_query($conn, $sql)) {
+    if (mysqli_query($con, $sql)) {
         $sqi11 = "INSERT INTO `customer_commission` ( `t_id`, `hp_t_id`, `c_id`, `com_date`, `total_amount`, `installment_term`, `cash_commission`, `company`) VALUES ( '0', '" . $hp_t_id . "', '" . $c_id . "', '" . $date . "', '" . $total . "', '" . $installment_term . "', '" . $cash_commission . "', '" . $company . "')";
 
-        if (mysqli_query($conn, $sqi11)) {
+        if (mysqli_query($con, $sqi11)) {
             $sql1 = "INSERT INTO `customer_ledger` ( `c_id`, `hp_t_id`, `deb_amount`, `pay_type`, `cl_description`, `company`, `date`) VALUES "
                 . "( '" . $c_id . "', '" . $hp_t_id . "', '" . $paid_total . "', '" . $pay_type . "', '" . $cl_description . "', '" . $company . "', '" . $transaction_date . "')";
 
 
-            if (mysqli_query($conn, $sql1)) {
-                $c_last_id = mysqli_insert_id($conn);
+            if (mysqli_query($con, $sql1)) {
+                $c_last_id = mysqli_insert_id($con);
 
                 if ($pay_type == 1) {
                     $sql3 = "INSERT INTO `cash_ledger` ( `c_id`, `hp_t_id`, `cl_id`, `ca_type`, `deb_amount`, `pay_type`, `ca_l_description`, `company`, `date`) VALUES "
                         . "( '" . $c_id . "', '" . $hp_t_id . "', '" . $c_last_id . "', '6', '" . $paid_total . "', '" . $pay_type . "', '" . $cl_description . "', '" . $company . "', '" . $transaction_date . "')";
 
-                    if (mysqli_query($conn, $sql3)) {
-                        header('Location: ../pdf/bill_receipt_hp_i.php?hp_t_id=' . $hp_t_id . '&month=' . $month . '&tra=' . $pay_type);
+                    if (mysqli_query($con, $sql3)) {
+                        header('Location: ../dashboad.php');
                     }
                 } elseif ($pay_type == 2) {
                     $sql3 = "INSERT INTO `bank_ledger` ( `ba_id`, `c_id`,  `cl_id`, `hp_t_id`, `deb_amount`, `bl_description`, `bl_date`, `company`,`tra_type`, `bl_type`, `chq_no`) VALUES "
                         . "( '" . $ba_id . "', '" . $c_id . "', '" . $c_last_id . "', '" . $hp_t_id . "', '" . $paid_total . "', '" . $cl_description . "', '" . $transaction_date . "', '" . $company . "', '" . $pay_type . "', '" . $bl_type . "', '" . $chq_no . "')";
 
-                    if (mysqli_query($conn, $sql3)) {
-                        header('Location: ../pdf/bill_receipt_hp_i.php?hp_t_id=' . $hp_t_id . '&month=' . $month . '&tra=' . $pay_type);
+                    if (mysqli_query($con, $sql3)) {
+                        header('Location: ../dashboad.php');
                     }
                 } elseif ($pay_type == 3) {
                     $sql3 = "INSERT INTO `bank_ledger` ( `ba_id`, `c_id`,  `cl_id`, `hp_t_id`, `deb_amount`, `bl_description`, `bl_date`, `company`,`tra_type`, `bl_type`) VALUES "
                         . "( '" . $ba_id . "', '" . $c_id . "', '" . $c_last_id . "', '" . $hp_t_id . "', '" . $paid_total . "', '" . $cl_description . "', '" . $transaction_date . "', '" . $company . "', '" . $pay_type . "', '" . $bl_type . "')";
 
-                    if (mysqli_query($conn, $sql3)) {
-                        header('Location: ../pdf/bill_receipt_hp_i.php?hp_t_id=' . $hp_t_id . '&month=' . $month . '&tra=' . $pay_type);
+                    if (mysqli_query($con, $sql3)) {
+                        header('Location: ../dashboad.php');
                     }
                 }
             }
         }
     }
 } else {
-    header("location:../");
+    header("location: ../index.php");
 }

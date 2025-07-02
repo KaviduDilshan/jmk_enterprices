@@ -80,18 +80,7 @@ function setSecKey($a_id, $conn) {
     return $sec_key;
 }
 
-function getSecKey($a_id, $conn) {
 
-    $sql = "SELECT a_sec_key FROM admins WHERE a_id = '" . $a_id . "' and a_status ='1'";
-
-    $result = mysqli_query($conn, $sql);
-    if ($result) {
-        $res = mysqli_fetch_assoc($result);
-        return $res['a_sec_key'];
-    }else{
-        return 0;
-    }
-}
 
 function getAdminRef($a_id, $conn) {
 

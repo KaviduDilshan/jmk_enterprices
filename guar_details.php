@@ -17,7 +17,6 @@ $guarantor_gen = $row['gender'];
     data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
 
 <head>
-
     <meta charset="utf-8" />
     <title>JMK Enterprises</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

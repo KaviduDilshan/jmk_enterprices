@@ -1,15 +1,15 @@
 <?php
 
-session_start();
-// include_once './session.php';
 // include_once '../common.php';
 // include_once '../conn.php';
+// include_once 'data_list.php';
+
+include_once './session.php';
 include_once './inc/functions.php';
 include_once './inc/database.php';
-// include_once 'data_list.php';
 include_once 'gen_invoice.php';
-
 include_once './conn.php';
+
 
 // if (isset($_POST['agreement_number'])) {
 //     $agree = $_POST['agreement_number'];
@@ -145,7 +145,7 @@ $arriess = $loan_amount - $paid_total;
                             <div class="card">
                                 <div class="card-body">
                                     <div class="live-preview">
-                                        <form action="data_installment_pay.php" class="form-horizontal" method="post"
+                                        <form action="data/data_installment_pay.php" class="form-horizontal" method="post"
                                             enctype="multipart/form-data">
                                             <input type="text" name="hp_t_id" value="<?= $hp_t_id ?>" readonly required
                                                 hidden>
@@ -276,72 +276,57 @@ $arriess = $loan_amount - $paid_total;
 
                                             </div>
 
-                                            <!-- <div class="row justify-content-end mb-3 mt-3 form-actions">
-                                                    <div class="col-4 mt-1">
-                                                        <button type="submit" name="add" class=" btn btn-primary bg-gradient waves-effect waves-light w-100">Save & Close Loan Account</button>
-                                                    </div>
-                                                    <div class="col-2 mt-1">
-                                                        <button type="reset" class="btn btn-warning bg-gradient waves-effect waves-light w-100" onclick="location.href = 'index.php';">Back to Home</button>
-                                                    </div>
-                                                </div> -->
-
                                             <div class="row mt-2">
                                                 <hr>
                                                 <h5><b>Payment Type Details</b></h5>
                                                 <hr>
-                                                <div class="col-12 ">
+                                                <div class="col-12">
                                                     <div class="row ">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                                             <h5 class="mx-1"><b>Payment Type<span
                                                                         class="text-danger">*</span></b></h5>
                                                             <select name="tra_type" id="tra_type"
-                                                                class="form-select pt-1 pb-1" required>
+                                                                class="form-select pt-1 pb-1 fs-5" style="height: 40px;" required>
                                                                 <option value="1">Cash Payment</option>
                                                                 <option value="2">Cheque Payment</option>
                                                                 <option value="3">Online Transfer</option>
                                                             </select>
                                                         </div>
 
-                                                        <div class="row text-center mt-2">
-                                                            <div class="col-6 col-md-6col-sm-6 mb-3">
+                                                        <div class="row text-center mt-3">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                                                 <a href="dashboad.php" class="btn btn-warning w-100"
                                                                     style="font-size: 17px;">Cancel & Remove</a>
                                                             </div>
-                                                            <div class="col-6 col-md-6 col-lg-6 mt-1 mb-3">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 mb-3">
                                                                 <button type="submit" class="btn btn-primary w-100"
                                                                     style="font-size: 17px;">Save</button>
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 mb-3" style="display: none" id="tra_online">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 mb-3"
+                                                            style="display: none" id="tra_online">
                                                             <h5 class="mx-1"><b>Select Bank<span
                                                                         class="text-danger">*</span></b></h5>
-                                                            <select name="ba_id" id="ba_id" class="form-select pt-1 pb-1 select">
+                                                            <select name="ba_id" id="ba_id"
+                                                                class="form-select pt-1 pb-1 select">
                                                                 <option value="0">Select Bank</option>
                                                                 <?= $database->loadAllbank($row['ba_id']) ?>
                                                             </select>
-                                                            <small class="mx-1"><b>Select Bank<span class="text-danger">*</span></b></small>
+                                                            <small class="mx-1"><b>Select Bank<span
+                                                                        class="text-danger">*</span></b></small>
 
-                                                            <div class="col-lg-6 mb-3" style="display: none" id="tra_chq_no">
-                                                                <input type="number" name="chq_no" class="form-control pt-1 pb-1" value=<?php echo $row['chq_no']; ?>>
-                                                                <small class="mx-1"><b>Cheque No.<span class="text-danger">*</span></b></small>
+                                                            <div class="col-lg-6 mb-4" style="display: none"
+                                                                id="tra_chq_no">
+                                                                <input type="number" name="chq_no"
+                                                                    class="form-control pt-1 pb-1" value=<?php echo $row['chq_no']; ?>>
+                                                                <small class="mx-1"><b>Cheque No.<span
+                                                                            class="text-danger">*</span></b></small>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-                                                <div class="row text-center mt-2">
-                                                    <div class="col-6 col-md-6 col-lg-6 mt-1">
-                                                        <a href="dashboad.php" class="btn btn-warning w-100"
-                                                            style="font-size: 17px;">Cancel & Remove</a>
-                                                    </div>
-                                                    <div class="col-6 col-md-6 col-lg-6 mt-1 mb-1">
-                                                        <button type="submit" class="btn btn-primary w-100"
-                                                            style="font-size: 17px;">Save</button>
-                                                    </div>
-                                                </div>
-
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -368,20 +353,17 @@ $arriess = $loan_amount - $paid_total;
 
     <!-- Dashboard init -->
     <script src="assets/js/pages/dashboard-ecommerce.init.js"></script>
+    <script src="assets/js/pages/validation.js" type="text/javascript"></script>
+    <script src="assets/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="assets/js/pages/recordaction.js" type="text/javascript"></script>
 
     <script src=" https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src=" https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
-
-    <script src="js/validation.js" type="text/javascript"></script>
-    <script src="plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script> 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" />
-
-    <script src="js/recordaction.js" type="text/javascript"></script>
-
 
     <script type="text/javascript">
         function logout() {
@@ -463,3 +445,4 @@ $arriess = $loan_amount - $paid_total;
 </body>
 
 </html>
+
